@@ -1,0 +1,306 @@
+resourceRelationshipID,resourceID,relationshipOfResourceID,relatedResourceID,relationshipOfResource,relationshipAccordingTo,relationshipEstablishedDate,relationshipRemarks,scientificName,associd,associationType,subType,objectID,identifier,basisOfRecord,tid,locationOnHost,conditionOfAssociate,imageMapJSON,dynamicProperties,sourceIdentifier,recordID,createdUid,modifiedTimestamp,modifiedUid,initialtimestamp
+,395681d9-1d67-4233-a481-63ea2b6c4e40,,,originatingSampleOf,,,,,1,internalOccurrence,,,,,,,,,,,,2667,,,7/15/2021 12:51
+,0f06f4ae-ba52-4ff2-a84c-5a7b0af7b3fa,,,originatingSampleOf,,,,,2,internalOccurrence,,,,,,,,,,,,2667,,,7/15/2021 14:34
+,4456ee07-c887-420d-b9d7-418626dcbca3,,,originatingSampleOf,,,,,3,internalOccurrence,,,,,,,,,,,,2667,,,7/15/2021 15:28
+,83628670-28fe-40b7-94fb-1f73ef5a4b90,,,originatingSampleOf,,,,,6,internalOccurrence,,,,,,,,,,,,2667,,,7/20/2021 14:23
+,2ec354ff-725a-4fde-a525-1111494935db,,,ecologicallyOccursWith,,,,,7,internalOccurrence,,,,,,,,,,,,2667,,,7/22/2021 13:05
+,57ec4654-4959-41fb-a298-9455e14b08cf,,,originatingSampleOf,,,,,8,internalOccurrence,,,,,,,,,,,,2667,,,7/22/2021 13:46
+,94e40322-3d23-4cd6-8ec4-cefd1bb9f758,,,originatingSampleOf,,,,,9,internalOccurrence,,,,,,,,,,,,2667,,,7/22/2021 14:53
+,9e857259-86a5-4989-9810-605aa0bc95d3,,,originatingSampleOf,,,,,10,internalOccurrence,,,,,,,,,,,,2667,,,7/22/2021 14:59
+,49268d6e-8189-4d06-9d0f-dc4614b36b89,,,ecologicallyOccursWith,,,,,11,internalOccurrence,,,,,,,,,,,,2667,,,7/22/2021 18:33
+,16c5da64-a6f1-4be3-ae8a-77c8c300c18f,,,ecologicallyOccursWith,,,,,12,internalOccurrence,,,,,,,,,,,,2667,,,7/22/2021 18:35
+,ed927e52-bbfc-49f8-b9cf-76c9a9d48b10,,,ecologicallyOccursWith,,,,,13,internalOccurrence,,,,,,,,,,,,2667,,,7/22/2021 18:43
+,c2f11241-cc60-4a75-9982-38b766b52536,,,originatingSampleOf,,,,,15,internalOccurrence,,,,,,,,,,,,2667,,,7/23/2021 12:33
+,d50a937c-8870-4473-833c-26736730a578,,,originatingSampleOf,,,,,16,internalOccurrence,,,,,,,,,,,,2667,,,7/23/2021 12:38
+,c5ee25e1-c427-4225-9dbe-664279d62c2f,,,ecologicallyOccursWith,,,,,17,internalOccurrence,,,,,,,,,,,,2667,,,7/23/2021 14:26
+,225552d2-add9-457f-a3b5-2454370f1d04,,,ecologicallyOccursWith,,,,,18,internalOccurrence,,,,,,,,,,,,2667,,,7/23/2021 15:58
+,28e099ae-91c7-4cfc-acd8-916a3a2eb086,,,originatingSampleOf,,,,,19,internalOccurrence,,,,,,,,,,,,2667,,,7/23/2021 16:53
+,15c17c22-1ec8-4731-95f9-e56e847c6d55,,,originatingSampleOf,,,,,20,internalOccurrence,,,,,,,,,,,,2667,,,7/23/2021 17:00
+,196d26fc-33f4-48e8-a37c-53a5cb4c9001,,,originatingSampleOf,,,,,22,,,,,,,,,,,,,2667,,,7/23/2021 17:06
+,4cb58539-e0c5-4f3f-b95b-cd5b8614e567,,,ecologicallyOccursWith,,,,,23,internalOccurrence,,,,,,,,,,,,2667,,,7/23/2021 17:09
+,f7bb1f6b-d2b4-4ba8-a912-f48a0b6f510c,,,ecologicallyOccursWith,,,,,25,internalOccurrence,,,,,,,,,,,,2667,,,7/23/2021 17:15
+,5ff2e4cd-65ed-478e-ab24-46c8389d8d9a,,,ecologicallyOccursWith,,,,,27,,,,,,,,,,,,,2667,,,7/23/2021 17:20
+,e959ba63-f64c-4f48-89ac-d6493ea4e767,,,ecologicallyOccursWith,,,,,30,internalOccurrence,,,,,,,,,,,,2667,,,7/23/2021 18:42
+,f6bfd0d4-8215-4e22-9458-1996e2630053,,,ecologicallyOccursWith,,,,,31,internalOccurrence,,,,,,,,,,,,2667,,,7/23/2021 19:44
+,87b741d7-3e60-4185-9269-1b47496cb591,,,ecologicallyOccursWith,,,,,32,internalOccurrence,,,,,,,,,,,,2667,,,7/23/2021 20:28
+,701c17a4-b87b-4832-a72c-9be321db1e92,,,originatingSampleOf,,,,,33,internalOccurrence,,,,,,,,,,,,2667,,,7/24/2021 12:20
+,254e9a95-a8be-4f94-bc1a-cef87264d52c,,,originatingSampleOf,,,,,34,internalOccurrence,,,,,,,,,,,,2667,,,7/26/2021 18:02
+,30a73ee5-5b9d-4b0c-aeef-15d71efb643c,,,originatingSampleOf,,,,,35,internalOccurrence,,,,,,,,,,,,2667,,,7/26/2021 18:48
+,52e1059e-d70a-48cc-9ff3-922ec5cf3885,,,originatingSampleOf,,,,,36,internalOccurrence,,,,,,,,,,,,2667,,,7/26/2021 19:18
+,3a850db2-15af-444e-9433-b89c08179b70,,,ecologicallyOccursWith,,,,,39,internalOccurrence,,,,,,,,,,,,2667,,,2/1/2022 15:43
+,67390880-0034-4ae8-86f4-f8d3ebb91adb,,,ecologicallyOccursWith,,,,,40,internalOccurrence,,,,,,,,,,,,2667,,,2/3/2022 15:30
+,34f2b7c6-4576-41cc-ba39-49e227f306a1,,,ecologicallyOccursWith,,,,,41,internalOccurrence,,,,,,,,,,,,2667,,,2/4/2022 14:09
+,12b60a59-e394-4ad4-b593-e35e1d6324a2,,,ecologicallyOccursWith,,,,,42,internalOccurrence,,,,,,,,,,,,2667,,,2/4/2022 15:05
+,98923c48-4dd8-45fe-9566-f214217ec608,,,ecologicallyOccursWith,,,,,43,internalOccurrence,,,,,,,,,,,,2667,,,2/7/2022 18:53
+,08296284-693b-4558-a293-4c40b37497a2,,,ecologicallyOccursWith,,,,,44,internalOccurrence,,,,,,,,,,,,2667,,,2/7/2022 18:53
+,db3994b0-2788-4fba-9e7a-357441eb65ba,,,ecologicallyOccursWith,,,,,45,internalOccurrence,,,,,,,,,,,,2667,,,2/11/2022 16:53
+,591de7ad-a0b7-49ae-a30f-b0f9ccbdfe33,,,ecologicallyOccursWith,,,,,46,internalOccurrence,,,,,,,,,,,,2667,,,2/15/2022 14:46
+,935b2248-6a9f-47c8-954d-b5cd06e14e66,,,ecologicallyOccursWith,,,,,47,internalOccurrence,,,,,,,,,,,,2667,,,2/15/2022 14:57
+,af9b7843-9e21-41c2-a74a-62cae0bd95bd,,,ecologicallyOccursWith,,,,,48,internalOccurrence,,,,,,,,,,,,2667,,,2/15/2022 14:57
+,b576f41d-e835-4df9-b404-ba937e9c212c,,,ecologicallyOccursWith,,,,,49,internalOccurrence,,,,,,,,,,,,2667,,,2/18/2022 18:12
+,1d0844fc-8e5e-42a0-9945-6a6687555ca1,,,ecologicallyOccursWith,,,,,50,internalOccurrence,,,,,,,,,,,,2667,,,3/4/2022 17:52
+,b3bb6d04-7c1a-4544-95a0-ec14bd1d5878,,,ecologicallyOccursWith,,,,,51,internalOccurrence,,,,,,,,,,,,2667,,,3/18/2022 15:24
+,97b9928a-9376-44a7-a0b4-338f359fc069,,,ecologicallyOccursWith,,,,,52,internalOccurrence,,,,,,,,,,,,2667,,,3/18/2022 15:30
+,95e92ca4-ac71-4654-8036-a092bcaf94f6,,,ecologicallyOccursWith,,,,,53,internalOccurrence,,,,,,,,,,,,2667,,,3/18/2022 15:35
+,fe204bbc-64bb-40dc-9736-ca2b6ee053f4,,,ecologicallyOccursWith,,,,,54,internalOccurrence,,,,,,,,,,,,2667,,,3/18/2022 15:42
+,977c18ec-dbb5-4fce-b4c8-55d425bc6d14,,,ecologicallyOccursWith,,,,,55,internalOccurrence,,,,,,,,,,,,2667,,,3/22/2022 15:19
+,dadd0fc9-e543-43d1-a630-d82ff36b1d40,,,ecologicallyOccursWith,,,,,56,internalOccurrence,,,,,,,,,,,,2667,,,3/22/2022 15:19
+,933aeffa-d19a-4999-934c-6f703769054d,,,ecologicallyOccursWith,,,,,57,internalOccurrence,,,,,,,,,,,,2667,,,3/22/2022 15:19
+,7b31ebee-d1bb-46ef-b46f-f80ce756f97b,,,ecologicallyOccursWith,,,,,58,internalOccurrence,,,,,,,,,,,,2667,,,3/29/2022 10:36
+,3d068ee3-7322-43c4-b3cb-f0bed1b7e38d,,,ecologicallyOccursWith,,,,,59,internalOccurrence,,,,,,,,,,,,2667,,,3/29/2022 14:17
+,66e29b61-2f05-427d-9502-6b5100ac101a,,,hasHost,,,,,60,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 17:24
+,2b803589-683a-40ea-b294-d4c46fd06e02,,,ecologicallyOccursWith,,,,,61,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 17:31
+,73858d8a-a8f5-4a28-8cee-ae52af327464,,,ecologicallyOccursWith,,,,,62,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 17:31
+,e685a275-5da2-4ed5-a45e-852b54242b2c,,,ecologicallyOccursWith,,,,,64,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 17:42
+,0875bd26-7f58-4800-8c52-2d7c9c1b9bf9,,,ecologicallyOccursWith,,,,,65,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 17:42
+,77d64309-6c7d-4583-aff5-453a12ccec2b,,,ecologicallyOccursWith,,,,,66,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 17:45
+,71b438f0-7ab4-4ebf-ba96-eee75fcb63ee,,,ecologicallyOccursWith,,,,,67,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 17:45
+,68c44eb1-76f5-455b-86b1-353e2a079d5f,,,ecologicallyOccursWith,,,,,68,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 17:45
+,46c45e3a-5d65-4c21-a9b2-57a7baf870eb,,,ecologicallyOccursWith,,,,,69,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 17:47
+,2d3108d8-7eb1-4711-8309-aec04d08be3e,,,hasHost,,,,,70,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 17:48
+,5136d827-c4b8-46e2-a3d4-ade610f583ff,,,ecologicallyOccursWith,,,,,72,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 17:51
+,b66a2e67-ad5b-4996-bc73-83db3964dc59,,,ecologicallyOccursWith,,,,,73,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 18:16
+,26def6c1-70cc-4741-9876-1a84017d05c8,,,ecologicallyOccursWith,,,,,74,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 18:16
+,3423b52c-8317-4b12-aa49-9c69a6ad492d,,,ecologicallyOccursWith,,,,,75,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 18:41
+,45ace943-a08c-448d-bbd0-379ca16bb7a7,,,ecologicallyOccursWith,,,,,76,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 18:41
+,4c90d4c4-3c7b-4694-9635-99184e8eaeeb,,,ecologicallyOccursWith,,,,,77,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 18:41
+,2b1b9afd-7f28-4c5f-aeac-bcfc0ecc3cac,,,ecologicallyOccursWith,,,,,78,internalOccurrence,,,,,,,,,,,,2667,,,4/5/2022 18:28
+,5b888bfb-b654-428b-be92-a1c267c547f4,,,ecologicallyOccursWith,,,,,80,internalOccurrence,,,,,,,,,,,,2667,,,4/22/2022 13:55
+,45828cd5-e068-4723-9f0f-bc701891a9de,,,ecologicallyOccursWith,,,,,81,internalOccurrence,,,,,,,,,,,,2667,,,4/22/2022 14:12
+,192046ef-12d4-43ad-b2dc-7eee18f19ee9,,,hostOf,,,,,82,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 16:46
+,b162a109-01ae-42d4-a501-13598ebecdc4,,,hostOf,,,,,83,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 17:17
+,9196d5ca-9fbf-417e-bec3-1726a77e48ac,,,ecologicallyOccursWith,,,,,84,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 17:18
+,9d755d52-e8f2-43ef-b9a6-c21e4c74e221,,,ecologicallyOccursWith,,,,,85,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 17:29
+,fcc7ca63-9add-412e-b0cc-344179f0a1a7,,,ecologicallyOccursWith,,,,,86,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 17:29
+,5866c450-77fd-42cf-8811-65e2d0357581,,,ecologicallyOccursWith,,,,,87,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 17:36
+,c1b8e25a-a436-4dc5-b541-3b29684ad589,,,ecologicallyOccursWith,,,,,88,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 17:36
+,ef0be1b6-59a4-405a-b039-b642dfe1a08f,,,ecologicallyOccursWith,,,,,89,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 17:40
+,e94950de-4cbd-40eb-9a31-d1964491b4d9,,,ecologicallyOccursWith,,,,,90,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 17:40
+,9a85ca09-03da-4206-84bd-e7e761ad7f60,,,ecologicallyOccursWith,,,,,91,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 17:54
+,145bd214-11e2-4d5f-af30-6d33f4b2b700,,,ecologicallyOccursWith,,,,,92,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 17:54
+,91b4810d-90d8-440e-a0ec-e2a19e33a424,,,ecologicallyOccursWith,,,,,93,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 17:54
+,39e7b86c-305e-440c-9f41-78813d6ecb1f,,,hostOf,,,,,94,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 18:03
+,168494dc-a255-48d0-8615-37fa17c496d2,,,ecologicallyOccursWith,,,,,98,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 18:17
+,bdb20a56-0495-43a2-93d4-8ef44dc50da1,,,ecologicallyOccursWith,,,,,99,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 18:17
+,e4957552-5417-44e3-9d5e-cdd6636f7b88,,,ecologicallyOccursWith,,,,,100,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 18:17
+,ac89ab3f-9399-407c-8b5f-6066013523ae,,,ecologicallyOccursWith,,,,,101,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 18:40
+,19b9f069-ecec-421f-aa19-d1a64426494f,,,ecologicallyOccursWith,,,,,103,,,,,,,,,,,,,2667,,,4/28/2022 18:43
+,ad523e65-0c67-4070-a703-3b41b3124c47,,,originatingSampleOf,,,,,104,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 18:52
+,750b8109-39d8-4489-9c40-c2679c49cdc9,,,hostOf,,,,,105,internalOccurrence,,,,,,,,,,,,2667,,,5/3/2022 15:13
+,1ec0f70a-aab9-49e4-beda-b889f9c7377a,,,ecologicallyOccursWith,,,,,106,internalOccurrence,,,,,,,,,,,,2667,,,5/3/2022 15:21
+,62eb5b57-3ae1-4a9c-a09e-b28f8c147e5a,,,ecologicallyOccursWith,,,,,107,internalOccurrence,,,,,,,,,,,,2667,,,5/3/2022 15:32
+,e9f9fefa-63a0-483a-9ae3-b9d3ce8c84a2,,,ecologicallyOccursWith,,,,,108,internalOccurrence,,,,,,,,,,,,2667,,,5/3/2022 16:21
+,330f71a2-00d2-47e9-86be-d3f1ecacfcdf,,,ecologicallyOccursWith,,,,,109,internalOccurrence,,,,,,,,,,,,2667,,,5/3/2022 16:22
+,9ade9005-1440-4421-80a4-ea3b3240bb91,,,ecologicallyOccursWith,,,,,110,internalOccurrence,,,,,,,,,,,,2667,,,5/11/2022 12:08
+,b6d23630-ace7-412e-868e-3de4e2dafd15,,,ecologicallyOccursWith,,,,,111,internalOccurrence,,,,,,,,,,,,2667,,,5/11/2022 12:08
+,c5c4ea1c-8e9c-43d8-b288-8cf891a4b125,,,ecologicallyOccursWith,,,,,112,internalOccurrence,,,,,,,,,,,,2667,,,5/11/2022 14:04
+,1cf2fb48-f75d-4c7a-814c-d4816ad81b33,,,ecologicallyOccursWith,,,,,113,internalOccurrence,,,,,,,,,,,,2667,,,5/11/2022 14:13
+,c8b4301e-4b87-4b6a-9099-90df0352d8b0,,,ecologicallyOccursWith,,,,,114,internalOccurrence,,,,,,,,,,,,2667,,,5/11/2022 14:16
+,a5206446-fce8-4891-a623-c6e47abcc21d,,,hostOf,,,,,115,internalOccurrence,,,,,,,,,,,,2667,,,5/12/2022 11:13
+,2d65cbf4-4022-41a6-8726-25d11ab0a84c,,,hostOf,,,,,116,internalOccurrence,,,,,,,,,,,,2667,,,5/12/2022 13:02
+,ae02561c-8e32-4641-ae02-36f1ab1368a1,,,ecologicallyOccursWith,,,,,117,internalOccurrence,,,,,,,,,,,,2667,,,5/12/2022 13:11
+,76c8887d-37d3-4d34-85ab-491347134aba,,,ecologicallyOccursWith,,,,,118,internalOccurrence,,,,,,,,,,,,2667,,,5/12/2022 13:11
+,a276990a-ce23-4b97-b2ac-9de589fbec9b,,,ecologicallyOccursWith,,,,,119,internalOccurrence,,,,,,,,,,,,2667,,,5/14/2022 2:09
+,acd44a00-dc63-4aa9-a114-68761b87ae49,,,ecologicallyOccursWith,,,,,120,internalOccurrence,,,,,,,,,,,,2667,,,5/14/2022 2:09
+,04aadf2d-fe68-4562-a799-17487bfd3532,,,ecologicallyOccursWith,,,,,121,internalOccurrence,,,,,,,,,,,,2667,,,5/14/2022 16:23
+,9694f232-bcd8-4e62-9272-cb0c398068d4,,,ecologicallyOccursWith,,,,,122,internalOccurrence,,,,,,,,,,,,2667,,,5/16/2022 17:23
+,68a87e79-800c-4663-86bd-f50275e337cb,,,ecologicallyOccursWith,,,,,123,internalOccurrence,,,,,,,,,,,,2667,,,5/16/2022 17:25
+,fdc51d3d-9487-4542-aa1d-0117b6b7212c,,,ecologicallyOccursWith,,,,,124,internalOccurrence,,,,,,,,,,,,2667,,,5/16/2022 17:25
+,5255528e-9fc7-49f2-bc44-a3eff0f5c456,,,ecologicallyOccursWith,,,,,125,internalOccurrence,,,,,,,,,,,,2667,,,5/17/2022 18:26
+,880686aa-5ca2-4557-ac58-f84db8bcbdc3,,,ecologicallyOccursWith,,,,,126,internalOccurrence,,,,,,,,,,,,2667,,,5/17/2022 18:38
+,e9ee5178-3fa3-416a-9238-0fbae15b143a,,,ecologicallyOccursWith,,,,,127,internalOccurrence,,,,,,,,,,,,2667,,,5/17/2022 18:57
+,0a7c7f7e-9358-407c-9e93-afd67cabde70,,,ecologicallyOccursWith,,,,,128,internalOccurrence,,,,,,,,,,,,2667,,,5/27/2022 13:03
+,31368b8a-420b-4207-9300-9579427231c0,,,hostOf,,,,,138,internalOccurrence,,,,,,,,,,,,13,,,7/25/2023 12:54
+,a6b9feed-6413-42ec-bc81-b64e6d4b83f3,,,hasHost,,,,,141,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 12:03
+,1ae34a28-b226-466d-8efa-d32550626370,,,hasHost,,,,,142,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 12:09
+,d888e7e7-5ece-4cec-badd-cd48de058742,,,hasHost,,,,,143,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 12:17
+,bfff501c-b5a7-4f50-96cb-aadcc92a3903,,,hasHost,,,,,144,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 12:29
+,35ebf9b2-0c37-448e-90e4-841eb4980926,,,hasHost,,,,,145,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 12:40
+,2556c39d-5fee-403c-b84b-197be2d5f7af,,,hasHost,,,,,146,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 12:45
+,a23759c9-8164-4084-82dc-369c124ffefc,,,hasHost,,,,,147,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 12:54
+,5df4b864-4cde-4a59-8d70-2cdd0c9f1551,,,hasHost,,,,,148,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 13:03
+,45bea786-6a5f-4482-9b33-5e08c22ff5ca,,,hasHost,,,,,149,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 13:58
+,c44fcc27-7de7-4ef4-a365-93486b708954,,,hasHost,,,,,150,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 15:16
+,a02702ff-e1c2-40cd-82ff-daa4793af987,,,hasHost,,,,,151,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 15:28
+,245157a4-2ac9-4449-b456-e0ada1655117,,,hasHost,,,,,152,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 15:40
+,74f665f3-549b-421c-bbbf-bfe7f66f681e,,,hasHost,,,,,153,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 15:47
+,87f835ac-8c86-40fd-8c50-73fdafc78201,,,hasHost,,,,,154,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 15:52
+,4e47631c-b16e-42e7-93ed-dbf6facecabd,,,hasHost,,,,,155,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 15:56
+,08f5c893-fdfb-4691-b56e-fc026c41f7b6,,,hasHost,,,,,156,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 16:00
+,83d67c37-98e7-4a9c-8e02-780b4bfaf0db,,,hasHost,,,,,157,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 16:06
+,9802563c-66c2-44b0-93a5-f6f1e21453d7,,,hasHost,,,,,158,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 16:11
+,df6ee142-bac1-455a-b909-e6487bb02234,,,hasHost,,,,,159,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 16:18
+,5924661b-bbfa-4fb5-9b5a-df533edf8d6c,,,hasHost,,,,,160,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 16:22
+,7169bb8e-42da-4ea4-900b-e0f08e636ebb,,,hasHost,,,,,161,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 16:26
+,a53da0fe-6e32-46bf-bd15-452b72d6c7b8,,,hasHost,,,,,162,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 16:30
+,29a4cf03-2ed1-4c1d-835d-9de9bfd2386e,,,hasHost,,,,,163,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 16:34
+,5dceccd4-5ff9-4e68-998b-1a51ab1b1dde,,,hasHost,,,,,164,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 16:38
+,825c2c5c-26f0-49fc-8f19-0413bb856062,,,hasHost,,,,,165,internalOccurrence,,,,,,,,,,,,3268,,,5/2/2024 10:37
+,d075b26f-0348-4061-a764-2385a613982c,,,hasHost,,,,,166,internalOccurrence,,,,,,,,,,,,3268,,,5/2/2024 10:46
+,e0524ac1-63a5-43bc-891c-a6265dfa2c77,,,hasHost,,,,,167,internalOccurrence,,,,,,,,,,,,3268,,,5/2/2024 10:56
+,06eaae90-86ec-499d-bb13-5e61a90b570c,,,hasHost,,,,,168,internalOccurrence,,,,,,,,,,,,3268,,,5/2/2024 11:01
+,4c90eb98-09d0-4b51-9627-49cd05e8e077,,,hasHost,,,,,169,internalOccurrence,,,,,,,,,,,,3268,,,5/2/2024 11:08
+,f747db87-b109-4a40-b7d4-953a9eea7bd5,,,hasHost,,,,,170,internalOccurrence,,,,,,,,,,,,3268,,,5/2/2024 11:13
+,85cde14e-582a-49ef-90a8-cce4bc45d4dc,,,hasHost,,,,,171,internalOccurrence,,,,,,,,,,,,3268,,,5/2/2024 11:18
+,6d3eed15-99b6-435c-9d69-d4974049fe08,,,hasHost,,,,,172,internalOccurrence,,,,,,,,,,,,3268,,,5/2/2024 11:23
+,f9ca0901-2710-45e9-9059-43e606112706,,,hasHost,,,,,173,internalOccurrence,,,,,,,,,,,,3268,,,5/2/2024 11:33
+,a0d7f1eb-6829-4637-a665-12578c26edad,,,hasHost,,,,,174,internalOccurrence,,,,,,,,,,,,3268,,,5/2/2024 11:42
+,c7485f12-e1a9-4934-a897-d549b629a2a1,,,hostOf,,,,,177,internalOccurrence,,,,,,,,,,,,3268,,,5/16/2024 12:43
+,733c397e-24bf-48fd-8ed9-a1a0b7f41b5a,,,hostOf,,,,,179,internalOccurrence,,,,,,,,,,,,3268,,,5/17/2024 11:17
+,733c397e-24bf-48fd-8ed9-a1a0b7f41b5a,,,hostOf,,,,,180,internalOccurrence,,,,,,,,,,,,3268,,,5/17/2024 11:20
+,c1653207-9b8e-437b-9a23-811b5e480d35,,,subsampleOf,,,,,182,internalOccurrence,,,,,,,,,,,,3268,,,5/17/2024 11:43
+,418d0e03-06cb-4e86-b03c-f197771d2ec6,,,hostOf,,,,,186,internalOccurrence,,,,,,,,,,,,3268,,,11/7/2024 15:15
+4832831a-80ff-42ec-8b03-d375ad315407,c9b5eb87-d49f-4d81-979f-041d105f8726,,,hasHost,,,,,189,internalOccurrence,,,,,,,,,,,4832831a-80ff-42ec-8b03-d375ad315407,,,,11/8/2024 17:35
+,2a67bcb0-b943-49d9-9b56-c4b59ceb717a,,395681d9-1d67-4233-a481-63ea2b6c4e40,subsampleOf,,,,Lecanora saligna,1,internalOccurrence,,,,,,,,,,,,2667,,,7/15/2021 12:51
+,e8ae6d2b-ec5e-4d71-8e24-adeecb358f72,,0f06f4ae-ba52-4ff2-a84c-5a7b0af7b3fa,subsampleOf,,,,Catinaria,2,internalOccurrence,,,,,,,,,,,,2667,,,7/15/2021 14:34
+,8fb9db9c-8cc4-4a85-9953-a04ede0c9856,,4456ee07-c887-420d-b9d7-418626dcbca3,subsampleOf,,,,Lecanora fuscescens,3,internalOccurrence,,,,,,,,,,,,2667,,,7/15/2021 15:28
+,911507b0-b464-47a1-921f-0876a30d16d8,,83628670-28fe-40b7-94fb-1f73ef5a4b90,subsampleOf,,,,Lecanora strobilina,6,internalOccurrence,,,,,,,,,,,,2667,,,7/20/2021 14:23
+,0081c7d5-d77d-40dd-b04a-cb85efb7fdf3,,2ec354ff-725a-4fde-a525-1111494935db,ecologicallyOccursWith,,,,Lecanora fuscescens,7,internalOccurrence,,,,,,,,,,,,2667,,,7/22/2021 13:05
+,b8f8305c-cbca-430a-b3ff-ea3a0280735d,,57ec4654-4959-41fb-a298-9455e14b08cf,subsampleOf,,,,Biatora vernalis,8,internalOccurrence,,,,,,,,,,,,2667,,,7/22/2021 13:46
+,5c1c35ba-30fe-4883-9410-a7a56208f364,,94e40322-3d23-4cd6-8ec4-cefd1bb9f758,subsampleOf,,,,Biatora,9,internalOccurrence,,,,,,,,,,,,2667,,,7/22/2021 14:53
+,94e40322-3d23-4cd6-8ec4-cefd1bb9f758,,9e857259-86a5-4989-9810-605aa0bc95d3,subsampleOf,,,,Biatora,10,internalOccurrence,,,,,,,,,,,,2667,,,7/22/2021 14:59
+,c6c2273c-9e66-414b-9d27-8b5d58e32d45,,49268d6e-8189-4d06-9d0f-dc4614b36b89,ecologicallyOccursWith,,,,Xanthoparmelia psoromifera,11,internalOccurrence,,,,,,,,,,,,2667,,,7/22/2021 18:33
+,49268d6e-8189-4d06-9d0f-dc4614b36b89,,16c5da64-a6f1-4be3-ae8a-77c8c300c18f,ecologicallyOccursWith,,,,Protoparmeliopsis muralis,12,internalOccurrence,,,,,,,,,,,,2667,,,7/22/2021 18:35
+,16c5da64-a6f1-4be3-ae8a-77c8c300c18f,,ed927e52-bbfc-49f8-b9cf-76c9a9d48b10,ecologicallyOccursWith,,,,Candelina submexicana,13,internalOccurrence,,,,,,,,,,,,2667,,,7/22/2021 18:43
+,47ca6c1d-b667-4428-badd-d5e31593e3cb,,90a6d472-fbc3-4bd9-99a9-0447d91fc995,ecologicallyOccursWith,,,,Protoparmeliopsis muralis,14,internalOccurrence,,,,,,,,,,,,2667,,,7/22/2021 19:01
+,9036b505-eeac-4093-81cd-3b288481b49b,,c2f11241-cc60-4a75-9982-38b766b52536,subsampleOf,,,,Lecanora hypoptoides,15,internalOccurrence,,,,,,,,,,,,2667,,,7/23/2021 12:33
+,c2f11241-cc60-4a75-9982-38b766b52536,,d50a937c-8870-4473-833c-26736730a578,subsampleOf,,,,Lecanora hypoptoides,16,internalOccurrence,,,,,,,,,,,,2667,,,7/23/2021 12:38
+,775d2942-5378-420e-aa95-85acade0db9c,,c5ee25e1-c427-4225-9dbe-664279d62c2f,ecologicallyOccursWith,,,,Japewiella pacifica,17,internalOccurrence,,,,,,,,,,,,2667,,,7/23/2021 14:26
+,90bc1499-8ec2-44ea-8fe0-f2d63cc80d2b,,225552d2-add9-457f-a3b5-2454370f1d04,ecologicallyOccursWith,,,,Japewiella pacifica,18,internalOccurrence,,,,,,,,,,,,2667,,,7/23/2021 15:58
+,03d4504d-83da-4d94-abdf-4faea87ab86e,,28e099ae-91c7-4cfc-acd8-916a3a2eb086,subsampleOf,,,,Candelina submexicana,19,internalOccurrence,,,,,,,,,,,,2667,,,7/23/2021 16:53
+,75e7096f-e84b-4275-8d3b-8eabc8f70cf3,,15c17c22-1ec8-4731-95f9-e56e847c6d55,subsampleOf,,,,Xanthoparmelia psoromifera,20,internalOccurrence,,,,,,,,,,,,2667,,,7/23/2021 17:00
+,15c17c22-1ec8-4731-95f9-e56e847c6d55,,4cb58539-e0c5-4f3f-b95b-cd5b8614e567,ecologicallyOccursWith,,,,Xanthoparmelia nigropsoromifera,23,internalOccurrence,,,,,,,,,,,,2667,,,7/23/2021 17:09
+,4cb58539-e0c5-4f3f-b95b-cd5b8614e567,,461bf218-1050-456a-9866-6bf1f7173813,subsampleOf,,,,Squamulea squamosa,24,internalOccurrence,,,,,,,,,,,,2667,,,7/23/2021 17:11
+,49268d6e-8189-4d06-9d0f-dc4614b36b89,,f7bb1f6b-d2b4-4ba8-a912-f48a0b6f510c,ecologicallyOccursWith,,,,Protoparmeliopsis muralis,25,internalOccurrence,,,,,,,,,,,,2667,,,7/23/2021 17:15
+,f7bb1f6b-d2b4-4ba8-a912-f48a0b6f510c,,7705f519-a824-4713-864f-6a8c348fc70b,subsampleOf,,,,Protoparmeliopsis muralis,26,internalOccurrence,,,,,,,,,,,,2667,,,7/23/2021 17:17
+,5ff2e4cd-65ed-478e-ab24-46c8389d8d9a,,d4cd6df4-7d83-4dab-8d45-b2675ab4121a,subsampleOf,,,,Acarospora strigata,28,internalOccurrence,,,,,,,,,,,,2667,,,7/23/2021 17:22
+,ac1b7805-7a8d-459f-8b6e-dabe15584a9d,,e959ba63-f64c-4f48-89ac-d6493ea4e767,ecologicallyOccursWith,,,,Caloplaca cirrochroa,30,internalOccurrence,,,,,,,,,,,,2667,,,7/23/2021 18:42
+,c63a063b-6dc0-4904-90e2-2c24969be06d,,f6bfd0d4-8215-4e22-9458-1996e2630053,ecologicallyOccursWith,,,,Megalaria grossa,31,internalOccurrence,,,,,,,,,,,,2667,,,7/23/2021 19:44
+,884fd6a1-05a0-48a9-aca6-6246641ccc6b,,87b741d7-3e60-4185-9269-1b47496cb591,ecologicallyOccursWith,,,,Cladina stygia,32,internalOccurrence,,,,,,,,,,,,2667,,,7/23/2021 20:28
+,0ddb3b5d-f556-4970-8df5-e18dc7ddff7d,,701c17a4-b87b-4832-a72c-9be321db1e92,subsampleOf,,,,Cladonia botrytes,33,internalOccurrence,,,,,,,,,,,,2667,,,7/24/2021 12:20
+,9c32903a-8638-40c6-b228-80d1460d9a5b,,254e9a95-a8be-4f94-bc1a-cef87264d52c,subsampleOf,,,,Lecanora cadubriae,34,internalOccurrence,,,,,,,,,,,,2667,,,7/26/2021 18:02
+,482be682-d565-4a93-9190-66635f98b8c2,,30a73ee5-5b9d-4b0c-aeef-15d71efb643c,subsampleOf,,,,Lecidea berengeriana,35,internalOccurrence,,,,,,,,,,,,2667,,,7/26/2021 18:48
+,d70076df-f0e0-41a4-b66b-f3b71926195f,,52e1059e-d70a-48cc-9ff3-922ec5cf3885,subsampleOf,,,,Lecidea leprarioides,36,internalOccurrence,,,,,,,,,,,,2667,,,7/26/2021 19:18
+,926ecd78-a995-44cb-8f5b-4e5b77c9a9a7,,3a850db2-15af-444e-9433-b89c08179b70,ecologicallyOccursWith,,,,Glyphopeltis ligustica,39,internalOccurrence,,,,,,,,,,,,2667,,,2/1/2022 15:43
+,5ba28e1f-9010-42e2-a87a-a0a22936621c,,67390880-0034-4ae8-86f4-f8d3ebb91adb,ecologicallyOccursWith,,,,Dufourea turbinata,40,internalOccurrence,,,,,,,,,,,,2667,,,2/3/2022 15:30
+,f0496a6f-f482-4936-99bb-6a8d2be2d62c,,34f2b7c6-4576-41cc-ba39-49e227f306a1,ecologicallyOccursWith,,,,Xanthoria calcicola,41,internalOccurrence,,,,,,,,,,,,2667,,,2/4/2022 14:09
+,b1094869-8866-4658-855a-9621d18e9a1e,,12b60a59-e394-4ad4-b593-e35e1d6324a2,ecologicallyOccursWith,,,,Xanthoria calcicola,42,internalOccurrence,,,,,,,,,,,,2667,,,2/4/2022 15:05
+,bfa77ae6-742e-49ca-9f92-e9ace9b0804a,,98923c48-4dd8-45fe-9566-f214217ec608,ecologicallyOccursWith,,,,Lecidella viridans,43,internalOccurrence,,,,,,,,,,,,2667,,,2/7/2022 18:53
+,bfa77ae6-742e-49ca-9f92-e9ace9b0804a,,08296284-693b-4558-a293-4c40b37497a2,ecologicallyOccursWith,,,,Lecidella viridans,44,internalOccurrence,,,,,,,,,,,,2667,,,2/7/2022 18:53
+,a281d9b3-5d70-4017-8aad-84d82fd9b709,,db3994b0-2788-4fba-9e7a-357441eb65ba,ecologicallyOccursWith,,,,Buellia triseptata,45,internalOccurrence,,,,,,,,,,,,2667,,,2/11/2022 16:53
+,cf3c42bd-8e44-432a-b290-d191735f2b45,,591de7ad-a0b7-49ae-a30f-b0f9ccbdfe33,ecologicallyOccursWith,,,,Caloplaca microphyllina,46,internalOccurrence,,,,,,,,,,,,2667,,,2/15/2022 14:46
+,6b7ac07a-4c3f-4243-972b-5d55f9ae85a5,,935b2248-6a9f-47c8-954d-b5cd06e14e66,ecologicallyOccursWith,,,,Caloplaca pinicola,47,internalOccurrence,,,,,,,,,,,,2667,,,2/15/2022 14:57
+,6b7ac07a-4c3f-4243-972b-5d55f9ae85a5,,af9b7843-9e21-41c2-a74a-62cae0bd95bd,ecologicallyOccursWith,,,,Caloplaca pinicola,48,internalOccurrence,,,,,,,,,,,,2667,,,2/15/2022 14:57
+,59a99241-0a67-4673-b1fa-f1aecefd7de3,,b576f41d-e835-4df9-b404-ba937e9c212c,ecologicallyOccursWith,,,,Lichinella stipatula,49,internalOccurrence,,,,,,,,,,,,2667,,,2/18/2022 18:12
+,abaa832c-b1e4-4512-9e30-ddb0aa0953d6,,1d0844fc-8e5e-42a0-9945-6a6687555ca1,ecologicallyOccursWith,,,,Caloplaca saxicola,50,internalOccurrence,,,,,,,,,,,,2667,,,3/4/2022 17:52
+,6bc0a6f8-e1a1-4684-90fc-9062993ca5f8,,b3bb6d04-7c1a-4544-95a0-ec14bd1d5878,ecologicallyOccursWith,,,,Parmotrema reticulatum,51,internalOccurrence,,,,,,,,,,,,2667,,,3/18/2022 15:24
+,b3bb6d04-7c1a-4544-95a0-ec14bd1d5878,,97b9928a-9376-44a7-a0b4-338f359fc069,ecologicallyOccursWith,,,,Cladonia robbinsii,52,internalOccurrence,,,,,,,,,,,,2667,,,3/18/2022 15:30
+,97b9928a-9376-44a7-a0b4-338f359fc069,,95e92ca4-ac71-4654-8036-a092bcaf94f6,ecologicallyOccursWith,,,,Cladonia cryptochlorophaea,53,internalOccurrence,,,,,,,,,,,,2667,,,3/18/2022 15:35
+,b3bb6d04-7c1a-4544-95a0-ec14bd1d5878,,fe204bbc-64bb-40dc-9736-ca2b6ee053f4,ecologicallyOccursWith,,,,Cladonia robbinsii,54,internalOccurrence,,,,,,,,,,,,2667,,,3/18/2022 15:42
+,3fee14b2-5e00-4a2c-b393-f25645eac8f8,,977c18ec-dbb5-4fce-b4c8-55d425bc6d14,ecologicallyOccursWith,,,,Polycauliona polycarpa,55,internalOccurrence,,,,,,,,,,,,2667,,,3/22/2022 15:19
+,3fee14b2-5e00-4a2c-b393-f25645eac8f8,,dadd0fc9-e543-43d1-a630-d82ff36b1d40,ecologicallyOccursWith,,,,Polycauliona polycarpa,56,internalOccurrence,,,,,,,,,,,,2667,,,3/22/2022 15:19
+,3fee14b2-5e00-4a2c-b393-f25645eac8f8,,933aeffa-d19a-4999-934c-6f703769054d,ecologicallyOccursWith,,,,Polycauliona polycarpa,57,internalOccurrence,,,,,,,,,,,,2667,,,3/22/2022 15:19
+,c607d743-8c72-4817-9e44-d27d37dd7a61,,7b31ebee-d1bb-46ef-b46f-f80ce756f97b,ecologicallyOccursWith,,,,Xanthoria parietina,58,internalOccurrence,,,,,,,,,,,,2667,,,3/29/2022 10:36
+,1e5f15bb-57c8-4d04-b9ba-97b91db3cc06,,3d068ee3-7322-43c4-b3cb-f0bed1b7e38d,ecologicallyOccursWith,,,,Xanthoria parietina,59,internalOccurrence,,,,,,,,,,,,2667,,,3/29/2022 14:17
+,75e7096f-e84b-4275-8d3b-8eabc8f70cf3,,66e29b61-2f05-427d-9502-6b5100ac101a,hostOf,,,,Xanthoparmelia psoromifera,60,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 17:24
+,c6c2273c-9e66-414b-9d27-8b5d58e32d45,,2b803589-683a-40ea-b294-d4c46fd06e02,ecologicallyOccursWith,,,,Xanthoparmelia psoromifera,61,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 17:31
+,c6c2273c-9e66-414b-9d27-8b5d58e32d45,,73858d8a-a8f5-4a28-8cee-ae52af327464,ecologicallyOccursWith,,,,Xanthoparmelia psoromifera,62,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 17:31
+,a3d7e1d3-8cee-43a3-8b01-db614fec8e77,,e685a275-5da2-4ed5-a45e-852b54242b2c,ecologicallyOccursWith,,,,Lichinella nigritella,64,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 17:42
+,a3d7e1d3-8cee-43a3-8b01-db614fec8e77,,0875bd26-7f58-4800-8c52-2d7c9c1b9bf9,ecologicallyOccursWith,,,,Lichinella nigritella,65,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 17:42
+,03d4504d-83da-4d94-abdf-4faea87ab86e,,77d64309-6c7d-4583-aff5-453a12ccec2b,ecologicallyOccursWith,,,,Candelina submexicana,66,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 17:45
+,03d4504d-83da-4d94-abdf-4faea87ab86e,,71b438f0-7ab4-4ebf-ba96-eee75fcb63ee,ecologicallyOccursWith,,,,Candelina submexicana,67,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 17:45
+,03d4504d-83da-4d94-abdf-4faea87ab86e,,68c44eb1-76f5-455b-86b1-353e2a079d5f,ecologicallyOccursWith,,,,Candelina submexicana,68,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 17:45
+,77d64309-6c7d-4583-aff5-453a12ccec2b,,46c45e3a-5d65-4c21-a9b2-57a7baf870eb,ecologicallyOccursWith,,,,Candelina submexicana,69,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 17:47
+,46c45e3a-5d65-4c21-a9b2-57a7baf870eb,,2d3108d8-7eb1-4711-8309-aec04d08be3e,hostOf,,,,Xanthoparmelia psoromifera,70,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 17:48
+,28e099ae-91c7-4cfc-acd8-916a3a2eb086,,5136d827-c4b8-46e2-a3d4-ade610f583ff,ecologicallyOccursWith,,,,Acarospora radicata,72,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 17:51
+,ed927e52-bbfc-49f8-b9cf-76c9a9d48b10,,b66a2e67-ad5b-4996-bc73-83db3964dc59,ecologicallyOccursWith,,,,Acarospora radicata,73,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 18:16
+,ed927e52-bbfc-49f8-b9cf-76c9a9d48b10,,26def6c1-70cc-4741-9876-1a84017d05c8,ecologicallyOccursWith,,,,Acarospora radicata,74,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 18:16
+,49268d6e-8189-4d06-9d0f-dc4614b36b89,,3423b52c-8317-4b12-aa49-9c69a6ad492d,ecologicallyOccursWith,,,,Protoparmeliopsis muralis,75,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 18:41
+,49268d6e-8189-4d06-9d0f-dc4614b36b89,,45ace943-a08c-448d-bbd0-379ca16bb7a7,ecologicallyOccursWith,,,,Protoparmeliopsis muralis,76,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 18:41
+,49268d6e-8189-4d06-9d0f-dc4614b36b89,,4c90d4c4-3c7b-4694-9635-99184e8eaeeb,ecologicallyOccursWith,,,,Protoparmeliopsis muralis,77,internalOccurrence,,,,,,,,,,,,2667,,,3/30/2022 18:41
+,2571c593-2c25-47fa-b21b-40ecd6d88015,,2b1b9afd-7f28-4c5f-aeac-bcfc0ecc3cac,ecologicallyOccursWith,,,,Physcia stellaris,78,internalOccurrence,,,,,,,,,,,,2667,,,4/5/2022 18:28
+,18ed43b7-e3d3-4398-a3ce-523524a30d9b,,5b888bfb-b654-428b-be92-a1c267c547f4,ecologicallyOccursWith,,,,Lichinella nigritella,80,internalOccurrence,,,,,,,,,,,,2667,,,4/22/2022 13:55
+,fd7a1f6c-325e-4035-85bd-34d16bc40554,,45828cd5-e068-4723-9f0f-bc701891a9de,ecologicallyOccursWith,,,,Dimelaena oreina,81,internalOccurrence,,,,,,,,,,,,2667,,,4/22/2022 14:12
+,26def6c1-70cc-4741-9876-1a84017d05c8,,192046ef-12d4-43ad-b2dc-7eee18f19ee9,hasHost,,,,Protoparmeliopsis muralis,82,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 16:46
+,15c17c22-1ec8-4731-95f9-e56e847c6d55,,b162a109-01ae-42d4-a501-13598ebecdc4,hasHost,,,,Xanthoparmelia nigropsoromifera,83,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 17:17
+,15c17c22-1ec8-4731-95f9-e56e847c6d55,,9196d5ca-9fbf-417e-bec3-1726a77e48ac,ecologicallyOccursWith,,,,Xanthoparmelia nigropsoromifera,84,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 17:18
+,4cb58539-e0c5-4f3f-b95b-cd5b8614e567,,9d755d52-e8f2-43ef-b9a6-c21e4c74e221,ecologicallyOccursWith,,,,Squamulea squamosa,85,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 17:29
+,4cb58539-e0c5-4f3f-b95b-cd5b8614e567,,fcc7ca63-9add-412e-b0cc-344179f0a1a7,ecologicallyOccursWith,,,,Squamulea squamosa,86,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 17:29
+,47ca6c1d-b667-4428-badd-d5e31593e3cb,,5866c450-77fd-42cf-8811-65e2d0357581,ecologicallyOccursWith,,,,Protoparmeliopsis muralis,87,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 17:36
+,47ca6c1d-b667-4428-badd-d5e31593e3cb,,c1b8e25a-a436-4dc5-b541-3b29684ad589,ecologicallyOccursWith,,,,Protoparmeliopsis muralis,88,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 17:36
+,f7bb1f6b-d2b4-4ba8-a912-f48a0b6f510c,,ef0be1b6-59a4-405a-b039-b642dfe1a08f,ecologicallyOccursWith,,,,Protoparmeliopsis muralis,89,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 17:40
+,f7bb1f6b-d2b4-4ba8-a912-f48a0b6f510c,,e94950de-4cbd-40eb-9a31-d1964491b4d9,ecologicallyOccursWith,,,,Protoparmeliopsis muralis,90,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 17:40
+,83908cb6-3475-43da-90d6-b043ee167e97,,9a85ca09-03da-4206-84bd-e7e761ad7f60,ecologicallyOccursWith,,,,Pseudevernia intensa,91,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 17:54
+,83908cb6-3475-43da-90d6-b043ee167e97,,145bd214-11e2-4d5f-af30-6d33f4b2b700,ecologicallyOccursWith,,,,Pseudevernia intensa,92,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 17:54
+,83908cb6-3475-43da-90d6-b043ee167e97,,91b4810d-90d8-440e-a0ec-e2a19e33a424,ecologicallyOccursWith,,,,Pseudevernia intensa,93,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 17:54
+,f5564cb6-526c-484b-bab3-5877de184b6e,,39e7b86c-305e-440c-9f41-78813d6ecb1f,hasHost,,,,Usnea dasopoga,94,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 18:03
+,39e7b86c-305e-440c-9f41-78813d6ecb1f,,168494dc-a255-48d0-8615-37fa17c496d2,ecologicallyOccursWith,,,,Biatoropsis usnearum,98,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 18:17
+,39e7b86c-305e-440c-9f41-78813d6ecb1f,,bdb20a56-0495-43a2-93d4-8ef44dc50da1,ecologicallyOccursWith,,,,Biatoropsis usnearum,99,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 18:17
+,39e7b86c-305e-440c-9f41-78813d6ecb1f,,e4957552-5417-44e3-9d5e-cdd6636f7b88,ecologicallyOccursWith,,,,Biatoropsis usnearum,100,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 18:17
+,0501c1fb-a14d-4141-a49a-05ae2618d777,,ac89ab3f-9399-407c-8b5f-6066013523ae,ecologicallyOccursWith,,,,Peltigera praetextata,101,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 18:40
+,19b9f069-ecec-421f-aa19-d1a64426494f,,ad523e65-0c67-4070-a703-3b41b3124c47,subsampleOf,,,,Cladonia chlorophaea,104,internalOccurrence,,,,,,,,,,,,2667,,,4/28/2022 18:52
+,147fff4d-4abb-425d-b6be-b1d8b4fce13b,,750b8109-39d8-4489-9c40-c2679c49cdc9,hasHost,,,,Acarospora radicata,105,internalOccurrence,,,,,,,,,,,,2667,,,5/3/2022 15:13
+,147fff4d-4abb-425d-b6be-b1d8b4fce13b,,1ec0f70a-aab9-49e4-beda-b889f9c7377a,ecologicallyOccursWith,,,,Acarospora radicata,106,internalOccurrence,,,,,,,,,,,,2667,,,5/3/2022 15:21
+,61e19a2d-4ca5-4905-951c-9ca2a73128db,,62eb5b57-3ae1-4a9c-a09e-b28f8c147e5a,ecologicallyOccursWith,,,,Lichinella stipatula,107,internalOccurrence,,,,,,,,,,,,2667,,,5/3/2022 15:32
+,f6a543b2-844a-4032-9382-f6065f4766ff,,e9f9fefa-63a0-483a-9ae3-b9d3ce8c84a2,ecologicallyOccursWith,,,,Acarospora,108,internalOccurrence,,,,,,,,,,,,2667,,,5/3/2022 16:21
+,e9f9fefa-63a0-483a-9ae3-b9d3ce8c84a2,,330f71a2-00d2-47e9-86be-d3f1ecacfcdf,ecologicallyOccursWith,,,,Dermatocarpon bachmannii,109,internalOccurrence,,,,,,,,,,,,2667,,,5/3/2022 16:22
+,97cfaae2-1d0b-4e45-b7e9-ca0fe463c2c0,,9ade9005-1440-4421-80a4-ea3b3240bb91,ecologicallyOccursWith,,,,,110,internalOccurrence,,,,,,,,,,,,2667,,,5/11/2022 12:08
+,97cfaae2-1d0b-4e45-b7e9-ca0fe463c2c0,,b6d23630-ace7-412e-868e-3de4e2dafd15,ecologicallyOccursWith,,,,,111,internalOccurrence,,,,,,,,,,,,2667,,,5/11/2022 12:08
+,4bb9c429-24f6-44ae-8c72-17102060b080,,c5c4ea1c-8e9c-43d8-b288-8cf891a4b125,ecologicallyOccursWith,,,,Phaeophyscia ciliata,112,internalOccurrence,,,,,,,,,,,,2667,,,5/11/2022 14:04
+,4483db50-8a5c-47c4-bf5d-2b7f6af4e592,,1cf2fb48-f75d-4c7a-814c-d4816ad81b33,ecologicallyOccursWith,,,,Phaeophyscia culbersonii,113,internalOccurrence,,,,,,,,,,,,2667,,,5/11/2022 14:13
+,1cf2fb48-f75d-4c7a-814c-d4816ad81b33,,c8b4301e-4b87-4b6a-9099-90df0352d8b0,ecologicallyOccursWith,,,,Phaeophyscia culbersonii,114,internalOccurrence,,,,,,,,,,,,2667,,,5/11/2022 14:16
+,4e3794df-37e3-4f9f-8e09-f0fdc6698755,,a5206446-fce8-4891-a623-c6e47abcc21d,hasHost,,,,Verrucaria calciseda,115,internalOccurrence,,,,,,,,,,,,2667,,,5/12/2022 11:13
+,168494dc-a255-48d0-8615-37fa17c496d2,,2d65cbf4-4022-41a6-8726-25d11ab0a84c,hasHost,,,,Pseudevernia intensa,116,internalOccurrence,,,,,,,,,,,,2667,,,5/12/2022 13:02
+,19b9f069-ecec-421f-aa19-d1a64426494f,,ae02561c-8e32-4641-ae02-36f1ab1368a1,ecologicallyOccursWith,,,,Cladonia chlorophaea,117,internalOccurrence,,,,,,,,,,,,2667,,,5/12/2022 13:11
+,19b9f069-ecec-421f-aa19-d1a64426494f,,76c8887d-37d3-4d34-85ab-491347134aba,ecologicallyOccursWith,,,,Cladonia chlorophaea,118,internalOccurrence,,,,,,,,,,,,2667,,,5/12/2022 13:11
+,cff3cb05-6507-496e-a88d-c0a5d608da99,,a276990a-ce23-4b97-b2ac-9de589fbec9b,ecologicallyOccursWith,,,,Phaeophyscia decolor,119,internalOccurrence,,,,,,,,,,,,2667,,,5/14/2022 2:09
+,cff3cb05-6507-496e-a88d-c0a5d608da99,,acd44a00-dc63-4aa9-a114-68761b87ae49,ecologicallyOccursWith,,,,Phaeophyscia decolor,120,internalOccurrence,,,,,,,,,,,,2667,,,5/14/2022 2:09
+,7d9fc0de-a9c8-48c4-a0ed-32e3782a7f33,,04aadf2d-fe68-4562-a799-17487bfd3532,ecologicallyOccursWith,,,,Leptochidium albociliatum,121,internalOccurrence,,,,,,,,,,,,2667,,,5/14/2022 16:23
+,b68b663a-3444-42b7-8862-7e0452eb2a47,,9694f232-bcd8-4e62-9272-cb0c398068d4,ecologicallyOccursWith,,,,Phaeophyscia decolor,122,internalOccurrence,,,,,,,,,,,,2667,,,5/16/2022 17:23
+,b68b663a-3444-42b7-8862-7e0452eb2a47,,68a87e79-800c-4663-86bd-f50275e337cb,ecologicallyOccursWith,,,,Phaeophyscia decolor,123,internalOccurrence,,,,,,,,,,,,2667,,,5/16/2022 17:25
+,b68b663a-3444-42b7-8862-7e0452eb2a47,,fdc51d3d-9487-4542-aa1d-0117b6b7212c,ecologicallyOccursWith,,,,Phaeophyscia decolor,124,internalOccurrence,,,,,,,,,,,,2667,,,5/16/2022 17:25
+,82259f83-04a8-4dab-80bb-e5bc0dab1171,,5255528e-9fc7-49f2-bc44-a3eff0f5c456,ecologicallyOccursWith,,,,Phaeophyscia decolor,125,internalOccurrence,,,,,,,,,,,,2667,,,5/17/2022 18:26
+,479bc080-1f76-4d0b-9fe9-c0dc8bbdf4e9,,880686aa-5ca2-4557-ac58-f84db8bcbdc3,ecologicallyOccursWith,,,,Heterodermia japonica,126,internalOccurrence,,,,,,,,,,,,2667,,,5/17/2022 18:38
+,45f90ce3-0f16-4fc2-9e98-43467389b14a,,e9ee5178-3fa3-416a-9238-0fbae15b143a,ecologicallyOccursWith,,,,Phaeophyscia decolor,127,internalOccurrence,,,,,,,,,,,,2667,,,5/17/2022 18:57
+,4a55eae3-5527-41ec-a98f-92c2672810e1,,0a7c7f7e-9358-407c-9e93-afd67cabde70,ecologicallyOccursWith,,,,Leptogium digitatum,128,internalOccurrence,,,,,,,,,,,,2667,,,5/27/2022 13:03
+,fb6db215-66ef-4134-b9c5-c02a4fde6ec7,,31368b8a-420b-4207-9300-9579427231c0,hasHost,,,,Arthonia clemens,138,internalOccurrence,,,,,,,,,,,,13,,,7/25/2023 12:54
+,a7ce3736-9e11-440e-8fb6-0867c9f24ec4,,a6b9feed-6413-42ec-bc81-b64e6d4b83f3,hostOf,,,,Evernia prunastri,141,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 12:03
+,beaa86d8-4a05-4ea4-a760-3f4c7c9f1e7c,,1ae34a28-b226-466d-8efa-d32550626370,hostOf,,,,Evernia prunastri,142,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 12:09
+,43aa1168-83db-4732-8596-eef5abe93429,,d888e7e7-5ece-4cec-badd-cd48de058742,hostOf,,,,Evernia prunastri,143,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 12:17
+,619248d1-e418-485a-9280-f50a11cd18c0,,bfff501c-b5a7-4f50-96cb-aadcc92a3903,hostOf,,,,Evernia prunastri,144,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 12:29
+,7f471900-728d-4350-9c60-63001546eb0f,,35ebf9b2-0c37-448e-90e4-841eb4980926,hostOf,,,,Evernia prunastri,145,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 12:40
+,9d983b7d-3c7e-4c8b-a0dd-86de5d045c76,,2556c39d-5fee-403c-b84b-197be2d5f7af,hostOf,,,,Evernia prunastri,146,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 12:45
+,ab0cc00d-ee84-4867-a343-e3f3415c8a51,,a23759c9-8164-4084-82dc-369c124ffefc,hostOf,,,,Evernia prunastri,147,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 12:54
+,63757328-4fb1-431c-bacf-7d2915bc01bf,,5df4b864-4cde-4a59-8d70-2cdd0c9f1551,hostOf,,,,Evernia prunastri,148,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 13:03
+,ff1ba8e6-9f99-4e0a-a8b3-a6f53d01220a,,45bea786-6a5f-4482-9b33-5e08c22ff5ca,hostOf,,,,Evernia prunastri,149,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 13:58
+,60b57e04-927b-4e9c-8875-9a3fb32ad803,,c44fcc27-7de7-4ef4-a365-93486b708954,hostOf,,,,Evernia prunastri,150,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 15:16
+,1b530e2b-f366-4b58-8368-639d0f8122da,,a02702ff-e1c2-40cd-82ff-daa4793af987,hostOf,,,,Evernia prunastri,151,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 15:28
+,161f0578-b530-4503-b1fe-c51764e2ebad,,245157a4-2ac9-4449-b456-e0ada1655117,hostOf,,,,Evernia prunastri,152,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 15:40
+,b5fdec2c-5d8b-4c1e-a4a9-33a6c8596f4a,,74f665f3-549b-421c-bbbf-bfe7f66f681e,hostOf,,,,Evernia prunastri,153,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 15:47
+,eb392a4f-d58d-4bec-a408-87343e324111,,87f835ac-8c86-40fd-8c50-73fdafc78201,hostOf,,,,Evernia prunastri,154,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 15:52
+,8929ce53-59c7-4464-a641-7d4bc4c1624e,,4e47631c-b16e-42e7-93ed-dbf6facecabd,hostOf,,,,Evernia prunastri,155,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 15:56
+,c2f3f721-7063-4952-bc9d-cf6363293ac7,,08f5c893-fdfb-4691-b56e-fc026c41f7b6,hostOf,,,,Evernia prunastri,156,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 16:00
+,db8c00e0-9143-4ac2-9e96-d81c67d8130b,,83d67c37-98e7-4a9c-8e02-780b4bfaf0db,hostOf,,,,Evernia prunastri,157,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 16:06
+,14ac883d-4f10-4616-80e4-99c7c3b78926,,9802563c-66c2-44b0-93a5-f6f1e21453d7,hostOf,,,,Evernia prunastri,158,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 16:11
+,358b4de2-dd81-4bae-8c26-2849e4651cf2,,df6ee142-bac1-455a-b909-e6487bb02234,hostOf,,,,Evernia prunastri,159,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 16:18
+,455d4a42-320c-4d21-8301-0ed1e19fed0d,,5924661b-bbfa-4fb5-9b5a-df533edf8d6c,hostOf,,,,Evernia prunastri,160,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 16:22
+,c5858b9e-e9db-4323-b791-e39c2b6344ef,,7169bb8e-42da-4ea4-900b-e0f08e636ebb,hostOf,,,,Evernia prunastri,161,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 16:26
+,ce379537-a185-4b33-9e48-f42e36eeac49,,a53da0fe-6e32-46bf-bd15-452b72d6c7b8,hostOf,,,,Evernia prunastri,162,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 16:30
+,957c454f-176f-43e9-901e-b2c4223febed,,29a4cf03-2ed1-4c1d-835d-9de9bfd2386e,hostOf,,,,Evernia prunastri,163,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 16:34
+,24be176f-6c37-44e3-b1ac-8e34b76d6426,,5dceccd4-5ff9-4e68-998b-1a51ab1b1dde,hostOf,,,,Evernia prunastri,164,internalOccurrence,,,,,,,,,,,,3268,,,5/1/2024 16:38
+,cbaedcfe-396a-4f08-8400-611883c8cc7d,,825c2c5c-26f0-49fc-8f19-0413bb856062,hostOf,,,,Evernia prunastri,165,internalOccurrence,,,,,,,,,,,,3268,,,5/2/2024 10:37
+,e05a346c-510e-4f66-aa8c-7d7e59f93064,,d075b26f-0348-4061-a764-2385a613982c,hostOf,,,,Evernia prunastri,166,internalOccurrence,,,,,,,,,,,,3268,,,5/2/2024 10:46
+,f46dbc62-f1b7-480a-8897-fe150e41efc8,,e0524ac1-63a5-43bc-891c-a6265dfa2c77,hostOf,,,,Evernia prunastri,167,internalOccurrence,,,,,,,,,,,,3268,,,5/2/2024 10:56
+,8d8331e7-5ac7-461b-aad3-e551c709f9df,,06eaae90-86ec-499d-bb13-5e61a90b570c,hostOf,,,,Evernia prunastri,168,internalOccurrence,,,,,,,,,,,,3268,,,5/2/2024 11:01
+,6f6f2b92-a378-4982-9608-dfeb28592c65,,4c90eb98-09d0-4b51-9627-49cd05e8e077,hostOf,,,,Evernia prunastri,169,internalOccurrence,,,,,,,,,,,,3268,,,5/2/2024 11:08
+,c0187f9b-c177-4624-b69b-e8dbb668dbde,,f747db87-b109-4a40-b7d4-953a9eea7bd5,hostOf,,,,Evernia prunastri,170,internalOccurrence,,,,,,,,,,,,3268,,,5/2/2024 11:13
+,b09b11d6-4b73-4b89-8fcc-c1eb99b602b2,,85cde14e-582a-49ef-90a8-cce4bc45d4dc,hostOf,,,,Evernia prunastri,171,internalOccurrence,,,,,,,,,,,,3268,,,5/2/2024 11:18
+,0e786534-f030-4ac8-8251-83d6d24b3bda,,6d3eed15-99b6-435c-9d69-d4974049fe08,hostOf,,,,Evernia prunastri,172,internalOccurrence,,,,,,,,,,,,3268,,,5/2/2024 11:23
+,56237dfd-3093-49c1-ab40-fc539f0f3d67,,f9ca0901-2710-45e9-9059-43e606112706,hostOf,,,,Evernia prunastri,173,internalOccurrence,,,,,,,,,,,,3268,,,5/2/2024 11:33
+,e6788256-a5b0-44bf-9bc1-f206d1f74144,,a0d7f1eb-6829-4637-a665-12578c26edad,hostOf,,,,Evernia prunastri,174,internalOccurrence,,,,,,,,,,,,3268,,,5/2/2024 11:42
+,3766f73e-db40-4ee2-af3e-114221138cda,,c7485f12-e1a9-4934-a897-d549b629a2a1,hasHost,,,,Unguiculariopsis lettaui,177,internalOccurrence,,,,,,,,,,,,3268,,,5/16/2024 12:43
+,5170c498-8cc8-4046-bb0b-e1919ec85c44,,733c397e-24bf-48fd-8ed9-a1a0b7f41b5a,hasHost,,,,Endococcus propinquus,179,internalOccurrence,,,,,,,,,,,,3268,,,5/17/2024 11:17
+,222dd5fc-85f3-45b8-80b7-1c7522b1b36c,,733c397e-24bf-48fd-8ed9-a1a0b7f41b5a,hasHost,,,,Sphaerellothecium contextum,180,internalOccurrence,,,,,,,,,,,,3268,,,5/17/2024 11:20
+,733c397e-24bf-48fd-8ed9-a1a0b7f41b5a,,c1653207-9b8e-437b-9a23-811b5e480d35,originatingSampleOf,,,,Calvitimela armeniaca,182,internalOccurrence,,,,,,,,,,,,3268,,,5/17/2024 11:43
+,82918dbb-52ba-477d-935c-e35e507c64ba,,418d0e03-06cb-4e86-b03c-f197771d2ec6,hasHost,,,,Abrothallus parmeliarum,186,internalOccurrence,,,,,,,,,,,,3268,,,11/7/2024 15:15
+4832831a-80ff-42ec-8b03-d375ad315407,ec2c0128-c99e-4ce9-8e26-7ecee9d04046,,c9b5eb87-d49f-4d81-979f-041d105f8726,hostOf,,,,Vulpicida pinastri,189,internalOccurrence,,,,,,,,,,,4832831a-80ff-42ec-8b03-d375ad315407,,,,11/8/2024 17:35
