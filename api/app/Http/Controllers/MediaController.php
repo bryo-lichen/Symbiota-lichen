@@ -109,7 +109,7 @@ class MediaController extends Controller{
 			$mediaModel->whereIn('tid', $tidArr);
 		}
 		$fullCnt = $mediaModel->count();
-		$result = $mediaModel->skip($offset)->take($limit)->get();
+		$result = $mediaModel->orderBy('sortSequence')->skip($offset)->take($limit)->get();
 
 		$eor = false;
 		$retObj = [

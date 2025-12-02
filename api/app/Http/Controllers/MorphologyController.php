@@ -94,12 +94,12 @@ class MorphologyController extends Controller{
 	 *	 ),
 	 *	 @OA\Response(
 	 *		 response="200",
-	 *		 description="Returns metabase on inventory registered within system with matching ID",
+	 *		 description="Returns character and states asscoiated with matching identifier",
 	 *		 @OA\JsonContent()
 	 *	 ),
 	 *	 @OA\Response(
 	 *		 response="400",
-	 *		 description="Error: Bad request. Inventory identifier is required.",
+	 *		 description="Error: Bad request. Morphological identifier is required.",
 	 *	 ),
 	 * )
 	 */
