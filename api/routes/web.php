@@ -76,4 +76,6 @@ $router->group(['prefix' => 'v2'], function () use ($router) {
 	$router->get('exsiccata/{identifier}/number', ['uses' => 'ExsiccataController@showExsiccataNumbers']);
 	$router->get('exsiccata/{identifier}/number/{numberIdentifier}', ['uses' => 'ExsiccataController@showOccurrencesByExsiccataNumber']);
 
+	$router->get('metabolite',  ['uses' => 'MetaboliteController@showAllMetabolites']);
+	$router->get('metabolite/{id}',  ['uses' => 'MetaboliteController@showOneMetabolites']);
 });
