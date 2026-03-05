@@ -1239,7 +1239,7 @@
         "/api/v2/metabolite": {
             "get": {
                 "tags": [
-                    ""
+                    "Metabolite"
                 ],
                 "operationId": "/api/v2/metabolite",
                 "parameters": [
@@ -1282,82 +1282,7 @@
         "/api/v2/metabolite/{identifier}": {
             "get": {
                 "tags": [
-                    ""
-                ],
-                "operationId": "/api/v2/metabolite/identifier",
-                "parameters": [
-                    {
-                        "name": "identifier",
-                        "in": "path",
-                        "description": "PK or metabolites record",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Returns metabase on metabolites registered within system with matching ID",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Error: Bad request. Metabolites identifier is required."
-                    }
-                }
-            }
-        },
-        "/api/v2/morphology": {
-            "get": {
-                "tags": [
-                    ""
-                ],
-                "operationId": "/api/v2/metabolite",
-                "parameters": [
-                    {
-                        "name": "limit",
-                        "in": "query",
-                        "description": "Controls the number of results in the page.",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 100
-                        }
-                    },
-                    {
-                        "name": "offset",
-                        "in": "query",
-                        "description": "Determines the offset for the search results. A limit of 200 and offset of 100, will get the third page of 100 results.",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "default": 0
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Returns list of metabolites registered within system",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Error: Bad request. "
-                    }
-                }
-            }
-        },
-        "/api/v2/metabolite/{identifier}": {
-            "get": {
-                "tags": [
-                    ""
+                    "Metabolite"
                 ],
                 "operationId": "/api/v2/metabolite/identifier",
                 "parameters": [
