@@ -105,7 +105,7 @@ $(document).ready(function () {
         verifyFullFormSciName();
       }
     },
-  });
+  }).autocomplete("instance")._renderItem = renderScinameItem;
 
   var cookies = document.cookie;
   if (cookies.indexOf("localauto") > -1) {
@@ -1142,6 +1142,27 @@ function parseDate(dateStr) {
 }
 
 //Determination form methods
+function renderScinameItem(ul, item) {
+  var $label = $("<span>").append($("<i>").css({ color: "#000" }).text(item.value));
+  if (item.author) {
+    $label.append(document.createTextNode(" "));
+    $label.append($("<span>").text(item.author).css({ color: "#4e7fa8" }));
+  }
+  if (item.taxonstatus) {
+    var color = item.taxonstatus === "accepted" ? "#6a8759" : "#cc7832";
+    $label.append(
+      $("<span>")
+        .text(" [" + item.taxonstatus + "]")
+        .css({ color: color, fontSize: "0.85em" })
+    );
+  }
+  if (item.sourceidentifier) {
+    $label.append(document.createTextNode(" "));
+    $label.append($("<span>").text(item.sourceidentifier).css({ color: "#9876aa", fontSize: "0.85em" }));
+  }
+  return $("<li>").append($("<div>").append($label)).appendTo(ul);
+}
+
 function initDetAutocomplete(f) {
   $(f.sciname).autocomplete({
     source: "rpc/getspeciessuggest.php",
@@ -1155,7 +1176,7 @@ function initDetAutocomplete(f) {
         f.tidtoadd.value = "";
       }
     },
-  });
+  }).autocomplete("instance")._renderItem = renderScinameItem;
 }
 
 function verifyDetSciName(f) {
