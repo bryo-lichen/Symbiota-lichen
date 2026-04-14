@@ -6,12 +6,11 @@ include_once($SERVER_ROOT . '/classes/CollectionFormManager.php');
 
 Language::load([
 	'collections/sharedterms',
-	'collections/index', 
+	'collections/index',
 	'collections/search/index',
 ]);
 
 header("Content-Type: text/html; charset=".$CHARSET);
-
 
 $collManager = new OccurrenceManager();
 $collManager->reset();
@@ -128,7 +127,7 @@ $requestSuppliedCatChk = (array_key_exists('catChk', $_REQUEST) && $collectionFo
 			event.preventDefault();
 			simpleSearch();
 		});
-		
+
 	});
 </script>
 </html>
