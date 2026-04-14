@@ -34,7 +34,7 @@ $dupClusterArr = $dupManager->getClusterArr($occid);
 		source: "rpc/getspeciessuggest.php",
 		minLength: 3,
 		autoFocus: true
-	});
+	}).autocomplete("instance")._renderItem = renderScinameItem;
 
 	function associationTypeChanged(selectElem){
 		document.getElementById("subType-div").style.display = "block";

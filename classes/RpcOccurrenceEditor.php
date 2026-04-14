@@ -191,21 +191,21 @@ class RpcOccurrenceEditor extends RpcBase{
 			$str3 = $strArr[2];
 		}
 
-		$sql = 'SELECT DISTINCT tid, sciname FROM taxa WHERE unitname1 LIKE "' . $str1 . '%" ';
+		$sql = 'SELECT DISTINCT t.tid, t.sciname, t.author, t.sourceidentifier, IF(ts.tid IS NULL OR ts.tid = ts.tidaccepted, "accepted", "synonym") AS taxonstatus FROM taxa t LEFT JOIN taxstatus ts ON t.tid = ts.tid AND ts.taxauthid = 1 WHERE t.unitname1 LIKE "' . $str1 . '%" ';
 		if($str2){
-			$sql .= 'AND unitname2 LIKE "'.$str2.'%" ';
+			$sql .= 'AND t.unitname2 LIKE "'.$str2.'%" ';
 		}
 		if($str3){
-			$sql .= 'AND unitname3 LIKE "'.$str3.'%" ';
+			$sql .= 'AND t.unitname3 LIKE "'.$str3.'%" ';
 		}
-		$sql .= 'ORDER BY sciname';
+		$sql .= 'ORDER BY t.sciname';
 
 		// If the search term has an infraspecific separator, use the old version of the SQL, otherwise, no matches will be returned
-		if(array_intersect($strArr, array("var.", "ssp.", "nothossp.", "f.", "×", "x", "†"))) $sql = 'SELECT DISTINCT tid, sciname FROM taxa WHERE sciname LIKE "'.$term.'%" ';
+		if(array_intersect($strArr, array("var.", "ssp.", "nothossp.", "f.", "×", "x", "†"))) $sql = 'SELECT DISTINCT t.tid, t.sciname, t.author, t.sourceidentifier, IF(ts.tid IS NULL OR ts.tid = ts.tidaccepted, "accepted", "synonym") AS taxonstatus FROM taxa t LEFT JOIN taxstatus ts ON t.tid = ts.tid AND ts.taxauthid = 1 WHERE t.sciname LIKE "'.$term.'%" ';
 
 		$rs = $this->conn->query($sql);
 		while ($r = $rs->fetch_object()){
-			$retArr[] = array('id' => $r->tid, 'value' => $r->sciname);
+			$retArr[] = array('id' => $r->tid, 'value' => $r->sciname, 'author' => $r->author, 'taxonstatus' => $r->taxonstatus, 'sourceidentifier' => $r->sourceidentifier);
 		}
 		$rs->free();
 		return $retArr;
