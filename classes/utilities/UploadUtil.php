@@ -72,17 +72,39 @@ class UploadUtil {
 			$allowed_mimes = self::ALLOWED_IMAGE_MIMES;
 		}
 
+		$upload_error = $uploaded_file['error'] ?? UPLOAD_ERR_OK;
+		if ($upload_error !== UPLOAD_ERR_OK) {
+			if ($upload_error === UPLOAD_ERR_INI_SIZE || $upload_error === UPLOAD_ERR_FORM_SIZE) {
+				throw new Exception('File exceeds the maximum allowed upload size (' . self::formatBytes(self::getMaximumFileUploadSize()) . ')');
+			}
+			throw new Exception('File upload failed (error code ' . $upload_error . ')');
+		}
+
+		// Browsers report inconsistent MIME types for CSV files (text/plain, application/csv,
+		// application/octet-stream, etc.). Normalize to the canonical type based on extension.
+		$upload_ext = strtolower(pathinfo($uploaded_file['name'], PATHINFO_EXTENSION));
+		$ext_canonical_mime = ['csv' => 'text/csv'];
+		if (isset($ext_canonical_mime[$upload_ext]) && !in_array($uploaded_file['type'], $allowed_mimes)) {
+			$uploaded_file['type'] = $ext_canonical_mime[$upload_ext];
+		}
+
 		if(!in_array($uploaded_file['type'], $allowed_mimes)) {
 			throw new MediaException(MediaException::FileTypeNotAllowed, ' ' . $uploaded_file['type']);
 		}
 
 		$type_guess = mime_content_type($uploaded_file['tmp_name']);
-;
-		if(!self::mimesEqual($type_guess, $uploaded_file['type'])) {
+
+		// On macOS, mime_content_type() returns text/plain for all text-based files (e.g. CSV).
+		// If both the detected and browser-reported types are text/* subtypes, trust the browser.
+		$normalizedGuess = ($type_guess === 'text/plain' && strpos($uploaded_file['type'], 'text/') === 0)
+			? $uploaded_file['type']
+			: $type_guess;
+
+		if($normalizedGuess != $uploaded_file['type']) {
 			throw new MediaException(MediaException::SuspiciousFile);
 		}
 
-		$guess_ext = self::mime2ext($type_guess);
+		$guess_ext = self::mime2ext($normalizedGuess);
 		$provided_file_data = pathinfo($uploaded_file['name']);
 
 		if(!$guess_ext || !$provided_file_data['extension'] || !self::extensionsEqual($guess_ext, $provided_file_data['extension'])) {
@@ -101,6 +123,13 @@ class UploadUtil {
 	  *
 	  * @returns int File size in bytes
 	  **/
+	public static function formatBytes(int $bytes): string {
+		if ($bytes >= 1073741824) return round($bytes / 1073741824, 1) . ' GB';
+		if ($bytes >= 1048576) return round($bytes / 1048576, 1) . ' MB';
+		if ($bytes >= 1024) return round($bytes / 1024, 1) . ' KB';
+		return $bytes . ' B';
+	}
+
 	public static function getMaximumFileUploadSize(): int {
 		return min(
 			self::size2Bytes(ini_get('post_max_size')),
@@ -152,22 +181,6 @@ class UploadUtil {
 		}
 	}
 
-	/**
-	 * Converts bytes to human readable sizes
-	 *
-	 * @param string $bytes Size int you wish to convert
-	 * @return string
-	 **/
-	public static function formatBytes(int $bytes): string {
-		if ($bytes >= 1024 ** 3) {
-			return round($bytes / 1024 ** 3, 1) . ' GB';
-		} elseif ($bytes >= 1024 ** 2) {
-			return round($bytes / 1024 ** 2, 1) . ' MB';
-		} elseif ($bytes >= 1024) {
-			return round($bytes / 1024, 1) . ' KB';
-		}
-		return $bytes;
-	}
 
 		/**
 	 * Utility function to validate PHP file upload error codes 
