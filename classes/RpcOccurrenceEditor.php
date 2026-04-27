@@ -191,7 +191,18 @@ class RpcOccurrenceEditor extends RpcBase{
 			$sql .= ') ';
 		}
 
-		$sql .= 'ORDER BY sciname';
+		$sql = 'SELECT DISTINCT t.tid, t.sciname, t.author, t.sourceidentifier, IF(ts.tid IS NULL OR ts.tid = ts.tidaccepted, "accepted", "synonym") AS taxonstatus FROM taxa t LEFT JOIN taxstatus ts ON t.tid = ts.tid AND ts.taxauthid = 1 WHERE t.sciname LIKE "' . $fullterm . '%" ';
+		if(count($strArr) > 1){
+			$sql .= 'OR (t.unitname1 LIKE "' . $strArr[0] . '%" AND t.unitname2 LIKE "' . $strArr[1] . '%" ';
+			if(!empty($strArr[2])){
+				$sql .= 'AND t.unitname3 LIKE "' . $strArr[2] . '%" ';
+			}
+			$sql .= ') ';
+		}
+		$sql .= 'ORDER BY t.sciname';
+
+		// If the search term has an infraspecific separator, use sciname LIKE directly
+		if(array_intersect($strArr, array("var.", "ssp.", "nothossp.", "f.", "×", "x", "†"))) $sql = 'SELECT DISTINCT t.tid, t.sciname, t.author, t.sourceidentifier, IF(ts.tid IS NULL OR ts.tid = ts.tidaccepted, "accepted", "synonym") AS taxonstatus FROM taxa t LEFT JOIN taxstatus ts ON t.tid = ts.tid AND ts.taxauthid = 1 WHERE t.sciname LIKE "'.$term.'%" ';
 
 		$rs = $this->conn->query($sql);
 		while ($r = $rs->fetch_object()){
