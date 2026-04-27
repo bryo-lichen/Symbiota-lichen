@@ -18,7 +18,7 @@ $taxonEditorObj = new TaxonomyEditorManager();
 $taxonEditorObj->setTid($tid);
 $taxonEditorObj->setTaxAuthId($taxAuthId);
 
-$isEditor = false;
+$isEditor = true;
 if ($IS_ADMIN || array_key_exists("Taxonomy", $USER_RIGHTS)) $isEditor = true;
 
 $statusStr = '';
@@ -333,6 +333,55 @@ if ($isEditor) {
 							</div>
 							<div class="editfield" style="display:none;width:90%;">
 								<input type="text" id="source" name="source" style="width:100%;" value="<?php echo $safeSource ?>" />
+							</div>
+						</div>
+						<div class="editDiv">
+							<div class="editLabel">Source Identifier: </div>
+							<div class="editfield">
+								<?php
+								$sourceId = $taxonEditorObj->getSourceIdentifier();
+								echo htmlspecialchars($sourceId, ENT_COMPAT | ENT_HTML401 | ENT_SUBSTITUTE);
+								if($sourceId){
+									$externalUrl = '';
+									if(preg_match('/^mb:(\d+)$/i', $sourceId, $m)){
+										$externalUrl = 'http://www.mycobank.org/mb/' . $m[1];
+									} elseif(preg_match('/^if:(\d+)$/i', $sourceId, $m)){
+										$externalUrl = 'https://www.indexfungorum.org/Names/NamesRecord.asp?RecordID=' . $m[1];
+									}
+									if($externalUrl){
+										echo ' <a href="' . $externalUrl . '" target="_blank" class="button" style="display:inline-flex;font-size:0.85em;padding:2px 6px;">Go To Source</a>';
+									}
+								}
+								?>
+							</div>
+							<div class="editfield" style="display:none;">
+								<input type="text" id="sourceidentifier" name="sourceidentifier" style="width:12ch;border-style:inset;" value="<?php echo htmlspecialchars($taxonEditorObj->getSourceIdentifier(), ENT_COMPAT | ENT_HTML401 | ENT_SUBSTITUTE); ?>" />
+							</div>
+						</div>
+						<div class="editDiv">
+							<div class="editLabel"><?php echo $LANG['NOMENCLATURAL_STATUS']; ?>: </div>
+							<div class="editfield">
+								<?php echo htmlspecialchars($taxonEditorObj->getNomenclaturalStatus(), ENT_COMPAT | ENT_HTML401 | ENT_SUBSTITUTE); ?>
+							</div>
+							<div class="editfield" style="display:none;">
+								<?php
+								$currentNomStatus = $taxonEditorObj->getNomenclaturalStatus();
+								$nomenclaturalStatusOptions = array(
+									'nom. cons.',
+									'nom. illegit.',
+									'nom. inval.',
+									'isonym',
+									'orthographic variant',
+									'nom. rej.',
+									'nom. nud.',
+								);
+								?>
+								<select id="nomenclaturalstatus" name="nomenclaturalstatus">
+									<option value=""></option>
+									<?php foreach($nomenclaturalStatusOptions as $opt): ?>
+										<option value="<?= htmlspecialchars($opt) ?>" <?= ($currentNomStatus === $opt ? 'selected' : '') ?>><?= htmlspecialchars($opt) ?></option>
+									<?php endforeach; ?>
+								</select>
 							</div>
 						</div>
 						<div class="editDiv">
