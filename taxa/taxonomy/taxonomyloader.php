@@ -214,6 +214,47 @@ if($isEditor){
 						<input type='text' id='author' name='author' class='search-bar-long' />
 					</div>
 					<div style="clear:both;">
+						<div class="left-column">
+							<label for="sourceidentifier"> <?php echo $LANG['SOURCE_IDENTIFIER']; ?>:
+							</label>
+						</div>
+						<input type='text' id='sourceidentifier' name='sourceidentifier' style="width:12ch"/>
+					<button type="button" class="button" style="display:inline-flex;font-size:0.85em;padding:2px 6px;margin-left:6px;" onclick="
+						var sid = document.getElementById('sourceidentifier').value.trim();
+						var url = '';
+						var mb = sid.match(/^mb:(\d+)$/i);
+						var inf = sid.match(/^if:(\d+)$/i);
+						if(mb) url = 'http://www.mycobank.org/mb/' + mb[1];
+						else if(inf) url = 'https://www.indexfungorum.org/Names/NamesRecord.asp?RecordID=' + inf[1];
+						if(url) window.open(url, '_blank');
+						else alert('No valid source identifier (mb:##### or if:#####)');
+					">Go To Source</button>
+					</div>
+					<div style="clear:both; margin-bottom:6px;">
+						<div class="left-column">
+							<label for="nomenclaturalstatus"> <?php echo $LANG['NOMENCLATURAL_STATUS']; ?>:
+							</label>
+						</div>
+						<select id="nomenclaturalstatus" name="nomenclaturalstatus">
+							<option value=""></option>
+							<?php
+							/* Add new nomenclatural status options here: */
+							$nomenclaturalStatusOptions = array(
+								'nom. cons.',
+								'nom. illegit.',
+								'nom. inval.',
+								'isonym',
+								'orthographic variant',
+								'nom. rej.',
+								'nom. nud.',
+							);
+							foreach($nomenclaturalStatusOptions as $opt){
+								echo '<option value="' . htmlspecialchars($opt) . '">' . htmlspecialchars($opt) . '</option>';
+							}
+							?>
+						</select>
+					</div>
+					<div style="clear:both;">
 						<div class="left-column" id="parentname-div">
 							<label for="parentname">
 								<?php echo $LANG['PARENT_TAXON'] . ' *'; ?>:
