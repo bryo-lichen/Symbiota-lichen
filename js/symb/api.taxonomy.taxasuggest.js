@@ -1,6 +1,23 @@
 var acUrlBase = "/rpc/taxasuggest.php";
 var acUrl = acUrlBase;
 
+function renderTaxonItem(ul, item) {
+	var $label = $("<span>").append($("<i>").css({color: "#000"}).text(item.value));
+	if (item.author) {
+		$label.append(document.createTextNode(" "));
+		$label.append($("<span>").text(item.author).css({color: "#4e7fa8"}));
+	}
+	if (item.taxonstatus) {
+		var color = item.taxonstatus === "accepted" ? "#6a8759" : "#cc7832";
+		$label.append($("<span>").text(" [" + item.taxonstatus + "]").css({color: color, fontSize: "0.85em"}));
+	}
+	if (item.sourceidentifier) {
+		$label.append(document.createTextNode(" "));
+		$label.append($("<span>").text(item.sourceidentifier).css({color: "#9876aa", fontSize: "0.85em"}));
+	}
+	return $("<li>").append($("<div>").append($label)).appendTo(ul);
+}
+
 function initTaxaSuggest() {
   if (typeof clientRoot !== "undefined") acUrl = clientRoot + acUrlBase;
   else {
@@ -63,6 +80,9 @@ function initTaxaSuggest() {
             this.autocomplete_stage = 0;
           }, $("#" + inputId)[0]),
           autoFocus: true,
+          create: function() {
+            $(this).autocomplete("instance")._renderItem = renderTaxonItem;
+          },
           search: function () {
             // custom minLength
             this.autocomplete_stage = 2;
@@ -108,6 +128,9 @@ function initiateTaxonSuggest(inputID, rLow, rHigh) {
         );
       },
       autoFocus: true,
+      create: function() {
+        $(this).autocomplete("instance")._renderItem = renderTaxonItem;
+      },
     },
     {}
   );

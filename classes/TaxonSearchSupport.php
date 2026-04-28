@@ -57,13 +57,13 @@ class TaxonSearchSupport{
 
 			}
 			elseif($this->taxonType == TaxaSearchType::SCIENTIFIC_NAME){
-				$sql = 'SELECT tid, sciname FROM taxa WHERE sciname LIKE "'.$this->queryString.'%" LIMIT 30';
+				$sql = 'SELECT DISTINCT t.tid, t.sciname, t.author, t.sourceidentifier, IF(ts.tid IS NULL OR ts.tid = ts.tidaccepted, "accepted", "synonym") AS taxonstatus FROM taxa t LEFT JOIN taxstatus ts ON t.tid = ts.tid AND ts.taxauthid = 1 WHERE t.sciname LIKE "'.$this->queryString.'%" LIMIT 30';
 			}
 			elseif($this->taxonType == TaxaSearchType::FAMILY_ONLY){
-				$sql = 'SELECT tid, sciname FROM taxa WHERE rankid = 140 AND sciname LIKE "'.$this->queryString.'%" LIMIT 30';
+				$sql = 'SELECT DISTINCT t.tid, t.sciname, t.author, t.sourceidentifier, IF(ts.tid IS NULL OR ts.tid = ts.tidaccepted, "accepted", "synonym") AS taxonstatus FROM taxa t LEFT JOIN taxstatus ts ON t.tid = ts.tid AND ts.taxauthid = 1 WHERE t.rankid = 140 AND t.sciname LIKE "'.$this->queryString.'%" LIMIT 30';
 			}
 			elseif($this->taxonType == TaxaSearchType::TAXONOMIC_GROUP){
-				$sql = 'SELECT tid, sciname FROM taxa WHERE rankid > 20 AND rankid < 180 AND sciname LIKE "'.$this->queryString.'%" LIMIT 30';
+				$sql = 'SELECT DISTINCT t.tid, t.sciname, t.author, t.sourceidentifier, IF(ts.tid IS NULL OR ts.tid = ts.tidaccepted, "accepted", "synonym") AS taxonstatus FROM taxa t LEFT JOIN taxstatus ts ON t.tid = ts.tid AND ts.taxauthid = 1 WHERE t.rankid > 20 AND t.rankid < 180 AND t.sciname LIKE "'.$this->queryString.'%" LIMIT 30';
 			}
 			elseif($this->taxonType == TaxaSearchType::COMMON_NAME){
 				$sql = 'SELECT DISTINCT v.tid, CONCAT(v.vernacularname, " (", t.sciname, ")") AS sciname
@@ -72,13 +72,19 @@ class TaxonSearchSupport{
 				//$sql = 'SELECT DISTINCT tid, vernacularname AS sciname FROM taxavernaculars WHERE vernacularname LIKE "%'.$this->queryString.'%" LIMIT 50 ';
 			}
 			else{
-				$sql = 'SELECT tid, sciname FROM taxa WHERE sciname LIKE "'.$this->queryString.'%" LIMIT 20';
+				$sql = 'SELECT DISTINCT t.tid, t.sciname, t.author, t.sourceidentifier, IF(ts.tid IS NULL OR ts.tid = ts.tidaccepted, "accepted", "synonym") AS taxonstatus FROM taxa t LEFT JOIN taxstatus ts ON t.tid = ts.tid AND ts.taxauthid = 1 WHERE t.sciname LIKE "'.$this->queryString.'%" LIMIT 20';
 			}
 			$rs = $this->conn->query($sql);
 			while ($r = $rs->fetch_object()) {
 				$keys = ['id' => $r->tid, 'value' => $r->sciname];
 				if (!empty($r->label))
 					$keys['label'] = $r->label;
+				if (!empty($r->author))
+					$keys['author'] = $r->author;
+				if (!empty($r->taxonstatus))
+					$keys['taxonstatus'] = $r->taxonstatus;
+				if (!empty($r->sourceidentifier))
+					$keys['sourceidentifier'] = $r->sourceidentifier;
 				$retArr[] = $keys;
 			}
 			$rs->free();
@@ -89,15 +95,15 @@ class TaxonSearchSupport{
 	private function getTaxaSuggestByRank(){
 		$retArr = Array();
 		if($this->queryString){
-			$sql = 'SELECT sciname FROM taxa WHERE (sciname LIKE "'.$this->queryString.'%") ';
+			$sql = 'SELECT DISTINCT t.tid, t.sciname, t.author, t.sourceidentifier, IF(ts.tid IS NULL OR ts.tid = ts.tidaccepted, "accepted", "synonym") AS taxonstatus FROM taxa t LEFT JOIN taxstatus ts ON t.tid = ts.tid AND ts.taxauthid = 1 WHERE (t.sciname LIKE "'.$this->queryString.'%") ';
 			if(is_numeric($this->rankLow)){
-				if($this->rankHigh) $sql .= 'AND (rankid BETWEEN '.$this->rankLow.' AND '.$this->rankHigh.') ';
-				else $sql .= 'AND (rankid = '.$this->rankLow.') ';
+				if($this->rankHigh) $sql .= 'AND (t.rankid BETWEEN '.$this->rankLow.' AND '.$this->rankHigh.') ';
+				else $sql .= 'AND (t.rankid = '.$this->rankLow.') ';
 			}
 			$sql .= 'LIMIT 30';
 			$rs = $this->conn->query($sql);
 			while ($r = $rs->fetch_object()) {
-				$retArr[] = $r->sciname;
+				$retArr[] = array('id' => $r->tid, 'value' => $r->sciname, 'author' => $r->author, 'taxonstatus' => $r->taxonstatus, 'sourceidentifier' => $r->sourceidentifier);
 			}
 			$rs->free();
 		}

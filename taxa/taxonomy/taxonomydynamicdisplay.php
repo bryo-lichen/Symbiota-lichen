@@ -8,7 +8,8 @@ Language::load('taxa/taxonomy/taxonomydisplay');
 header('Content-Type: text/html; charset=' . $CHARSET);
 
 $target = $_REQUEST['target'] ?? '';
-$displayAuthor = !empty($_REQUEST['displayauthor']) ? 1: 0;
+$displayAuthor = isset($_POST['tdsubmit']) ? (!empty($_REQUEST['displayauthor']) ? 1 : 0) : 1;
+$displaySourceId = !empty($_REQUEST['displaysourceid']) ? 1 : 0;
 $limitToOccurrences = !empty($_REQUEST['limittooccurrences']) ? 1 : 0;
 $taxAuthId = array_key_exists('taxauthid', $_REQUEST) ? filter_var($_REQUEST['taxauthid'], FILTER_SANITIZE_NUMBER_INT) : 1;
 $editorMode = !empty($_REQUEST['emode']) ? 1 : 0;
@@ -89,6 +90,23 @@ reset($treePath);
 	<script src="<?php echo $CLIENT_ROOT; ?>/js/jquery-ui.min.js" type="text/javascript"></script>
 	<script src="../../js/dojo-1.17.3/dojo/dojo.js"></script>
 	<script type="text/javascript">
+		function renderTaxonItem(ul, item) {
+			var $label = $("<span>").append($("<i>").css({color: "#000"}).text(item.value));
+			if(item.author) {
+				$label.append(document.createTextNode(" "));
+				$label.append($("<span>").text(item.author).css({color: "#4e7fa8"}));
+			}
+			if(item.taxonstatus) {
+				var color = item.taxonstatus === "accepted" ? "#6a8759" : "#cc7832";
+				$label.append($("<span>").text(" [" + item.taxonstatus + "]").css({color: color, fontSize: "0.85em"}));
+			}
+			if(item.sourceidentifier) {
+				$label.append(document.createTextNode(" "));
+				$label.append($("<span>").text(item.sourceidentifier).css({color: "#9876aa", fontSize: "0.85em"}));
+			}
+			return $("<li>").append($("<div>").append($label)).appendTo(ul);
+		}
+
 		$(document).ready(function() {
 			$("#taxontarget").autocomplete({
 				source: function( request, response ) {
@@ -96,7 +114,7 @@ reset($treePath);
 				},
 				autoFocus: true,
 				minLength: 3 }
-			);
+			).autocomplete("instance")._renderItem = renderTaxonItem;
 		});
 
 		function displayTaxomonyMeta(){
@@ -166,6 +184,10 @@ reset($treePath);
 							<label for="displayauthor"> <?= $LANG['DISP_AUTHORS'] ?> </label>
 						</div>
 						<div>
+							<input id="displaysourceid" name="displaysourceid" type="checkbox" value="1" <?= ($displaySourceId ? 'checked' : '') ?> />
+							<label for="displaysourceid"> <?= $LANG['DISP_SOURCE_ID'] ?> </label>
+						</div>
+						<div>
 							<input id="limittooccurrences" name="limittooccurrences" type="checkbox" value="1" <?= ($limitToOccurrences ? 'checked' : ''); ?> />
 							<label for="limittooccurrences"> <?= $LANG['LIMIT_TO_OCCURRENCES'] ?> </label>
 						</div>
@@ -210,7 +232,7 @@ reset($treePath);
 					target: "rpc/getdynamicchildren.php",
 					labelAttribute: "label",
 					getChildren: function(object){
-						return this.query({id:object.id, authors:<?= $displayAuthor ?>, limittooccurrences:<?= $limitToOccurrences ?>, targetid:<?= $targetId ?>, emode:<?= $editorMode ?>}).then(function(fullObject){
+						return this.query({id:object.id, authors:<?= $displayAuthor ?>, displaysourceid:<?= $displaySourceId ?>, limittooccurrences:<?= $limitToOccurrences ?>, targetid:<?= $targetId ?>, emode:<?= $editorMode ?>}).then(function(fullObject){
 							return fullObject.children;
 						});
 					},
@@ -235,7 +257,7 @@ reset($treePath);
 					store: taxonTreeStore,
 					deferItemLoadingUntilExpand: true,
 					getRoot: function(onItem){
-						this.store.query({id:"root",authors:<?php echo $displayAuthor; ?>,targetid:<?php echo $targetId; ?>}).then(onItem);
+						this.store.query({id:"root",authors:<?php echo $displayAuthor; ?>,displaysourceid:<?php echo $displaySourceId; ?>,targetid:<?php echo $targetId; ?>}).then(onItem);
 					},
 					mayHaveChildren: function(object){
 						return "children" in object;
