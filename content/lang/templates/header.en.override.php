@@ -33,7 +33,8 @@ $LANG['CANADA'] = 'Canada';
 $LANG['MEXICO'] = 'Mexico';
 
 $LANG['F_ABLS'] = 'American Bryological and Lichenological Society (ABLS)';
-$LANG['F_ABLS_LOGO'] = "Logo de l'ABLS";
+$LANG['F_ABLS_LOGO'] = "ABLS Logo";
 $LANG['H_ENDORSEMENTS'] = 'Endorsements';
+$LANG['RECENT_LITERATURE'] = 'Recent Literature on Lichens';
 
 ?>

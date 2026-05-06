@@ -32,4 +32,9 @@ $LANG['ARCTIC'] = 'Arctique';
 $LANG['CANADA'] = 'Canada';
 $LANG['MEXICO'] = 'Mexique';
 
+$LANG['F_ABLS'] = 'American Bryological and Lichenological Society (ABLS)';
+$LANG['F_ABLS_LOGO'] = "Logo de l'ABLS";
+$LANG['H_ENDORSEMENTS'] = 'Soutiens';
+$LANG['RECENT_LITERATURE'] = 'Littérature Récente sur les Lichens';
+
 ?>

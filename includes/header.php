@@ -748,6 +748,9 @@ $collectionSearchPage = $SHOULD_USE_HARVESTPARAMS ? '/collections/index.php' : '
 							<li>
 								<a href="http://mycoportal.org" target="_blank">MyCoPortal</a>
 							</li>
+							<li>
+								<a href="https://nhm2.uio.no/botanisk/lav/RLL/RLL.HTM" target="_blank"><?= $LANG['RECENT_LITERATURE']; ?></a>
+							</li>
 						</ul>
 					</li>
 					<li>
