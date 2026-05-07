@@ -816,7 +816,7 @@ class TaxonomyUpload{
 			$this->outputMsg('Starting loop '.$loopCnt);
 			$this->outputMsg('Transferring taxa to taxon table... ',1);
 			$sql = 'INSERT INTO taxa(kingdomName, SciName, RankId, UnitInd1, UnitName1, UnitInd2, UnitName2, UnitInd3, UnitName3, cultivarEpithet, tradeName, Author, Source, sourceIdentifier, nomenclaturalStatus, Notes) '.
-				'SELECT DISTINCT "'.$this->kingdomName.'", SciName, RankId, UnitInd1, UnitName1, UnitInd2, UnitName2, UnitInd3, UnitName3, cultivarEpithet, tradeName, Author, Source, sourceIdentifier, nomenclaturalStatus, Notes '.
+				'SELECT DISTINCT "'.$this->kingdomName.'", SciName, RankId, UnitInd1, IFNULL(NULLIF(TRIM(UnitName1),""), TRIM(SciName)), UnitInd2, UnitName2, UnitInd3, UnitName3, cultivarEpithet, tradeName, Author, Source, sourceIdentifier, nomenclaturalStatus, Notes '.
 				'FROM uploadtaxa '.
 				'WHERE (tid IS NULL) AND (parenttid IS NOT NULL) AND (rankid IS NOT NULL) AND (ErrorStatus IS NULL) '.
 				'ORDER BY RankId ASC '.
