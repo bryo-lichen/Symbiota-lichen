@@ -42,8 +42,8 @@ $collectionSearchPage = $SHOULD_USE_HARVESTPARAMS ? '/collections/index.php' : '
 			<div class="top-brand">
 				<a href="https://symbiota.org">
 					<div class="image-container">
-						<?php 
-						// <img src="<?= $CLIENT_ROOT \?\>/images/layout/logo_symbiota.png" alt="Symbiota logo"> 
+						<?php
+						// <img src="<?= $CLIENT_ROOT \?\>/images/layout/logo_symbiota.png" alt="Symbiota logo">
 						?>
 					</div>
 				</a>
@@ -319,7 +319,7 @@ $collectionSearchPage = $SHOULD_USE_HARVESTPARAMS ? '/collections/index.php' : '
 						<ul>
 							<li>
 							<a href="<?= $CLIENT_ROOT; ?>/projects/index.php"><?= $LANG['INVPROJ']; ?></a>
-							</i>
+							</li>
 							<li>
                                 <a href="#"><?= $LANG['GLOBAL_CHECKLISTS']; ?></a>
 								<ul>
@@ -528,7 +528,7 @@ $collectionSearchPage = $SHOULD_USE_HARVESTPARAMS ? '/collections/index.php' : '
 						<ul>
 							<li>
 							<a href="<?= $CLIENT_ROOT; ?>/projects/index.php"><?= $LANG['INVPROJ']; ?></a>
-							</i>
+							</li>
 							<li>
                                 <a href="#"><?= $LANG['GLOBAL_CHECKLISTS']; ?></a>
 								<ul>

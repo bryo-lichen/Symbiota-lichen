@@ -18,7 +18,7 @@
 		<a href="https://www.nsf.gov" target="_blank" aria-label="Visit National Science Foundation website">
 			<img src="<?= $CLIENT_ROOT; ?>/images/layout/logo_nsf.gif" alt="Logo for the National Science Foundation" />
 		</a>
-		<a href="https://globaltcn.utk.edu/" targe="_blank"><img src="<?= $CLIENT_ROOT; ?>/images/layout/global_logo.png" style="width:150px" /></a>
+		<a href="https://globaltcn.utk.edu/" target="_blank"><img src="<?= $CLIENT_ROOT; ?>/images/layout/global_logo.png" style="width:150px" /></a>
 		<a href="https://revistas.unc.edu.ar/index.php/glalia/index" target="_blank" title="Grupo Latinoamericano de Liquen&oacute;logos">
 			<img src="<?= $CLIENT_ROOT; ?>/images/layout/GLALIA-Logo.jpg" style="width:120px" />
 		</a>
