@@ -661,7 +661,7 @@ class TaxonomyUpload{
 		//Load into uploadtaxa parents of infrasp not yet in taxa table
 		$this->outputMsg('Add parents that are not yet in uploadtaxa table... ');
 		$sql = 'INSERT IGNORE INTO uploadtaxa(scinameinput, SciName, family, RankId, UnitName1, UnitName2, parentstr, Source) '.
-			'SELECT DISTINCT ut.parentstr, ut.parentstr, ut.family, 220 as r, COALESCE(ut.unitname1, ut.parentstr), ut.unitname2, ut.unitname1, ut.source '.
+			'SELECT DISTINCT ut.parentstr, ut.parentstr, ut.family, 220 as r, ut.unitname1, ut.unitname2, ut.unitname1, ut.source '.
 			'FROM uploadtaxa ut LEFT JOIN uploadtaxa ut2 ON ut.parentstr = ut2.sciname '.
 			'WHERE (ut.parentstr <> "") AND (ut.parentstr IS NOT NULL) AND (ut.parenttid IS NULL) AND (ut.rankid > 220) AND (ut2.sciname IS NULL) ';
 		$this->conn->query($sql);
@@ -672,7 +672,7 @@ class TaxonomyUpload{
 
 		//Load into uploadtaxa parents of species not yet in taxa table
 		$sql = 'INSERT IGNORE INTO uploadtaxa (scinameinput, SciName, family, RankId, UnitName1, parentstr, Source) '.
-			'SELECT DISTINCT ut.parentstr, ut.parentstr, ut.family, 180 as r, COALESCE(ut.unitname1, ut.parentstr), ut.family, ut.source '.
+			'SELECT DISTINCT ut.parentstr, ut.parentstr, ut.family, 180 as r, ut.unitname1, ut.family, ut.source '.
 			'FROM uploadtaxa ut LEFT JOIN uploadtaxa ut2 ON ut.parentstr = ut2.sciname '.
 			'WHERE ut.parentstr <> "" AND ut.parentstr IS NOT NULL AND ut.parenttid IS NULL AND ut.family IS NOT NULL AND ut.rankid = 220 AND ut2.sciname IS NULL';
 		$this->conn->query($sql);
@@ -819,7 +819,7 @@ class TaxonomyUpload{
 			$this->outputMsg('Starting loop '.$loopCnt);
 			$this->outputMsg('Transferring taxa to taxon table... ',1);
 			$sql = 'INSERT INTO taxa(kingdomName, SciName, RankId, UnitInd1, UnitName1, UnitInd2, UnitName2, UnitInd3, UnitName3, cultivarEpithet, tradeName, Author, Source, sourceIdentifier, nomenclaturalStatus, Notes) '.
-				'SELECT DISTINCT "'.$this->kingdomName.'", SciName, RankId, UnitInd1, IFNULL(NULLIF(TRIM(UnitName1),""), TRIM(SciName)), UnitInd2, UnitName2, UnitInd3, UnitName3, cultivarEpithet, tradeName, COALESCE(Author, ""), Source, sourceIdentifier, nomenclaturalStatus, Notes '.
+				'SELECT DISTINCT "'.$this->kingdomName.'", SciName, RankId, UnitInd1, UnitName1, UnitInd2, UnitName2, UnitInd3, UnitName3, cultivarEpithet, tradeName, Author, Source, sourceIdentifier, nomenclaturalStatus, Notes '.
 				'FROM uploadtaxa '.
 				'WHERE (tid IS NULL) AND (parenttid IS NOT NULL) AND (rankid IS NOT NULL) AND (ErrorStatus IS NULL) '.
 				'ORDER BY RankId ASC '.
