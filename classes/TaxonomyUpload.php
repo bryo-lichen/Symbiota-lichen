@@ -114,7 +114,7 @@ class TaxonomyUpload{
 		}
 
 		if(($fh = fopen($this->uploadTargetPath.$this->uploadFileName,'r')) !== FALSE){
-			$headerArr = fgetcsv($fh);
+			$headerArr = fgetcsv($fh, 0, ',', '"', '\\');
 			if(substr($headerArr[0], 0, 3) == chr(hexdec('EF')).chr(hexdec('BB')).chr(hexdec('BF'))){
 				//Remove UTF-8 BOM
 				$headerArr[0] = trim(substr($headerArr[0], 3), ' "');
@@ -158,7 +158,7 @@ class TaxonomyUpload{
 				$this->conn->query('SET autocommit=0');
 				$this->conn->query('SET unique_checks=0');
 				$this->conn->query('SET foreign_key_checks=0');
-				while($recordArr = fgetcsv($fh)){
+				while($recordArr = fgetcsv($fh, 0, ',', '"', '\\')){
 					//Load taxonunits fields into Array which will be loaded into taxon table at the end
 					$parentStr = '';
 					foreach($taxonUnitIndexArr as $index => $rankId){
@@ -189,7 +189,7 @@ class TaxonomyUpload{
 						//Load relavent fields into uploadtaxa table
 						$inputArr = array();
 						foreach($uploadTaxaIndexArr as $recIndex => $targetField){
-							$valIn = trim($this->encodeString($recordArr[$recIndex]));
+							$valIn = trim($this->encodeString($recordArr[$recIndex] ?? ''));
 							if($targetField == 'acceptance' && !is_numeric($valIn)){
 								$valInTest = strtolower($valIn);
 								if($valInTest == 'accepted' || $valInTest == 'valid'){
@@ -226,8 +226,18 @@ class TaxonomyUpload{
 						//Insert record into uploadtaxa table
 						if(array_key_exists('scinameinput', $inputArr)){
 
+							if(isset($inputArr['acceptedstr'])){
+								if($this->kingdomName == 'Animalia') $inputArr['acceptedstr'] = str_replace(array(' subsp. ',' ssp. ',' var. ',' f. ',' fo. '), ' ', $inputArr['acceptedstr']);
+							}
+							// Parse scinameinput first so all unit parts are available before building sciname
+							$sciArr = TaxonomyUtil::parseScientificName($inputArr['scinameinput'],$this->conn,(isset($inputArr['rankid'])?$inputArr['rankid']:0),$this->kingdomName);
+							foreach($sciArr as $sciKey => $sciValue){
+								if($sciKey === 'sciname') continue; // sciname is built explicitly below with fallback logic
+								if(!array_key_exists($sciKey, $inputArr) && $sciValue) $inputArr[$sciKey] = $sciValue;
+							}
+
 							if(!isset($inputArr['sciname']) && isset($inputArr['unitname1']) && $inputArr['unitname1']){
-								//Build sciname
+								//Build sciname from fully-populated unit parts (including those just parsed above)
 								$sciname = $inputArr['unitname1'];
 								if(isset($inputArr['unitname2'])){
 									$sciname .= ' '.$inputArr['unitname2'];
@@ -243,16 +253,21 @@ class TaxonomyUpload{
 									$sciname .= ' ' . self::standardizeTradeName($inputArr['tradename']);
 								}
 								$inputArr['sciname'] = trim($sciname);
+								// Fallback: if sciname is just the genus (parsing stopped at a rank abbreviation
+								// like "subgen.", "sect.") but scinameinput has more content, use scinameinput directly
+								if($inputArr['sciname'] === trim($inputArr['unitname1'] ?? '') && trim($inputArr['scinameinput']) !== trim($inputArr['unitname1'] ?? '')){
+									$inputArr['sciname'] = trim($inputArr['scinameinput']);
+								}
+								// Fallback for infraspecific taxa: if rankid > 220 but unitname3 was not extracted
+								// (because parseScientificName treated "var.", "f.", "subsp." etc. as start of author),
+								// use scinameinput directly to preserve the full infraspecific name
+								elseif(isset($inputArr['rankid']) && $inputArr['rankid'] > 220 && empty($inputArr['unitname3'])
+									&& trim($inputArr['scinameinput']) !== $inputArr['sciname']){
+									$inputArr['sciname'] = trim($inputArr['scinameinput']);
+								}
 							}
 							if(isset($inputArr['rankid']) && $inputArr['rankid'] < 220 && isset($inputArr['sciname']) && !isset($inputArr['unitname1'])){
 								$inputArr['unitname1'] = $inputArr['sciname'];
-							}
-							if(isset($inputArr['acceptedstr'])){
-								if($this->kingdomName == 'Animalia') $inputArr['acceptedstr'] = str_replace(array(' subsp. ',' ssp. ',' var. ',' f. ',' fo. '), ' ', $inputArr['acceptedstr']);
-							}
-							$sciArr = TaxonomyUtil::parseScientificName($inputArr['scinameinput'],$this->conn,(isset($inputArr['rankid'])?$inputArr['rankid']:0),$this->kingdomName);
-							foreach($sciArr as $sciKey => $sciValue){
-								if(!array_key_exists($sciKey, $inputArr) && $sciValue) $inputArr[$sciKey] = $sciValue;
 							}
 							if(isset($inputArr['unitind3']) && $inputArr['unitind3'] && isset($inputArr['unitname3']) && $inputArr['unitname3']){
 								if(stripos($inputArr['unitname3'], $inputArr['unitind3'].' ') === 0) $inputArr['unitname3'] = trim(substr($inputArr['unitname3'], strlen($inputArr['unitind3']) + 1));
@@ -507,8 +522,11 @@ class TaxonomyUpload{
 
 		//Link names already in theusaurus
 		$this->outputMsg('Linking names already in thesaurus... ');
-		$sql = 'UPDATE uploadtaxa u INNER JOIN taxa t ON u.sciname = t.sciname SET u.tid = t.tid
-			WHERE (u.tid IS NULL) AND (t.kingdomname = "'.$this->kingdomName.'" OR t.sciname = "'.$this->kingdomName.'" OR t.rankid < 10) ';
+		$sql = 'UPDATE uploadtaxa u INNER JOIN taxa t ON u.sciname = t.sciname '.
+			'AND (u.author = t.author OR (u.author IS NULL AND t.author IS NULL)) '.
+			'AND u.rankID = t.rankID '.
+			'SET u.tid = t.tid '.
+			'WHERE (u.tid IS NULL) AND (t.kingdomname = "'.$this->kingdomName.'" OR t.sciname = "'.$this->kingdomName.'" OR t.rankid < 10) ';
 		if(!$this->conn->query($sql)){
 			$this->outputMsg('ERROR: '.$this->conn->error,1);
 		}
@@ -782,8 +800,8 @@ class TaxonomyUpload{
 			return false;
 		}
 		//Prime table with kingdoms that are not yet in table
-		$sql = 'INSERT INTO taxa(kingdomName, SciName, RankId, UnitInd1, UnitName1, UnitInd2, UnitName2, UnitInd3, UnitName3, cultivarEpithet, tradeName, Author, Source, Notes, modifiedUid, modifiedTimeStamp) '.
-			'SELECT DISTINCT "'.$this->kingdomName.'", SciName, RankId, UnitInd1, UnitName1, UnitInd2, UnitName2, UnitInd3, UnitName3, cultivarEpithet, tradeName, IFNULL(Author,"") AS author, Source, Notes, '.$GLOBALS['SYMB_UID'].' as uid, now() '.
+		$sql = 'INSERT INTO taxa(kingdomName, SciName, RankId, UnitInd1, UnitName1, UnitInd2, UnitName2, UnitInd3, UnitName3, cultivarEpithet, tradeName, Author, Source, sourceIdentifier, nomenclaturalStatus, Notes, modifiedUid, modifiedTimeStamp) '.
+			'SELECT DISTINCT "'.$this->kingdomName.'", SciName, RankId, UnitInd1, UnitName1, UnitInd2, UnitName2, UnitInd3, UnitName3, cultivarEpithet, tradeName, IFNULL(Author,"") AS author, Source, sourceIdentifier, nomenclaturalStatus, Notes, '.$GLOBALS['SYMB_UID'].' as uid, now() '.
 			'FROM uploadtaxa '.
 			'WHERE (TID IS NULL) AND (rankid = 10)';
 		if($this->conn->query($sql)){
@@ -800,11 +818,18 @@ class TaxonomyUpload{
 		do{
 			$this->outputMsg('Starting loop '.$loopCnt);
 			$this->outputMsg('Transferring taxa to taxon table... ',1);
-			$sql = 'INSERT IGNORE INTO taxa(kingdomName, SciName, RankId, UnitInd1, UnitName1, UnitInd2, UnitName2, UnitInd3, UnitName3, cultivarEpithet, tradeName, Author, Source, Notes) '.
-				'SELECT DISTINCT "'.$this->kingdomName.'", SciName, RankId, UnitInd1, UnitName1, UnitInd2, UnitName2, UnitInd3, UnitName3, cultivarEpithet, tradeName, Author, Source, Notes '.
+			$sql = 'INSERT INTO taxa(kingdomName, SciName, RankId, UnitInd1, UnitName1, UnitInd2, UnitName2, UnitInd3, UnitName3, cultivarEpithet, tradeName, Author, Source, sourceIdentifier, nomenclaturalStatus, Notes) '.
+				'SELECT DISTINCT "'.$this->kingdomName.'", SciName, RankId, UnitInd1, UnitName1, UnitInd2, UnitName2, UnitInd3, UnitName3, cultivarEpithet, tradeName, Author, Source, sourceIdentifier, nomenclaturalStatus, Notes '.
 				'FROM uploadtaxa '.
 				'WHERE (tid IS NULL) AND (parenttid IS NOT NULL) AND (rankid IS NOT NULL) AND (ErrorStatus IS NULL) '.
-				'ORDER BY RankId ASC ';
+				'ORDER BY RankId ASC '.
+				'ON DUPLICATE KEY UPDATE '.
+				'sourceIdentifier = IF(VALUES(sourceIdentifier) IS NOT NULL AND VALUES(sourceIdentifier) != "", VALUES(sourceIdentifier), taxa.sourceIdentifier), '.
+				'nomenclaturalStatus = IF(VALUES(nomenclaturalStatus) IS NOT NULL AND VALUES(nomenclaturalStatus) != "", VALUES(nomenclaturalStatus), taxa.nomenclaturalStatus), '.
+				'Author = IF((taxa.Author IS NULL OR taxa.Author = "") AND VALUES(Author) IS NOT NULL AND VALUES(Author) != "", VALUES(Author), taxa.Author), '.
+				'UnitName1 = IF((taxa.UnitName1 IS NULL OR taxa.UnitName1 = "") AND VALUES(UnitName1) IS NOT NULL AND VALUES(UnitName1) != "", VALUES(UnitName1), taxa.UnitName1), '.
+				'Source = IF((taxa.Source IS NULL OR taxa.Source = "") AND VALUES(Source) IS NOT NULL AND VALUES(Source) != "", VALUES(Source), taxa.Source), '.
+				'Notes = IF((taxa.Notes IS NULL OR taxa.Notes = "") AND VALUES(Notes) IS NOT NULL AND VALUES(Notes) != "", VALUES(Notes), taxa.Notes)';
 			if(!$this->conn->query($sql)){
 				$this->outputMsg('ERROR loading taxa: '.$this->conn->error,1);
 			}
@@ -1016,7 +1041,7 @@ class TaxonomyUpload{
 	public function getSourceArr(){
 		$sourceArr = array();
 		if(($fh = fopen($this->uploadTargetPath.$this->uploadFileName,'r')) !== FALSE){
-			$headerArr = fgetcsv($fh);
+			$headerArr = fgetcsv($fh, 0, ',', '"', '\\');
 			if($headerArr){
 				if(substr($headerArr[0], 0, 3) == chr(hexdec('EF')).chr(hexdec('BB')).chr(hexdec('BF'))){
 					//Remove UTF-8 BOM
@@ -1240,6 +1265,7 @@ class TaxonomyUpload{
 	}
 
 	private function encodeString($inStr){
+		if($inStr === null) return '';
 		global $CHARSET;
 		//Get rid of UTF-8 curly smart quotes and dashes
 		$badwordchars=array(
