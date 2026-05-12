@@ -522,8 +522,11 @@ class TaxonomyUpload{
 
 		//Link names already in theusaurus
 		$this->outputMsg('Linking names already in thesaurus... ');
-		$sql = 'UPDATE uploadtaxa u INNER JOIN taxa t ON u.sciname = t.sciname SET u.tid = t.tid
-			WHERE (u.tid IS NULL) AND (t.kingdomname = "'.$this->kingdomName.'" OR t.sciname = "'.$this->kingdomName.'" OR t.rankid < 10) ';
+		$sql = 'UPDATE uploadtaxa u INNER JOIN taxa t ON u.sciname = t.sciname '.
+			'AND (u.author = t.author OR (u.author IS NULL AND t.author IS NULL)) '.
+			'AND u.rankID = t.rankID '.
+			'SET u.tid = t.tid '.
+			'WHERE (u.tid IS NULL) AND (t.kingdomname = "'.$this->kingdomName.'" OR t.sciname = "'.$this->kingdomName.'" OR t.rankid < 10) ';
 		if(!$this->conn->query($sql)){
 			$this->outputMsg('ERROR: '.$this->conn->error,1);
 		}
@@ -816,7 +819,7 @@ class TaxonomyUpload{
 			$this->outputMsg('Starting loop '.$loopCnt);
 			$this->outputMsg('Transferring taxa to taxon table... ',1);
 			$sql = 'INSERT INTO taxa(kingdomName, SciName, RankId, UnitInd1, UnitName1, UnitInd2, UnitName2, UnitInd3, UnitName3, cultivarEpithet, tradeName, Author, Source, sourceIdentifier, nomenclaturalStatus, Notes) '.
-				'SELECT DISTINCT "'.$this->kingdomName.'", SciName, RankId, UnitInd1, IFNULL(NULLIF(TRIM(UnitName1),""), TRIM(SciName)), UnitInd2, UnitName2, UnitInd3, UnitName3, cultivarEpithet, tradeName, Author, Source, sourceIdentifier, nomenclaturalStatus, Notes '.
+				'SELECT DISTINCT "'.$this->kingdomName.'", SciName, RankId, UnitInd1, UnitName1, UnitInd2, UnitName2, UnitInd3, UnitName3, cultivarEpithet, tradeName, Author, Source, sourceIdentifier, nomenclaturalStatus, Notes '.
 				'FROM uploadtaxa '.
 				'WHERE (tid IS NULL) AND (parenttid IS NOT NULL) AND (rankid IS NOT NULL) AND (ErrorStatus IS NULL) '.
 				'ORDER BY RankId ASC '.
