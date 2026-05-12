@@ -125,7 +125,7 @@ async function verifyLoadFormCore(f, silent = false, originalForm) {
   return true;
 }
 
-function checkNameExistence(f, silent = false) {
+function checkNameExistence(f, silent = false, excludeTid = null) {
   return new Promise((resolve, reject) => {
     if (!f?.sciname?.value || !f?.rankid?.value) {
       document.getElementById("error-display").textContent = processTextContent(translations.SCI_NAME_RANK_REQUIRED);
@@ -141,6 +141,12 @@ function checkNameExistence(f, silent = false) {
         },
         success: function (msg) {
           if (msg != "0") {
+            if (excludeTid && msg == excludeTid) {
+              // The found record is the same as the one being edited — not a real duplicate
+              document.getElementById("error-display").textContent = processTextContent("");
+              resolve(true);
+              return;
+            }
             if (!silent) {
               alert(
                   translations.TAXON +

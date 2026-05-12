@@ -96,6 +96,9 @@ reset($treePath);
 				$label.append(document.createTextNode(" "));
 				$label.append($("<span>").text(item.author).css({color: "#4e7fa8"}));
 			}
+			if(item.nomenclaturalstatus) {
+				$label.append($("<em>").text(" " + item.nomenclaturalstatus).css({color: "#b84c4c"}));
+			}
 			if(item.taxonstatus) {
 				var color = item.taxonstatus === "accepted" ? "#6a8759" : "#cc7832";
 				$label.append($("<span>").text(" [" + item.taxonstatus + "]").css({color: color, fontSize: "0.85em"}));

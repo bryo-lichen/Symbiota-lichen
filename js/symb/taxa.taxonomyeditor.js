@@ -58,7 +58,8 @@ $(document).ready(async function () {
         return;
       }
     }
-    const isUniqueEntry = await checkNameExistence(formForSubmission, true);
+    const currentTid = formForSubmission.querySelector('[name="tid"]')?.value || null;
+    const isUniqueEntry = await checkNameExistence(formForSubmission, true, currentTid);
     const taxonomyFieldsIntact = await isTheSameEntryAsItStarted(formForSubmission, originalForm);
     if(!isUniqueEntry && !taxonomyFieldsIntact){
       if(confirm(translations.TAXON_NAME_MATCH_WARNING)){

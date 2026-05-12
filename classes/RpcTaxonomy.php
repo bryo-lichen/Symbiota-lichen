@@ -28,7 +28,7 @@ class RpcTaxonomy extends RpcBase{
 			foreach($termArr as $k => $v){
 				if(mb_strlen($v) == 1) unset($termArr[$k]);
 			}
-			$sql = 'SELECT DISTINCT t.tid, t.sciname, t.cultivarEpithet, t.tradeName, t.author, t.sourceidentifier, IF(ts.tid = ts.tidaccepted, "accepted", "synonym") AS taxonstatus FROM taxa t INNER JOIN taxstatus ts ON t.tid = ts.tid WHERE ts.taxauthid = '.$this->taxAuthID.' AND (t.sciname LIKE "'.$term.'%" ';
+			$sql = 'SELECT DISTINCT t.tid, t.sciname, t.cultivarEpithet, t.tradeName, t.author, t.nomenclaturalStatus, t.sourceidentifier, IF(ts.tid = ts.tidaccepted, "accepted", "synonym") AS taxonstatus FROM taxa t INNER JOIN taxstatus ts ON t.tid = ts.tid WHERE ts.taxauthid = '.$this->taxAuthID.' AND (t.sciname LIKE "'.$term.'%" ';
 			$sqlFrag = '';
 			if($unit1 = array_shift($termArr)) $sqlFrag =  't.unitname1 LIKE "' . $unit1 . '%" ';
 			if($unit2 = array_shift($termArr)) $sqlFrag .=  'AND t.unitname2 LIKE "' . $unit2 . '%" ';
@@ -58,7 +58,7 @@ class RpcTaxonomy extends RpcBase{
 				if(!empty($r->tradeName)){
 					$sciname .= ' ' . $this->standardizeTradeName($r->tradeName);
 				}
-				$retArr[] = array('id' => $r->tid, 'value' => $sciname, 'author' => $r->author, 'taxonstatus' => $r->taxonstatus, 'sourceidentifier' => $r->sourceidentifier);
+				$retArr[] = array('id' => $r->tid, 'value' => $sciname, 'author' => $r->author, 'nomenclaturalstatus' => $r->nomenclaturalStatus, 'taxonstatus' => $r->taxonstatus, 'sourceidentifier' => $r->sourceidentifier);
 			}
 			$rs->free();
 		}
@@ -314,7 +314,7 @@ class RpcTaxonomy extends RpcBase{
 
 	private function formatTaxonLabel($sciName, $author, $nomenclaturalStatus, $taxonstatus, $sourceidentifier, $displayAuthor, $displaySourceId){
 		if($displayAuthor && $author) $sciName .= ' <span style="color:#4e7fa8;">' . htmlspecialchars($author) . '</span>';
-		if($displayAuthor && !empty($nomenclaturalStatus)) $sciName .= ' <em style="color:#4e7fa8;">' . htmlspecialchars($nomenclaturalStatus) . '</em>';
+		if(!empty($nomenclaturalStatus)) $sciName .= ' <em style="color:#b84c4c;">' . htmlspecialchars($nomenclaturalStatus) . '</em>';
 		if(!empty($taxonstatus)){
 			$statusColor = ($taxonstatus === 'accepted') ? '#6a8759' : '#cc7832';
 			$sciName .= ' <span style="color:' . $statusColor . ';font-size:0.85em;">[' . $taxonstatus . ']</span>';

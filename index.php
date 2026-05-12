@@ -29,6 +29,7 @@ header('Content-Type: text/html; charset=' . $CHARSET);
 	<link href="<?= $CSS_BASE_PATH ?>/quicksearch.css" type="text/css" rel="Stylesheet" />
 	<script src="<?= $CLIENT_ROOT ?>/js/jquery-3.7.1.min.js" type="text/javascript"></script>
 	<script src="<?= $CLIENT_ROOT ?>/js/jquery-ui.min.js" type="text/javascript"></script>
+	<script src="<?= $CLIENT_ROOT ?>/js/symb/api.taxonomy.taxasuggest.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		var clientRoot = "<?= $CLIENT_ROOT ?>";
 		$(document).ready(function() {
@@ -38,6 +39,9 @@ header('Content-Type: text/html; charset=' . $CHARSET);
 				},
 				minLength: 3,
 				autoFocus: true,
+				create: function() {
+					$(this).autocomplete("instance")._renderItem = renderTaxonItem;
+				},
 				select: function( event, ui ) {
 					if(ui.item){
 						$( "#qstaxa" ).val(ui.item.value);

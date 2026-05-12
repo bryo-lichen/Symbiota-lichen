@@ -289,8 +289,8 @@ class TaxonomyDisplayManager extends Manager{
 						if(!empty($sciNameParts['tradeName'])) $sciName .= " " . $sciNameParts['tradeName'];
 						if($this->displayAuthor) {
 							$sciName .= ' <span style="color:#4e7fa8;">' . htmlspecialchars($author) . '</span>';
-							if(!empty($this->taxaArr[$key]['nomenclaturalStatus'])) $sciName .= ' <em style="color:#4e7fa8;">' . htmlspecialchars($this->taxaArr[$key]['nomenclaturalStatus']) . '</em>';
 						}
+						if(!empty($this->taxaArr[$key]['nomenclaturalStatus'])) $sciName .= ' <em style="color:#b84c4c;">' . htmlspecialchars($this->taxaArr[$key]['nomenclaturalStatus']) . '</em>';
 						$sciName .= ' <span style="color:#6a8759;font-size:0.85em;">[accepted]</span>';
 						if($this->displaySourceId && !empty($this->taxaArr[$key]['sourceidentifier'])) $sciName .= ' ' . $this->sourceIdentifierToLink($this->taxaArr[$key]['sourceidentifier']);
 					}
@@ -333,7 +333,7 @@ class TaxonomyDisplayManager extends Manager{
 						if($this->isEditor) echo ' <a href="taxoneditor.php?tid=' . $synTid . '" target="_blank"><img class="icon-image" src="../../images/edit.png" ></a>';
 						echo ']';
 						if($this->displayAuthor && $synData['author']) echo ' <span style="color:#4e7fa8;">' . htmlspecialchars($synData['author']) . '</span>';
-						if($this->displayAuthor && !empty($synData['nomenclaturalStatus'])) echo ' <em style="color:#4e7fa8;">' . htmlspecialchars($synData['nomenclaturalStatus']) . '</em>';
+						if(!empty($synData['nomenclaturalStatus'])) echo ' <em style="color:#b84c4c;">' . htmlspecialchars($synData['nomenclaturalStatus']) . '</em>';
 						echo ' <span style="color:#cc7832;font-size:0.85em;">[synonym]</span>';
 						if($this->displaySourceId && !empty($synData['sourceidentifier'])) echo ' ' . $this->sourceIdentifierToLink($synData['sourceidentifier']);
 						echo '</div>';

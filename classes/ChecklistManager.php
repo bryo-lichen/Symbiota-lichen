@@ -768,11 +768,11 @@ class ChecklistManager extends Manager{
 
 		if($term){
 
-			$sql = 'SELECT tid, sciname, author FROM taxa WHERE (rankid > 179) AND (sciname LIKE "'.$term.'%")';
+			$sql = 'SELECT t.tid, t.sciname, t.author, t.sourceidentifier, IF(ts.tid IS NULL OR ts.tid = ts.tidaccepted, "accepted", "synonym") AS taxonstatus FROM taxa t LEFT JOIN taxstatus ts ON t.tid = ts.tid AND ts.taxauthid = 1 WHERE (t.rankid > 179) AND (t.sciname LIKE "'.$term.'%") LIMIT 30';
 			$rs = $this->conn->query($sql);
 			while($r = $rs->fetch_object()){
-				$retArr[] = (object) [ 'value' => $r->sciname . ' ' . $r->author,
-				'id' => $r->tid];
+				$retArr[] = (object) [ 'value' => $r->sciname, 'id' => $r->tid,
+				'author' => $r->author, 'taxonstatus' => $r->taxonstatus, 'sourceidentifier' => $r->sourceidentifier];
 			}
 			$rs->free();
 		}
