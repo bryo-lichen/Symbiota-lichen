@@ -212,10 +212,30 @@ class RpcOccurrenceEditor extends RpcBase{
 		return $retArr;
 	}
 
-	public function getTaxonArr($term){
+	public function getTaxonArr($term, $tid = 0){
 		$retArr = array();
+		if($tid){
+			$sql = 'SELECT DISTINCT t.tid, t.author, t.sciname, ts.family, t.securitystatus, t.nomenclaturalStatus FROM taxa t INNER JOIN taxstatus ts ON t.tid = ts.tid WHERE t.tid = ? AND ts.taxauthid = 1 ';
+			if($stmt = $this->conn->prepare($sql)){
+				if($stmt->bind_param('i', $tid)){
+					$stmt->execute();
+					$tidR = 0; $family = null; $sciname = null; $author = null; $status = null; $nomenclaturalStatus = null;
+					$stmt->bind_result($tidR, $author, $sciname, $family, $status, $nomenclaturalStatus);
+					if($stmt->fetch()){
+						$retArr['tid'] = $tidR;
+						$retArr['family'] = $family;
+						$retArr['sciname'] = $sciname;
+						$retArr['author'] = $author;
+						$retArr['status'] = $status;
+						$retArr['nomenclaturalstatus'] = $nomenclaturalStatus;
+					}
+					$stmt->close();
+				}
+			}
+			return $retArr;
+		}
 		if($term){
-			$sql = 'SELECT DISTINCT t.tid, t.author, t.sciname, ts.family, t.securitystatus FROM taxa t INNER JOIN taxstatus ts ON t.tid = ts.tid WHERE t.sciname = ? AND ts.taxauthid = 1 ';
+			$sql = 'SELECT DISTINCT t.tid, t.author, t.sciname, ts.family, t.securitystatus, t.nomenclaturalStatus FROM taxa t INNER JOIN taxstatus ts ON t.tid = ts.tid WHERE t.sciname = ? AND ts.taxauthid = 1 ';
 			if($stmt = $this->conn->prepare($sql)){
 				if($stmt->bind_param('s', $term)){
 					$stmt->execute();
@@ -224,13 +244,15 @@ class RpcOccurrenceEditor extends RpcBase{
 					$sciname = null;
 					$author = null;
 					$status = null;
-					$stmt->bind_result($tid, $author, $sciname, $family, $status);
+					$nomenclaturalStatus = null;
+					$stmt->bind_result($tid, $author, $sciname, $family, $status, $nomenclaturalStatus);
 					while($stmt->fetch()){
 						$retArr['tid'] = $tid;
 						$retArr['family'] = $family;
 						$retArr['sciname'] = $sciname;
 						$retArr['author'] = $author;
 						$retArr['status'] = $status;
+						$retArr['nomenclaturalstatus'] = $nomenclaturalStatus;
 					}
 					$stmt->close();
 				}

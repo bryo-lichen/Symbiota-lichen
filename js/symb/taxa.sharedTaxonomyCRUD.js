@@ -118,7 +118,8 @@ async function verifyLoadFormCore(f, silent = false, originalForm) {
       processTextContent(translations.TAXON_RANK_REQUIRED);
     return false;
   }
-  const isUniqueEntry = await checkNameExistence(f, true);
+  const excludeTid = originalForm?.querySelector?.('[name="tid"]')?.value || null;
+  const isUniqueEntry = await checkNameExistence(f, true, excludeTid);
   if (!isUniqueEntry) {
     return true;
   }

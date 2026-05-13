@@ -44,13 +44,29 @@ header('Content-Type: text/html; charset=' . $CHARSET);
 				},
 				select: function( event, ui ) {
 					if(ui.item){
-						$( "#qstaxa" ).val(ui.item.value);
+						var display = ui.item.value;
+						if(ui.item.author) display += ' ' + ui.item.author;
+						if(ui.item.nomenclaturalstatus) display += ' ' + ui.item.nomenclaturalstatus;
+						$( "#qstaxa" ).val(display);
 						$( "#qstid" ).val(ui.item.id);
+						$.getJSON(clientRoot + '/checklists/rpc/taxonimage.php', { tid: ui.item.id }, function(data) {
+							if(data && data.url) {
+								var label = '<i>' + data.sciname + '</i>' + (data.author ? ' ' + data.author : '');
+								$('#taxon-image-preview').html(
+									'<img src="' + data.url + '" style="max-width:350px;max-height:300px;border-radius:4px;" />' +
+									'<div style="font-size:0.9em;margin-top:4px;">' + label + '</div>'
+								).show();
+								$('#slideshow-wrap').hide();
+							}
+						});
 					}
+					return false;
 				},
 				change: function( event, ui ) {
 					if(ui.item === null) {
 						$( "#qstid" ).val("");
+						$('#taxon-image-preview').hide().empty();
+						$('#slideshow-wrap').show();
 					}
 				}
 			});
@@ -81,7 +97,8 @@ header('Content-Type: text/html; charset=' . $CHARSET);
 				</div>
 			</div>
 		</div>
-		<div style="float:right;clear:right;width:400px;">
+		<div id="taxon-image-preview" style="display:none;float:right;clear:right;width:400px;text-align:center;"></div>
+		<div id="slideshow-wrap" style="float:right;clear:right;width:400px;">
 			<?php
 			$ssId = 1;
 			$numSlides = 10;

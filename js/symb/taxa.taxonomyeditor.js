@@ -246,7 +246,7 @@ async function validateTaxonEditForm(f, originalForm) {
   if (entryHasNotChanged) {
     return true;
   }
-  const isUniqueEntry = await checkNameExistence(f, true, originalForm);
+  const isUniqueEntry = await checkNameExistence(f, true, originalForm?.querySelector?.('[name="tid"]')?.value || null);
   if (!isUniqueEntry) {
     return false;
   }

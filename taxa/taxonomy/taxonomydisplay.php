@@ -81,8 +81,17 @@ if($IS_ADMIN || array_key_exists('Taxonomy', $USER_RIGHTS)){
 					$.getJSON( "rpc/gettaxasuggest.php", { term: request.term, taid: document.tdform.taxauthid.value }, response );
 				},
 				autoFocus: true,
-				minLength: 3 }
-			).autocomplete("instance")._renderItem = renderTaxonItem;
+				minLength: 3,
+				select: function(event, ui) {
+					if(ui.item) {
+						var display = ui.item.value;
+						if(ui.item.author) display += ' ' + ui.item.author;
+						if(ui.item.nomenclaturalstatus) display += ' ' + ui.item.nomenclaturalstatus;
+						$("#taxontarget").val(display);
+						return false;
+					}
+				}
+			}).autocomplete("instance")._renderItem = renderTaxonItem;
 
 			$('form input').keydown(function(event) {
 				if (event.keyCode === 13) {

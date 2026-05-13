@@ -590,7 +590,7 @@ else{
 	<script src="../../js/symb/wktpolygontools.js?ver=2c" type="text/javascript"></script>
 	<script src="../../js/symb/collections.georef.js?ver=2" type="text/javascript"></script>
 	<script src="../../js/symb/localitySuggest.js" type="text/javascript"></script>
-	<script src="../../js/symb/collections.editor.main.js?ver=5" type="text/javascript"></script>
+	<script src="../../js/symb/collections.editor.main.js?ver=10" type="text/javascript"></script>
 	<script src="../../js/symb/collections.editor.tools.js?ver=1" type="text/javascript"></script>
 	<script src="../../js/symb/collections.editor.imgtools.js?ver=4" type="text/javascript"></script>
 	<script src="../../js/jquery.imagetool-1.7.js?ver=140310" type="text/javascript"></script>
@@ -967,6 +967,11 @@ else{
 												<a href="#" onclick="return dwcDoc('author')" tabindex="-1"><img class="docimg" src="../../images/qmark.png" /></a>
 												<br/>
 												<input type="text" name="scientificnameauthorship" maxlength="100" tabindex="0" value="<?php echo array_key_exists('scientificnameauthorship',$occArr)?$occArr['scientificnameauthorship']:''; ?>" onchange="fieldChanged('scientificnameauthorship');" <?php if($isEditor > 2) echo 'disabled'; ?> />
+											</div>
+											<div id="nomenclaturalStatusDiv" style="float:left;margin-left:10px;">
+												<?php echo (isset($LANG['NOMENCLATURAL_STATUS'])?$LANG['NOMENCLATURAL_STATUS']:'Nomenclatural Status'); ?>
+												<br/>
+												<input type="text" id="nomenclaturalStatusDisplay" readonly style="color:#b84c4c;font-style:italic;background:#f5f5f5;cursor:default;" />
 											</div>
 										</div>
 										<div style="clear:both;padding:3px 0px 0px 10px;">

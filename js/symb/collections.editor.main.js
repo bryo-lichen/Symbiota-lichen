@@ -89,9 +89,19 @@ $(document).ready(function () {
     source: "rpc/getspeciessuggest.php",
     minLength: 3,
     autoFocus: true,
+    select: function(event, ui) {
+      if(ui.item) {
+        $("#ffsciname").val(ui.item.value);
+        $("#nomenclaturalStatusDisplay").val(ui.item.nomenclaturalstatus || "");
+        verifyFullFormSciName(ui.item.id);
+        return false;
+      }
+    },
     change: function (event, ui) {
+      if (ui.item) return; // already handled in select
       $("#tidinterpreted").val("");
       $("input[name=scientificnameauthorship]").val("");
+      $("#nomenclaturalStatusDisplay").val("");
       $("input[name=family]").val("");
       if ($("input[name=securityreason]").val() == "") {
         $("select[name=recordsecurity]").val(0);
@@ -269,18 +279,19 @@ $(document).ready(function () {
 });
 
 //Field changed and verification functions
-function verifyFullFormSciName() {
+function verifyFullFormSciName(tid) {
   $.ajax({
     type: "POST",
     url: "rpc/verifysciname.php",
     dataType: "json",
-    data: { term: $("#ffsciname").val() },
+    data: { term: $("#ffsciname").val(), tid: tid || 0 },
   }).done(function (data) {
     if (data) {
       $("#tidinterpreted").val(data.tid);
       $("input[name=family]").val(data.family);
       $("input[name=tradeName]").val(data.tradename);
       $("input[name=scientificnameauthorship]").val(data.author);
+      $("#nomenclaturalStatusDisplay").val(data.nomenclaturalstatus || "");
       /*
       if(data.rankid < 220){
         $( 'select[name=confidenceranking]' ).val(2);
@@ -303,7 +314,7 @@ function verifyFullFormSciName() {
           }
         }
       }
-    } else {
+    } else if (!tid) {
       $("select[name=confidenceranking]").val(5);
       alert(
         "WARNING: Taxon not found. It may be misspelled or needs to be added to taxonomic thesaurus by a taxonomic editor. You can continue entering this specimen using this name and the name will be resolved at a later date."
