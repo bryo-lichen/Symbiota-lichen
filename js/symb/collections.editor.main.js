@@ -93,6 +93,10 @@ $(document).ready(function () {
       if(ui.item) {
         $("#ffsciname").val(ui.item.value);
         $("#nomenclaturalStatusDisplay").val(ui.item.nomenclaturalstatus || "");
+        fieldChanged("sciname");
+        fieldChanged("tidinterpreted");
+        fieldChanged("scientificnameauthorship");
+        fieldChanged("family");
         verifyFullFormSciName(ui.item.id);
         return false;
       }
@@ -1188,7 +1192,15 @@ function initDetAutocomplete(f) {
   $(f.sciname).autocomplete({
     source: "rpc/getspeciessuggest.php",
     minLength: 3,
+    select: function(event, ui) {
+      if(ui.item) {
+        f.sciname.value = ui.item.value;
+        verifyDetSciName(f, ui.item.id);
+        return false;
+      }
+    },
     change: function (event, ui) {
+      if (ui.item) return; // already handled in select
       if (f.sciname.value) {
         verifyDetSciName(f);
       } else {
@@ -1200,12 +1212,12 @@ function initDetAutocomplete(f) {
   }).autocomplete("instance")._renderItem = renderDetTaxonItem;
 }
 
-function verifyDetSciName(f) {
+function verifyDetSciName(f, tid) {
   $.ajax({
     type: "POST",
     url: "rpc/verifysciname.php",
     dataType: "json",
-    data: { term: f.sciname.value },
+    data: { term: f.sciname.value, tid: tid || 0 },
   }).done(function (data) {
     if (data) {
       f.scientificnameauthorship.value = data.author;

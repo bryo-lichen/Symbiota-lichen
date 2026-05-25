@@ -1,9 +1,17 @@
 $(document).ready(function() {
 
-	$("#sciname").autocomplete({ 
-		source: "rpc/getspeciessuggest.php", 
+	$("#sciname").autocomplete({
+		source: "rpc/getspeciessuggest.php",
 		minLength: 3,
+		select: function(event, ui) {
+			if(ui.item) {
+				$( "#sciname" ).val(ui.item.value);
+				verifySciName(ui.item.id);
+				return false;
+			}
+		},
 		change: function(event, ui) {
+			if(ui.item) return; // already handled in select
 			$( "#tidinterpreted" ).val("");
 			$( 'input[name=scientificnameauthorship]' ).val("");
 			$( 'input[name=family]' ).val("");
@@ -27,12 +35,12 @@ $(document).ready(function() {
 });
 
 //Field changed and verification functions
-function verifySciName(){
+function verifySciName(tid){
 	$.ajax({
 		type: "POST",
 		url: "rpc/verifysciname.php",
 		dataType: "json",
-		data: { term: $( "#sciname" ).val() }
+		data: { term: $( "#sciname" ).val(), tid: tid || 0 }
 	}).done(function( data ) {
 		if(data){
 			$( "#tidinterpreted" ).val(data.tid);

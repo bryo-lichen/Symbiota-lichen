@@ -215,7 +215,7 @@ class RpcOccurrenceEditor extends RpcBase{
 	public function getTaxonArr($term, $tid = 0){
 		$retArr = array();
 		if($tid){
-			$sql = 'SELECT DISTINCT t.tid, t.author, t.sciname, ts.family, t.securitystatus, t.nomenclaturalStatus FROM taxa t INNER JOIN taxstatus ts ON t.tid = ts.tid WHERE t.tid = ? AND ts.taxauthid = 1 ';
+			$sql = 'SELECT DISTINCT t.tid, t.author, t.sciname, ts.family, t.securitystatus, t.nomenclaturalStatus FROM taxa t LEFT JOIN taxstatus ts ON t.tid = ts.tid AND ts.taxauthid = 1 WHERE t.tid = ? ';
 			if($stmt = $this->conn->prepare($sql)){
 				if($stmt->bind_param('i', $tid)){
 					$stmt->execute();

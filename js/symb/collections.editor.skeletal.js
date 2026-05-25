@@ -3,11 +3,19 @@ var count = 0;
 
 $(document).ready(function() {
 
-	$("#fsciname").autocomplete({ 
-		source: "rpc/getspeciessuggest.php", 
+	$("#fsciname").autocomplete({
+		source: "rpc/getspeciessuggest.php",
 		minLength: 3,
 		autoFocus: true,
+		select: function(event, ui) {
+			if(ui.item) {
+				$( "#fsciname" ).val(ui.item.value);
+				verifySciName(ui.item.id);
+				return false;
+			}
+		},
 		change: function(event, ui) {
+			if(ui.item) return; // already handled in select
 			$( "#ftidinterpreted" ).val("");
 			$( '#fscientificnameauthorship' ).val("");
 			$( '#ffamily' ).val("");
@@ -50,12 +58,12 @@ function hideOptions(){
 }
 
 //Field changed and verification functions
-function verifySciName(){
+function verifySciName(tid){
 	$.ajax({
 		type: "POST",
 		url: "rpc/verifysciname.php",
 		dataType: "json",
-		data: { term: $( "#fsciname" ).val() }
+		data: { term: $( "#fsciname" ).val(), tid: tid || 0 }
 	}).done(function( data ) {
 		if(data){
 			$( "#ftidinterpreted" ).val(data.tid);

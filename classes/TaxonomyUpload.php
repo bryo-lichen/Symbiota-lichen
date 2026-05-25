@@ -596,6 +596,20 @@ class TaxonomyUpload{
 		if(!$this->conn->query($sql)){
 			$this->outputMsg('ERROR: '.$this->conn->error,1);
 		}
+		// Handle genera where unitname1 IS the family name (rank 140) — covers upload formats
+		// where unitname1 holds the parent taxon name rather than the genus epithet
+		$sql = 'UPDATE uploadtaxa ut INNER JOIN taxa t ON ut.unitname1 = t.sciname '.
+			'SET ut.family = ut.unitname1 '.
+			'WHERE ut.rankid = 180 AND ut.family IS NULL AND t.rankid = 140';
+		if(!$this->conn->query($sql)){
+			$this->outputMsg('ERROR: '.$this->conn->error,1);
+		}
+		$sql = 'UPDATE uploadtaxa u1 INNER JOIN uploadtaxa u2 ON u1.unitname1 = u2.sciname '.
+			'SET u1.family = u1.unitname1 '.
+			'WHERE u1.rankid = 180 AND u1.family IS NULL AND u2.rankid = 140';
+		if(!$this->conn->query($sql)){
+			$this->outputMsg('ERROR: '.$this->conn->error,1);
+		}
 
 		$this->outputMsg('Set null author values... ');
 		$sql = 'UPDATE IGNORE uploadtaxa '.
@@ -636,6 +650,20 @@ class TaxonomyUpload{
 		}
 		$sql = 'UPDATE uploadtaxa SET parentstr = family '.
 			'WHERE ((parentstr IS NULL) OR (parentstr LIKE "PENDING:%")) AND (rankid = 180)';
+		if(!$this->conn->query($sql)){
+			$this->outputMsg('ERROR: '.$this->conn->error,1);
+		}
+		// Fallback for genera still without parentstr: use unitname1 directly if it's a known taxon
+		// (covers cases where parent is above family level, e.g. order, class, phylum)
+		$sql = 'UPDATE uploadtaxa ut INNER JOIN taxa t ON ut.unitname1 = t.sciname '.
+			'SET ut.parentstr = ut.unitname1 '.
+			'WHERE ut.rankid = 180 AND (ut.parentstr IS NULL OR ut.parentstr = "") AND ut.unitname1 IS NOT NULL AND ut.unitname1 != ut.sciname';
+		if(!$this->conn->query($sql)){
+			$this->outputMsg('ERROR: '.$this->conn->error,1);
+		}
+		$sql = 'UPDATE uploadtaxa u1 INNER JOIN uploadtaxa u2 ON u1.unitname1 = u2.sciname '.
+			'SET u1.parentstr = u1.unitname1 '.
+			'WHERE u1.rankid = 180 AND (u1.parentstr IS NULL OR u1.parentstr = "") AND u1.unitname1 IS NOT NULL AND u1.unitname1 != u1.sciname';
 		if(!$this->conn->query($sql)){
 			$this->outputMsg('ERROR: '.$this->conn->error,1);
 		}

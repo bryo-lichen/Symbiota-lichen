@@ -971,7 +971,7 @@ else{
 											<div id="nomenclaturalStatusDiv" style="float:left;margin-left:10px;">
 												<?php echo (isset($LANG['NOMENCLATURAL_STATUS'])?$LANG['NOMENCLATURAL_STATUS']:'Nomenclatural Status'); ?>
 												<br/>
-												<input type="text" id="nomenclaturalStatusDisplay" readonly style="color:#b84c4c;font-style:italic;background:#f5f5f5;cursor:default;" />
+												<input type="text" id="nomenclaturalStatusDisplay" readonly style="color:#b84c4c;font-style:italic;background:#f5f5f5;cursor:default;" value="<?php echo htmlspecialchars($occManager->getTaxonNomenclaturalStatus($occArr['tidinterpreted'] ?? 0)); ?>" />
 											</div>
 										</div>
 										<div style="clear:both;padding:3px 0px 0px 10px;">

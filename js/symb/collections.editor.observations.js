@@ -1,38 +1,50 @@
 $(document).ready(function() {
-	$("#sciname").autocomplete({ 
-		source: "rpc/getspeciessuggest.php", 
+	$("#sciname").autocomplete({
+		source: "rpc/getspeciessuggest.php",
 		minLength: 3,
 		autoFocus: true,
+		select: function(event, ui) {
+			if(ui.item) {
+				$("#sciname").val(ui.item.value);
+				verifySciName(ui.item.id);
+				return false;
+			}
+		},
 		change: function(event, ui) {
+			if(ui.item) return; // already handled in select
 			var f = document.obsform;
 			if( f.sciname.value ){
-				$.ajax({
-					type: "POST",
-					url: "rpc/verifysciname.php",
-					dataType: "json",
-					data: { term: f.sciname.value },
-					autoFocus: true
-				}).done(function( data ) {
-					if(data){
-						f.scientificnameauthorship.value = data.author;
-						f.family.value = data.family;
-						f.tidinterpreted.value = data.tid;
-					}
-					else{
-						f.scientificnameauthorship.value = "";
-						f.family.value = "";
-						f.tidinterpreted.value = "";
-					}
-				});
+				verifySciName();
 			}
 			else{
 				f.scientificnameauthorship.value = "";
 				f.family.value = "";
 				f.tidinterpreted.value = "";
-			}				
+			}
 		}
 	});
 });
+
+function verifySciName(tid) {
+	var f = document.obsform;
+	$.ajax({
+		type: "POST",
+		url: "rpc/verifysciname.php",
+		dataType: "json",
+		data: { term: f.sciname.value, tid: tid || 0 }
+	}).done(function( data ) {
+		if(data){
+			f.scientificnameauthorship.value = data.author;
+			f.family.value = data.family;
+			f.tidinterpreted.value = data.tid;
+		}
+		else{
+			f.scientificnameauthorship.value = "";
+			f.family.value = "";
+			f.tidinterpreted.value = "";
+		}
+	});
+}
 
 function toggle(target){
 	var ele = document.getElementById(target);

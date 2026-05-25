@@ -2855,6 +2855,16 @@ class OccurrenceEditorManager {
 		}
 	}
 
+	public function getTaxonNomenclaturalStatus($tid) {
+		if (!$tid || !is_numeric($tid)) return '';
+		$rs = $this->conn->query('SELECT nomenclaturalStatus FROM taxa WHERE tid = ' . (int)$tid);
+		if ($rs && $r = $rs->fetch_object()) {
+			$rs->free();
+			return $r->nomenclaturalStatus ?? '';
+		}
+		return '';
+	}
+
 	public function getOccId() {
 		return $this->occid;
 	}
