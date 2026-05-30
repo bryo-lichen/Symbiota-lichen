@@ -834,7 +834,9 @@ class TaxonomyUpload{
 			'WHERE (TID IS NULL) AND (rankid = 10)';
 		if($this->conn->query($sql)){
 			$sql = 'INSERT INTO taxstatus(tid, tidaccepted, taxauthid, parenttid, modifiedUid) '.
-				'SELECT DISTINCT t.tid, t.tid, '.$this->taxAuthId.', t.tid, '.$GLOBALS['SYMB_UID'].' FROM taxa t LEFT JOIN taxstatus ts ON t.tid = ts.tid WHERE (t.rankid = 10) AND (ts.tid IS NULL)';
+				'SELECT DISTINCT t.tid, t.tid, '.$this->taxAuthId.', t.tid, '.$GLOBALS['SYMB_UID'].' FROM taxa t '.
+				'INNER JOIN uploadtaxa ut ON t.sciname = ut.sciname AND ut.rankid = 10 '.
+				'LEFT JOIN taxstatus ts ON t.tid = ts.tid WHERE (t.rankid = 10) AND (ts.tid IS NULL)';
 			if(!$this->conn->query($sql)){
 				$this->outputMsg('ERROR: '.$this->conn->error,1);
 			}
@@ -890,10 +892,13 @@ class TaxonomyUpload{
 			}
 
 			$this->outputMsg('Create parent and accepted links... ',1);
-			$sql = 'INSERT IGNORE INTO taxstatus(TID, TidAccepted, taxauthid, ParentTid, Family, UnacceptabilityReason) '.
+			$sql = 'INSERT INTO taxstatus(TID, TidAccepted, taxauthid, ParentTid, Family, UnacceptabilityReason) '.
 				'SELECT DISTINCT TID, TidAccepted, '.$this->taxAuthId.', ParentTid, Family, UnacceptabilityReason '.
 				'FROM uploadtaxa '.
-				'WHERE (tid IS NOT NULL) AND (TidAccepted IS NOT NULL) AND (parenttid IS NOT NULL)';
+				'WHERE (tid IS NOT NULL) AND (TidAccepted IS NOT NULL) AND (parenttid IS NOT NULL) '.
+				'ON DUPLICATE KEY UPDATE '.
+				'parenttid = IF(VALUES(parenttid) IS NOT NULL AND VALUES(parenttid) != '.$this->kingdomTid.', VALUES(parenttid), taxstatus.parenttid), '.
+				'family = IF(VALUES(family) IS NOT NULL AND VALUES(family) != "", VALUES(family), taxstatus.family)';
 			if(!$this->conn->query($sql)){
 				$this->outputMsg('ERROR creating taxstatus links: '.$this->conn->error,1);
 			}
@@ -1220,9 +1225,9 @@ class TaxonomyUpload{
 	public function setKingdomName($str){
 		if(preg_match('/^[a-zA-Z]+$/', $str)){
 			$this->kingdomName = $str;
-			$sql = 'SELECT tid FROM taxa WHERE sciname = "'.$this->cleanInStr($this->kingdomName).'" AND rankid = 10';
+			$sql = 'SELECT tid FROM taxa WHERE sciname = "'.$this->cleanInStr($this->kingdomName).'" AND rankid = 10 ORDER BY tid ASC LIMIT 1';
 			$rs = $this->conn->query($sql);
-			while($r = $rs->fetch_object()){
+			if($r = $rs->fetch_object()){
 				$this->kingdomTid = $r->tid;
 			}
 			$rs->free();
