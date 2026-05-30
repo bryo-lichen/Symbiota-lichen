@@ -169,6 +169,7 @@ class TaxonomyUpload{
 									//For kingdom taxa, parents are themselves
 									$childParentArr[$taxonStr]['p'] = $taxonStr;
 									$childParentArr[$taxonStr]['r'] = $rankId;
+									$childParentArr[$taxonStr]['s'] = 1; // skip uploadtaxa insert — kingdom already exists in taxa
 								}
 								elseif($parentStr){
 									$childParentArr[$taxonStr]['p'] = $parentStr;
