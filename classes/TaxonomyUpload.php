@@ -687,23 +687,27 @@ class TaxonomyUpload{
 			$this->outputMsg('ERROR: '.$this->conn->error,1);
 		}
 
-		//Load into uploadtaxa parents of infrasp not yet in taxa table
+		//Load into uploadtaxa parents of infrasp not yet in taxa table or thesaurus
 		$this->outputMsg('Add parents that are not yet in uploadtaxa table... ');
 		$sql = 'INSERT IGNORE INTO uploadtaxa(scinameinput, SciName, family, RankId, UnitName1, UnitName2, parentstr, author, Source) '.
 			'SELECT DISTINCT ut.parentstr, ut.parentstr, ut.family, 220 as r, COALESCE(ut.unitname1, ut.parentstr), ut.unitname2, ut.unitname1, "", ut.source '.
-			'FROM uploadtaxa ut LEFT JOIN uploadtaxa ut2 ON ut.parentstr = ut2.sciname '.
-			'WHERE (ut.parentstr <> "") AND (ut.parentstr IS NOT NULL) AND (ut.parenttid IS NULL) AND (ut.rankid > 220) AND (ut2.sciname IS NULL) ';
+			'FROM uploadtaxa ut '.
+			'LEFT JOIN uploadtaxa ut2 ON ut.parentstr = ut2.sciname '.
+			'LEFT JOIN taxa t ON ut.parentstr = t.sciname AND (t.kingdomname = "'.$this->kingdomName.'" OR t.sciname = "'.$this->kingdomName.'" OR t.rankid < 10) '.
+			'WHERE (ut.parentstr <> "") AND (ut.parentstr IS NOT NULL) AND (ut.parenttid IS NULL) AND (ut.rankid > 220) AND (ut2.sciname IS NULL) AND (t.tid IS NULL)';
 		$this->conn->query($sql);
 		$sql = 'UPDATE uploadtaxa up INNER JOIN taxa t ON up.parentstr = t.sciname '.
 			'SET up.parenttid = t.tid '.
 			'WHERE (up.parenttid IS NULL) AND (t.kingdomname = "'.$this->kingdomName.'" OR t.sciname = "'.$this->kingdomName.'" OR t.rankid < 10)';
 		$this->conn->query($sql);
 
-		//Load into uploadtaxa parents of species not yet in taxa table
+		//Load into uploadtaxa parents of species not yet in taxa table or thesaurus
 		$sql = 'INSERT IGNORE INTO uploadtaxa (scinameinput, SciName, family, RankId, UnitName1, parentstr, author, Source) '.
 			'SELECT DISTINCT ut.parentstr, ut.parentstr, ut.family, 180 as r, COALESCE(ut.unitname1, ut.parentstr), ut.family, "", ut.source '.
-			'FROM uploadtaxa ut LEFT JOIN uploadtaxa ut2 ON ut.parentstr = ut2.sciname '.
-			'WHERE ut.parentstr <> "" AND ut.parentstr IS NOT NULL AND ut.parenttid IS NULL AND ut.family IS NOT NULL AND ut.rankid = 220 AND ut2.sciname IS NULL';
+			'FROM uploadtaxa ut '.
+			'LEFT JOIN uploadtaxa ut2 ON ut.parentstr = ut2.sciname '.
+			'LEFT JOIN taxa t ON ut.parentstr = t.sciname AND (t.kingdomname = "'.$this->kingdomName.'" OR t.sciname = "'.$this->kingdomName.'" OR t.rankid < 10) '.
+			'WHERE ut.parentstr <> "" AND ut.parentstr IS NOT NULL AND ut.parenttid IS NULL AND ut.family IS NOT NULL AND ut.rankid = 220 AND ut2.sciname IS NULL AND t.tid IS NULL';
 		$this->conn->query($sql);
 		$sql = 'UPDATE uploadtaxa up LEFT JOIN taxa t ON up.parentstr = t.sciname '.
 			'SET up.parenttid = t.tid '.

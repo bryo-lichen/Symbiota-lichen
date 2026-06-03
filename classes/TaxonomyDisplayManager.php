@@ -367,8 +367,12 @@ class TaxonomyDisplayManager extends Manager{
 				WHERE (ts.taxauthid = '.$this->taxAuthId.') AND (ts1.taxauthid = '.$this->taxAuthId.') ';
 			if($this->targetTid) $sql1 .= 'AND (t.tid IN('.$this->targetTid.') OR (ts1.tid = '.$this->targetTid.'))';
 			else{
-				$sql1 .= 'AND ((t.sciname = "'.$this->cleanInStr($this->targetStr).'") OR (t1.sciname = "'.$this->cleanInStr($this->targetStr).'")
-					OR (CONCAT(t.sciname," ",t.author) = "'.$this->cleanInStr($this->targetStr).'") OR (CONCAT(t1.sciname," ",t1.author) = "'.$this->cleanInStr($this->targetStr).'")) ';
+				$cleanTarget = $this->cleanInStr($this->targetStr);
+				$sql1 .= 'AND ((t.sciname = "'.$cleanTarget.'") OR (t1.sciname = "'.$cleanTarget.'")'
+					.' OR (CONCAT(t.sciname," ",t.author) = "'.$cleanTarget.'")'
+					.' OR (CONCAT(t1.sciname," ",t1.author) = "'.$cleanTarget.'")'
+					.' OR (CONCAT_WS(" ",t.sciname,NULLIF(t.author,""),NULLIF(t.nomenclaturalStatus,"")) = "'.$cleanTarget.'")'
+					.' OR (CONCAT_WS(" ",t1.sciname,NULLIF(t1.author,""),NULLIF(t1.nomenclaturalStatus,"")) = "'.$cleanTarget.'")) ';
 			}
 			//echo "<div>".$sql1."</div>";
 			$rs1 = $this->conn->query($sql1);
@@ -382,6 +386,22 @@ class TaxonomyDisplayManager extends Manager{
 				}
 			}
 			$rs1->free();
+			// If search matched via a synonym of the accepted taxon, find that synonym and
+			// make it the leaf of the path so it gets highlighted and scrolled to.
+			if($tid && !$acceptedTid && $this->targetStr){
+				$cleanTarget = $this->cleanInStr($this->targetStr);
+				$sqlSyn = 'SELECT t1.tid FROM taxa t1 INNER JOIN taxstatus ts1 ON t1.tid = ts1.tid '
+					.'WHERE ts1.taxauthid = '.$this->taxAuthId.' AND ts1.tidaccepted = '.$tid.' AND ts1.tid != '.$tid
+					.' AND (CONCAT(t1.sciname," ",t1.author) = "'.$cleanTarget.'"'
+					.' OR CONCAT_WS(" ",t1.sciname,NULLIF(t1.author,""),NULLIF(t1.nomenclaturalStatus,"")) = "'.$cleanTarget.'")'
+					.' LIMIT 1';
+				$rsSyn = $this->conn->query($sqlSyn);
+				if($rowSyn = $rsSyn->fetch_object()){
+					$acceptedTid = $tid;
+					$tid = $rowSyn->tid;
+				}
+				$rsSyn->free();
+			}
 		}
 		//Set all parents
 		$sql2 = '';
