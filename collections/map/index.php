@@ -2250,6 +2250,10 @@ $serverHost = GeneralUtil::getDomain();
 											<?= $LANG['INCLUDE_SYNONYMS'] ?>
 										</label>
 									</div>
+									<div style="margin-top:5px;">
+										<input type="checkbox" id="groupByAccepted" data-role="none" />
+										<label for="groupByAccepted" style="font-weight:normal;">Group by accepted name</label>
+									</div>
 									<div>
 										<div style="margin-top:5px;">
 											<select data-role="none" id="taxontype" name="taxontype">
@@ -2727,10 +2731,6 @@ $serverHost = GeneralUtil::getDomain();
 									</div>
 								</div>
 								<div style="margin:5 0 5 0;clear:both;"><hr /></div>
-								<div style="margin:5px 0 8px 0;">
-									<input type="checkbox" id="groupByAccepted" data-role="none" />
-									<label for="groupByAccepted" style="font-weight:normal;">Group by accepted name</label>
-								</div>
 								<div style='font-weight:bold;'><?= $LANG['TAXA_COUNT'] ?>: <span id="taxaCountNum">0</span></div>
 								<div id="taxasymbologykeysbox"></div>
 							</div>
