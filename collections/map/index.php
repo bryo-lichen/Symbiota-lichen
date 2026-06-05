@@ -1155,6 +1155,7 @@ $serverHost = GeneralUtil::getDomain();
 				});
 
 				buildTaxaLegend();
+				jscolor.init();
 				autoColorTaxa();
 				drawPoints();
 			});
