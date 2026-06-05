@@ -695,3 +695,15 @@ DROP TABLE IF EXISTS `lkupcounty`;
 DROP TABLE IF EXISTS `lkupstateprovince`;
 DROP TABLE IF EXISTS `lkupcountry`;
 
+
+# -----------------------------------------------------------------------
+# Lichen portal custom additions (bryo-lichen/Symbiota-lichen fork)
+# -----------------------------------------------------------------------
+# Adds nomenclaturalStatus to uploadtaxa so it can be mapped from the
+# CSV during batch taxonomy upload and transferred to the taxa table on
+# activation. Not present in the upstream Symbiota 3.4 schema.
+# To confirm this column exists before applying:
+#   DESCRIBE uploadtaxa;
+ALTER TABLE `uploadtaxa`
+  ADD COLUMN `nomenclaturalStatus` VARCHAR(100) NULL DEFAULT NULL;
+
