@@ -249,7 +249,7 @@ $serverHost = GeneralUtil::getDomain();
 		let recordArr = [];
 		let taxaMap = [];
 		let acceptedTaxaMap = {};
-		let groupByAccepted = false;
+		let groupByAccepted = true;
 		let collArr = [];
 		let searchVar = "";
 		let default_color = "E69E67";
@@ -1130,6 +1130,14 @@ $serverHost = GeneralUtil::getDomain();
 			document.getElementById('heat-radius').addEventListener('change', e => drawHeatmap())
 			document.getElementById('heat-max-density').addEventListener('change', e => drawHeatmap() )
 
+			// Store TID when user picks from autocomplete so homonyms can be precisely searched.
+			// Clear it on manual keydown so typing a new name doesn't reuse a stale TID.
+			$("#taxa").on("autocompleteselect", function(event, ui) {
+				$("#taxatid").val(ui.item.id || '');
+			}).on("keydown", function() {
+				$("#taxatid").val('');
+			});
+
 			document.getElementById('groupByAccepted').addEventListener('change', function() {
 				if(!recordArr.length) return;
 				groupByAccepted = this.checked;
@@ -1164,7 +1172,8 @@ $serverHost = GeneralUtil::getDomain();
 			if(recordArr.length > 0) {
 				let formData = new FormData(document.getElementById("params-form"));
 
-				const group = genMapGroups(recordArr, taxaMap, collArr, "<?=$LANG['CURRENT_PORTAL']?>", groupByAccepted);
+				const initTMap = groupByAccepted ? acceptedTaxaMap : taxaMap;
+				const group = genMapGroups(recordArr, initTMap, collArr, "<?=$LANG['CURRENT_PORTAL']?>", groupByAccepted);
 				group.origin = "<?= $serverHost . $CLIENT_ROOT?>";
 				mapGroups = [group];
 
@@ -2251,7 +2260,7 @@ $serverHost = GeneralUtil::getDomain();
 										</label>
 									</div>
 									<div style="margin-top:5px;">
-										<input type="checkbox" id="groupByAccepted" data-role="none" />
+										<input type="checkbox" id="groupByAccepted" data-role="none" checked />
 										<label for="groupByAccepted" style="font-weight:normal;">Group by accepted name</label>
 									</div>
 									<div>
@@ -2270,6 +2279,7 @@ $serverHost = GeneralUtil::getDomain();
 										<div style="margin-top:5px;">
 											<?= $LANG['TAXA'] ?>:
 											<input data-role="none" id="taxa" name="taxa" type="text" style="width:275px;" value="<?= $mapManager->getTaxaSearchTerm(); ?>" title="<?= $LANG['SEPARATE_MULTIPLE'] ?>" />
+											<input type="hidden" id="taxatid" name="taxatid" value="" />
 										</div>
 									</div>
 									<div style="margin:5 0 5 0;"><hr /></div>

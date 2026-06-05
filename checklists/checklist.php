@@ -119,6 +119,7 @@ $taxonFilter = htmlspecialchars($taxonFilter, ENT_COMPAT | ENT_HTML401 | ENT_SUB
 	<link href="<?= $CSS_BASE_PATH ?>/symbiota/checklists/checklist.css" type="text/css" rel="stylesheet" />
 	<script src="<?php echo $CLIENT_ROOT; ?>/js/jquery-3.7.1.min.js" type="text/javascript"></script>
 	<script src="<?php echo $CLIENT_ROOT; ?>/js/jquery-ui.min.js" type="text/javascript"></script>
+	<script src="<?php echo $CLIENT_ROOT; ?>/js/symb/api.taxonomy.taxasuggest.js?ver=4" type="text/javascript"></script>
 	<script type="text/javascript">
 		<?php
 		if($clid) echo 'var clid = '.$clid.';'."\n";
@@ -665,6 +666,11 @@ $taxonFilter = htmlspecialchars($taxonFilter, ENT_COMPAT | ENT_HTML401 | ENT_SUB
 										<b><?php echo $LANG['SEARCH'];?>:</b>
 										<label for="taxonfilter"><?php echo $LANG['TAXONFILTER'] ?></label>
 										<input type="text" id="taxonfilter" name="taxonfilter" value="<?php echo $taxonFilter;?>" size="20" />
+										<script>
+											$(document).ready(function(){
+												initiateTaxonSuggest('taxonfilter', 0, 0);
+											});
+										</script>
 									</div>
 									<div>
 										<div style="margin-left:10px;">
