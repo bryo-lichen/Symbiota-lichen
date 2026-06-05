@@ -63,7 +63,7 @@ class OccurrenceMapManager extends OccurrenceManager {
 		if(!$select) {
 			$select = 'o.occid, CONCAT_WS(" ",o.recordedby,IFNULL(o.recordnumber,o.eventdate)) AS identifier, o.eventdate, '.
 				'o.sciname, IF(ts.family IS NULL, o.family, ts.family) as family, o.tidinterpreted, o.DecimalLatitude, o.DecimalLongitude, o.collid, o.catalogNumber, '.
-				'o.othercatalognumbers';
+				'o.othercatalognumbers, COALESCE(ts.tidaccepted, o.tidinterpreted) as acceptedTid';
 		}
 
 		$sql = 'SELECT ' . $select . ' FROM omoccurrences o ';
@@ -120,6 +120,7 @@ class OccurrenceMapManager extends OccurrenceManager {
 		$recordArr = [];
 		$taxaArr = [];
 		$collArr = [];
+		$acceptedTidSet = [];
 		$collections = $this->getCollections();
 
 		while($record = $result->fetch_object()) {
@@ -133,6 +134,9 @@ class OccurrenceMapManager extends OccurrenceManager {
 				];
 			}
 
+			$acceptedTid = $record->acceptedTid ?: $record->tidinterpreted;
+			$acceptedTidSet[$acceptedTid] = $acceptedTid;
+
 			//Collect all Collections
 			if (!array_key_exists($record->collid, $collArr)) {
 				$collArr[$record->collid] = [
@@ -144,12 +148,13 @@ class OccurrenceMapManager extends OccurrenceManager {
 
 			//Collect all records
 			array_push($recordArr, [
-				'id' => $record->identifier, 
-				'tid' => $this->htmlEntities($record->tidinterpreted), 
-				'catalogNumber' => $record->catalogNumber, 
-				'eventdate' => $record->eventdate, 
-				'sciname' => $record->sciname, 
-				'collid' => $record->collid, 
+				'id' => $record->identifier,
+				'tid' => $this->htmlEntities($record->tidinterpreted),
+				'acceptedTid' => $acceptedTid,
+				'catalogNumber' => $record->catalogNumber,
+				'eventdate' => $record->eventdate,
+				'sciname' => $record->sciname,
+				'collid' => $record->collid,
 				'family' => $record->family,
 				'occid' => $record->occid,
 				'host' => $host,
@@ -164,11 +169,32 @@ class OccurrenceMapManager extends OccurrenceManager {
 
 		$result->free();
 
+		// Build accepted taxa map: one entry per unique accepted TID
+		$acceptedTaxaArr = [];
+		if(!empty($acceptedTidSet)){
+			$tidList = implode(',', $acceptedTidSet);
+			$sqlAcc = 'SELECT t.tid, t.sciname, COALESCE(ts.family,"") as family '
+				.'FROM taxa t LEFT JOIN taxstatus ts ON t.tid = ts.tid AND ts.taxauthid = 1 '
+				.'WHERE t.tid IN ('.$tidList.')';
+			if($rsAcc = $this->conn->query($sqlAcc)){
+				while($rAcc = $rsAcc->fetch_object()){
+					$acceptedTaxaArr[$rAcc->tid] = [
+						'sn' => $rAcc->sciname,
+						'tid' => $rAcc->tid,
+						'family' => $rAcc->family,
+						'color' => $color,
+					];
+				}
+				$rsAcc->free();
+			}
+		}
+
 		$statsManager->recordAccessEventByArr($occidArr, 'map');
 
 		return [
-			'taxaArr' => $taxaArr, 
-			'collArr' => $collArr, 
+			'taxaArr' => $taxaArr,
+			'acceptedTaxaArr' => $acceptedTaxaArr,
+			'collArr' => $collArr,
 			'recordArr' => $recordArr
 		];
 	}

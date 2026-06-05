@@ -45,6 +45,7 @@ $bounds = MappingUtil::getMappingBoundary();
 //Gets Coordinates
 list(
 	'taxaArr' => $taxaArr,
+	'acceptedTaxaArr' => $acceptedTaxaArr,
 	'recordArr' => $recordArr,
 	'collArr' => $collArr
 ) = $mapManager->getCoordinateMap();
@@ -247,6 +248,8 @@ $serverHost = GeneralUtil::getDomain();
 		//Clid
 		let recordArr = [];
 		let taxaMap = [];
+		let acceptedTaxaMap = {};
+		let groupByAccepted = false;
 		let collArr = [];
 		let searchVar = "";
 		let default_color = "E69E67";
@@ -779,24 +782,27 @@ $serverHost = GeneralUtil::getDomain();
 				}
 			}
 
-			function genMapGroups(records, tMap, cMap, origin) {
+			function genMapGroups(records, tMap, cMap, origin, useAccepted = false) {
 				let taxon = new LeafletMapGroup("taxa", tMap);
 				let collections = new LeafletMapGroup("coll", cMap);
 				let portal = new LeafletMapGroup("portal", { [origin]: { name: origin, portalid: origin, color: generateRandColor()} });
 
 				for(let record of records) {
+					const taxonKey = useAccepted ? record['acceptedTid'] : record['tid'];
+					const taxonEntry = tMap[taxonKey] || tMap[Object.keys(tMap)[0]];
+					const taxonColor = taxonEntry ? taxonEntry.color : default_color;
 					let marker = (record.type === "specimen"?
 						L.marker([record.lat, record.lng], {
 							icon: getSpecimenSvg({
-								color: `#${tMap[record['tid']].color}`,
-								className: `coll-${record['collid']} taxa-${record['tid']}`,
+								color: `#${taxonColor}`,
+								className: `coll-${record['collid']} taxa-${taxonKey}`,
 								size: 7
 							})
 						}):
 						L.marker([record.lat, record.lng], {
 							icon: getObservationSvg({
-								color: `#${tMap[record['tid']].color}`,
-								className: `coll-${record['collid']} taxa-${record['tid']}`,
+								color: `#${taxonColor}`,
+								className: `coll-${record['collid']} taxa-${taxonKey}`,
 								size: 28
 							})
 						}))
@@ -806,7 +812,7 @@ $serverHost = GeneralUtil::getDomain();
 
 					markers.push(marker);
 					oms.addMarker(marker);
-					taxon.addMarker(record['tid'], marker);
+					taxon.addMarker(taxonKey, marker);
 					collections.addMarker(record['collid'], marker);
 					portal.addMarker(origin, marker);
 				}
@@ -938,12 +944,21 @@ $serverHost = GeneralUtil::getDomain();
 
 				recordArr = [];
 				mapGroups = [];
+				taxaMap = {};
+				acceptedTaxaMap = {};
 				let count = 0;
+
+				// First pass: merge taxa maps from all portals
+				for(let search of searches) {
+					if(search.taxaArr) Object.assign(taxaMap, search.taxaArr);
+					if(search.acceptedTaxaArr) Object.assign(acceptedTaxaMap, search.acceptedTaxaArr);
+				}
 
 				for(let search of searches) {
 					if(search.recordArr) {
-						recordArr = recordArr.concat(search.recordArr)
-						const group = genMapGroups(search.recordArr, search.taxaArr, search.collArr, search.label)
+						recordArr = recordArr.concat(search.recordArr);
+						const tMap = groupByAccepted ? acceptedTaxaMap : search.taxaArr;
+						const group = genMapGroups(search.recordArr, tMap, search.collArr, search.label, groupByAccepted);
 						group.origin = search.origin;
 						mapGroups.push(group);
 					}
@@ -1115,11 +1130,40 @@ $serverHost = GeneralUtil::getDomain();
 			document.getElementById('heat-radius').addEventListener('change', e => drawHeatmap())
 			document.getElementById('heat-max-density').addEventListener('change', e => drawHeatmap() )
 
+			document.getElementById('groupByAccepted').addEventListener('change', function() {
+				if(!recordArr.length) return;
+				groupByAccepted = this.checked;
+				const tMap = groupByAccepted ? acceptedTaxaMap : taxaMap;
+
+				mapGroups.forEach(group => {
+					group.taxonMapGroup.resetGroup();
+					group.collectionMapGroup.resetGroup();
+					group.portalMapGroup.resetGroup();
+				});
+				markers = [];
+				oms.clearMarkers();
+				mapGroups = [];
+
+				const group = genMapGroups(recordArr, tMap, collArr, "<?=$LANG['CURRENT_PORTAL']?>", groupByAccepted);
+				group.origin = "<?= $serverHost . $CLIENT_ROOT?>";
+				mapGroups = [group];
+
+				mapGroups.forEach(group => {
+					group.taxonMapGroup.genClusters();
+					group.collectionMapGroup.genClusters();
+					group.portalMapGroup.genClusters();
+				});
+
+				buildTaxaLegend();
+				autoColorTaxa();
+				drawPoints();
+			});
+
 			//Load Data if any with page Load
 			if(recordArr.length > 0) {
 				let formData = new FormData(document.getElementById("params-form"));
 
-				const group = genMapGroups(recordArr, taxaMap, collArr, "<?=$LANG['CURRENT_PORTAL']?>");
+				const group = genMapGroups(recordArr, taxaMap, collArr, "<?=$LANG['CURRENT_PORTAL']?>", groupByAccepted);
 				group.origin = "<?= $serverHost . $CLIENT_ROOT?>";
 				mapGroups = [group];
 
@@ -2035,6 +2079,7 @@ $serverHost = GeneralUtil::getDomain();
 
 				//Loads Init Map Coordinate Data if Any
 				taxaMap = JSON.parse(data.getAttribute('data-taxa-map'));
+				acceptedTaxaMap = JSON.parse(data.getAttribute('data-accepted-taxa-map') || '{}');
 				collArr = JSON.parse(data.getAttribute('data-coll-map'));
 				recordArr = JSON.parse(data.getAttribute('data-records'));
 
@@ -2129,6 +2174,7 @@ $serverHost = GeneralUtil::getDomain();
 			data-search-var="<?=$searchVar?>"
 			data-map-bounds="<?=htmlspecialchars(json_encode($bounds))?>"
 			data-taxa-map="<?=htmlspecialchars(json_encode($taxaArr))?>"
+			data-accepted-taxa-map="<?=htmlspecialchars(json_encode($acceptedTaxaArr ?? []))?>"
 			data-coll-map="<?=htmlspecialchars(json_encode($collArr))?>"
 			data-records="<?=htmlspecialchars(json_encode($recordArr))?>"
 			data-record-limit="<?= OccurrenceMapManager::MAP_RECORD_LIMIT ?>"
@@ -2680,6 +2726,10 @@ $serverHost = GeneralUtil::getDomain();
 									</div>
 								</div>
 								<div style="margin:5 0 5 0;clear:both;"><hr /></div>
+								<div style="margin:5px 0 8px 0;">
+									<input type="checkbox" id="groupByAccepted" data-role="none" />
+									<label for="groupByAccepted" style="font-weight:normal;">Group by accepted name</label>
+								</div>
 								<div style='font-weight:bold;'><?= $LANG['TAXA_COUNT'] ?>: <span id="taxaCountNum">0</span></div>
 								<div id="taxasymbologykeysbox"></div>
 							</div>

@@ -104,8 +104,10 @@ function initTaxaSuggest() {
             var terms = this.value.split(/,\s*/);
             // remove the current input
             terms.pop();
-            // add the selected item
-            terms.push(ui.item.value);
+            // add the selected item including author so homonyms are distinguishable
+            var selected = ui.item.value;
+            if(ui.item.author) selected += ' ' + ui.item.author;
+            terms.push(selected);
             this.value = terms.join(", ");
             return false;
           },
