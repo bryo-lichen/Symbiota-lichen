@@ -169,11 +169,25 @@ class OccurrenceMapManager extends OccurrenceManager {
 
 		$result->free();
 
+		// Add author to taxaArr entries
+		if(!empty($taxaArr)){
+			$tidListAuth = implode(',', array_keys($taxaArr));
+			$sqlAuth = 'SELECT tid, author FROM taxa WHERE tid IN ('.$tidListAuth.')';
+			if($rsAuth = $this->conn->query($sqlAuth)){
+				while($rAuth = $rsAuth->fetch_object()){
+					if(array_key_exists($rAuth->tid, $taxaArr)){
+						$taxaArr[$rAuth->tid]['author'] = $rAuth->author;
+					}
+				}
+				$rsAuth->free();
+			}
+		}
+
 		// Build accepted taxa map: one entry per unique accepted TID
 		$acceptedTaxaArr = [];
 		if(!empty($acceptedTidSet)){
 			$tidList = implode(',', $acceptedTidSet);
-			$sqlAcc = 'SELECT t.tid, t.sciname, COALESCE(ts.family,"") as family '
+			$sqlAcc = 'SELECT t.tid, t.sciname, t.author, COALESCE(ts.family,"") as family '
 				.'FROM taxa t LEFT JOIN taxstatus ts ON t.tid = ts.tid AND ts.taxauthid = 1 '
 				.'WHERE t.tid IN ('.$tidList.')';
 			if($rsAcc = $this->conn->query($sqlAcc)){
@@ -182,6 +196,7 @@ class OccurrenceMapManager extends OccurrenceManager {
 						'sn' => $rAcc->sciname,
 						'tid' => $rAcc->tid,
 						'family' => $rAcc->family,
+						'author' => $rAcc->author,
 						'color' => $color,
 					];
 				}

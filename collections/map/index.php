@@ -365,34 +365,37 @@ $serverHost = GeneralUtil::getDomain();
 			}
 
 			let taxaArr = Object.values(taxaLegendMap).sort((a, b) => {
-				if(a.family === b.family) {
-					if(a.sn === b.sn) {
-						return 0;
-					} else if(a.sn> b.sn) {
-						return 1;
-					} else {
-						return -1;
+				if(groupByAccepted) {
+					if(a.family !== b.family) return a.family > b.family ? 1 : -1;
+				}
+				if(a.sn === b.sn) return 0;
+				return a.sn > b.sn ? 1 : -1;
+			});
+
+			if(!groupByAccepted) {
+				taxaHtml += `<p style="color:#cc0000;font-weight:bold;margin:0 0 0.5rem 0;">ATTENTION:<br>occurrence records not grouped by accepted name:</p>`;
+				taxaHtml += "<div style='display:table;'>";
+				for (let taxa of taxaArr) {
+					const sn_link = `<a target="_blank" href="${taxa.origin? taxa.origin: '/<?= $CLIENT_ROOT ?>'}/taxa/index.php?tid=${taxa.tid}">${taxa.sn}</a>`;
+					const author_span = taxa.author ? `<span style="color:#555;font-size:0.9em;"> ${taxa.author}</span>` : '';
+					taxaHtml += legendRow(`taxa-${taxa.id_map.map(id => `${id.index}*${id.tid}`).join(",")}`, taxa.color, sn_link + author_span);
+				}
+				taxaHtml += "</div>";
+			} else {
+				let prev_family;
+				for (let taxa of taxaArr) {
+					if(prev_family !== taxa.family) {
+						if(taxaHtml) taxaHtml += "</div>";
+						taxaHtml += `<h2 style="margin-bottom:0.5rem">${taxa.family}</h2>`;
+						taxaHtml += "<div style='display:table;'>";
+						prev_family = taxa.family;
 					}
+					const sn_link = `<a target="_blank" href="${taxa.origin? taxa.origin: '/<?= $CLIENT_ROOT ?>'}/taxa/index.php?tid=${taxa.tid}">${taxa.sn}</a>`;
+					const author_span = taxa.author ? `<span style="color:#555;font-size:0.9em;"> ${taxa.author}</span>` : '';
+					taxaHtml += legendRow(`taxa-${taxa.id_map.map(id => `${id.index}*${id.tid}`).join(",")}`, taxa.color, sn_link + author_span);
 				}
-				else if(a.family > b.family) return 1;
-				else return -1;
-			})
-
-			let prev_family;
-
-			for (let taxa of taxaArr) {
-				if(prev_family !== taxa.family) {
-					if(taxaHtml) taxaHtml += "</div>";
-
-					taxaHtml += `<h2 style="margin-bottom:0.5rem">${taxa.family}</h2>`;
-					taxaHtml += "<div style='display:table;'>";
-					prev_family = taxa.family;
-				}
-				const sn_link = `<a target="_blank" href="${taxa.origin? taxa.origin: '/<?= $CLIENT_ROOT ?>'}/taxa/index.php?tid=${taxa.tid}">${taxa.sn}</a>`;
-				taxaHtml += legendRow(`taxa-${taxa.id_map.map(id => `${id.index}*${id.tid}`).join(",")}`, taxa.color, sn_link);
+				taxaHtml += "</div>";
 			}
-
-			taxaHtml += "</div>";
 
 			document.getElementById("taxasymbologykeysbox").innerHTML = taxaHtml;
 			document.getElementById("taxaCountNum").innerHTML = taxaArr.length;
@@ -2280,6 +2283,7 @@ $serverHost = GeneralUtil::getDomain();
 											<?= $LANG['TAXA'] ?>:
 											<input data-role="none" id="taxa" name="taxa" type="text" style="width:275px;" value="<?= $mapManager->getTaxaSearchTerm(); ?>" title="<?= $LANG['SEPARATE_MULTIPLE'] ?>" />
 											<input type="hidden" id="taxatid" name="taxatid" value="" />
+											<div id="taxa-selected-info" style="font-size:0.85em;color:#555;margin-top:2px;"></div>
 										</div>
 									</div>
 									<div style="margin:5 0 5 0;"><hr /></div>

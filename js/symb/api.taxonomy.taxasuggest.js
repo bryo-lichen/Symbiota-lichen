@@ -48,6 +48,10 @@ function initTaxaSuggest() {
   function runGenericTaxaSuggest(inputId, taxonTypeId) {
     $("#" + inputId)
       // don't navigate away from the field on tab when selecting an item
+      .on("keydown", function () {
+          var infoEl = document.getElementById('taxa-selected-info');
+          if (infoEl) infoEl.textContent = '';
+        })
       .bind("keydown", function (event) {
         // don't honor ENTER key if an autocomplete is not selected yet
         /*
@@ -102,12 +106,18 @@ function initTaxaSuggest() {
           },
           select: function (event, ui) {
             var terms = this.value.split(/,\s*/);
-            // remove the current input
             terms.pop();
-            // add the selected item (sciname only — author is shown in the dropdown
-            // via renderTaxonItem for visual disambiguation but not submitted in the query)
-            terms.push(ui.item.value);
+            var display = ui.item.value;
+            if (ui.item.author) display += ' ' + ui.item.author;
+            terms.push(display);
             this.value = terms.join(", ");
+            var infoEl = document.getElementById('taxa-selected-info');
+            if (infoEl) {
+              var parts = [];
+              if (ui.item.nomenclaturalstatus) parts.push(ui.item.nomenclaturalstatus);
+              if (ui.item.taxonstatus) parts.push('[' + ui.item.taxonstatus + ']');
+              infoEl.textContent = parts.join(' ');
+            }
             return false;
           },
         },
