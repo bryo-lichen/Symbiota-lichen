@@ -187,7 +187,7 @@ class ChecklistVoucherReport extends ChecklistVoucherAdmin {
 		if($sqlFrag = $this->getSqlFrag()){
 			$sqlBase = $this->getMissingTaxaBaseSql($sqlFrag);
 			$sql = 'SELECT DISTINCT o.occid, c.institutioncode ,c.collectioncode, o.catalognumber, o.tidinterpreted, t.sciname, o.sciname AS occur_sciname, '.
-				'o.recordedby, o.recordnumber, o.eventdate, CONCAT_WS("; ",o.country, o.stateprovince, o.county, o.locality) as locality '.
+				'o.recordedby, o.recordnumber, o.eventdate, o.identificationqualifier, CONCAT_WS("; ",o.country, o.stateprovince, o.county, o.locality) as locality '.
 				$sqlBase.' ';
 			$sql .= 'LIMIT '.($limitIndex?($limitIndex*1000).',':'').$limitRange;
 			//echo '<div>'.$sql.'</div>';
@@ -205,6 +205,7 @@ class ChecklistVoucherReport extends ChecklistVoucherAdmin {
 				$retArr[$r->sciname][$r->occid]['recordedby'] = $this->cleanOutStr($r->recordedby);
 				$retArr[$r->sciname][$r->occid]['recordnumber'] = $this->cleanOutStr($r->recordnumber);
 				$retArr[$r->sciname][$r->occid]['eventdate'] = $r->eventdate;
+				$retArr[$r->sciname][$r->occid]['identificationqualifier'] = $this->cleanOutStr($r->identificationqualifier);
 				$retArr[$r->sciname][$r->occid]['locality'] = $this->cleanOutStr($r->locality);
 				$cnt++;
 			}

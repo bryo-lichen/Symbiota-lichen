@@ -22,7 +22,7 @@ class OccurrenceEditorDeterminations extends OccurrenceEditorManager{
 		$retArr = array();
 		$hasCurrent = 0;
 		$sql = 'SELECT detid, identifiedBy, dateIdentified, sciname, scientificNameAuthorship, identificationQualifier, '.
-			'iscurrent, printqueue, appliedstatus, identificationReferences, identificationRemarks, sortsequence '.
+			'iscurrent, printqueue, appliedstatus, identificationReferences, identificationRemarks, taxonRemarks, sortsequence '.
 			'FROM omoccurdeterminations '.
 			'WHERE (occid = '.$this->occid.') ORDER BY iscurrent DESC, sortsequence';
 		//echo "<div>".$sql."</div>";
@@ -40,6 +40,7 @@ class OccurrenceEditorDeterminations extends OccurrenceEditorManager{
 			$retArr[$detId]["appliedstatus"] = $row->appliedstatus;
 			$retArr[$detId]["identificationreferences"] = $this->cleanOutStr($row->identificationReferences);
 			$retArr[$detId]["identificationremarks"] = $this->cleanOutStr($row->identificationRemarks);
+			$retArr[$detId]["taxonremarks"] = $this->cleanOutStr($row->taxonRemarks);
 			$retArr[$detId]["sortsequence"] = $row->sortsequence;
 		}
 		$result->free();
@@ -146,13 +147,14 @@ class OccurrenceEditorDeterminations extends OccurrenceEditorManager{
 		}
 		$guid = UuidFactory::getUuidV4();
 		$sql = 'INSERT IGNORE INTO omoccurdeterminations(occid, identifiedBy, dateIdentified, sciname, scientificNameAuthorship, '.
-			'identificationQualifier, iscurrent, printqueue, appliedStatus, identificationReferences, identificationRemarks, recordID, sortsequence) '.
+			'identificationQualifier, iscurrent, printqueue, appliedStatus, identificationReferences, identificationRemarks, taxonRemarks, recordID, sortsequence) '.
 			'VALUES ('.$this->occid.',"'.$this->cleanInStr($detArr['identifiedby']).'","'.$this->cleanInStr($detArr['dateidentified']).'","'.
 			$sciname.'",'.($detArr['scientificnameauthorship']?'"'.$this->cleanInStr($detArr['scientificnameauthorship']).'"':'NULL').','.
 			($detArr['identificationqualifier']?'"'.$this->cleanInStr($detArr['identificationqualifier']).'"':'NULL').','.
 			$detArr['makecurrent'].','.$detArr['printqueue'].','.($isEditor==3?0:1).','.
 			($detArr['identificationreferences']?'"'.$this->cleanInStr($detArr['identificationreferences']).'"':'NULL').','.
-			($notes?'"'.$notes.'"':'NULL').',"'.$guid.'",'.$sortSeq.')';
+			($notes?'"'.$notes.'"':'NULL').','.
+			(isset($detArr['taxonremarks'])&&$detArr['taxonremarks']?'"'.$this->cleanInStr($detArr['taxonremarks']).'"':'NULL').',"'.$guid.'",'.$sortSeq.')';
 		$detId = 0;
 		try {
 			$this->conn->query($sql);
@@ -204,6 +206,7 @@ class OccurrenceEditorDeterminations extends OccurrenceEditorManager{
 				'identificationQualifier = '.($detArr['identificationqualifier']?'"'.$this->cleanInStr($detArr['identificationqualifier']).'"':'NULL').','.
 				'identificationReferences = '.($detArr['identificationreferences']?'"'.$this->cleanInStr($detArr['identificationreferences']).'"':'NULL').','.
 				'identificationRemarks = '.($detArr['identificationremarks']?'"'.$this->cleanInStr($detArr['identificationremarks']).'"':'NULL').','.
+				'taxonRemarks = '.(isset($detArr['taxonremarks'])&&$detArr['taxonremarks']?'"'.$this->cleanInStr($detArr['taxonremarks']).'"':'NULL').','.
 				'sortsequence = '.($detArr['sortsequence']?$detArr['sortsequence']:'10').','.
 				'printqueue = '.($detArr['printqueue']?$detArr['printqueue']:'NULL').' '.
 				'WHERE (detid = '.$detArr['detid'].')';
