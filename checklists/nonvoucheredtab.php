@@ -75,6 +75,7 @@ if($isEditor){
 										</th>
 										<th><?= $LANG['CHECKLISTID'] ?></th>
 										<th><?= $LANG['COLLECTOR'] ?></th>
+										<th><?= $LANG['ID_QUALIFIER'] ?></th>
 										<th><?= $LANG['LOCALITY'] ?></th>
 									</tr>
 									<?php
@@ -90,6 +91,7 @@ if($isEditor){
 											echo $oArr['collcode'];
 											echo '</a>';
 											echo '</td>';
+											echo '<td>' . ($oArr['identificationqualifier'] ?? '') . '</td>';
 											echo '<td>' . $oArr['locality'] . '</td>';
 											echo '</tr>';
 										}

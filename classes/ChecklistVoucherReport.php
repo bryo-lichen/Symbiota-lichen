@@ -72,7 +72,7 @@ class ChecklistVoucherReport extends ChecklistVoucherAdmin {
 			if($sqlFrag = $this->getSqlFrag()){
 				if($includeAll == 1 || $includeAll == 2){
 					$sql = 'SELECT DISTINCT cl.clTaxaID, TRIM(CONCAT_WS(" ",t.sciname,cl.morphoSpecies)) AS clsciname, o.occid, c.institutioncode, c.collectioncode, o.catalognumber,
-						o.tidinterpreted, o.sciname, o.recordedby, o.recordnumber, o.eventdate, CONCAT_WS("; ",o.country, o.stateprovince, o.county, o.locality) as locality
+						o.tidinterpreted, o.sciname, o.recordedby, o.recordnumber, o.eventdate, o.identificationqualifier, CONCAT_WS("; ",o.country, o.stateprovince, o.county, o.locality) as locality
 						FROM omoccurrences o INNER JOIN omcollections c ON o.collid = c.collid
 						INNER JOIN taxstatus ts ON o.tidinterpreted = ts.tid
 						INNER JOIN taxstatus ts2 ON ts.tidaccepted = ts2.tidaccepted
@@ -104,6 +104,7 @@ class ChecklistVoucherReport extends ChecklistVoucherAdmin {
 						$retArr[$r->clTaxaID][$r->occid]['recordedby'] = $this->cleanOutStr($r->recordedby);
 						$retArr[$r->clTaxaID][$r->occid]['recordnumber'] = $this->cleanOutStr($r->recordnumber);
 						$retArr[$r->clTaxaID][$r->occid]['eventdate'] = $r->eventdate;
+						$retArr[$r->clTaxaID][$r->occid]['identificationqualifier'] = $this->cleanOutStr($r->identificationqualifier);
 						$retArr[$r->clTaxaID][$r->occid]['locality'] = $this->cleanOutStr($r->locality);
 					}
 				}
