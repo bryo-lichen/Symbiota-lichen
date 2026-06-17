@@ -28,7 +28,9 @@
 		<a href="https://www.abls.org/" target="_blank" title="<?= $LANG['F_ABLS'] ?>" aria-label="<?= $LANG['F_ABLS'] ?>">
 			<img src="<?= $CLIENT_ROOT; ?>/images/layout/abls.png"  alt="<?= $LANG['F_ABLS_LOGO'] ?>" />
 		</a>
-		<img></img>
+		<a href="https://www.californialichens.org/" target="_blank" title="<?= $LANG['F_CALS'] ?>" aria-label="<?= $LANG['F_CALS'] ?>">
+			<img src="<?= $CLIENT_ROOT; ?>/images/layout/CALS_logo.jpg"  alt="<?= $LANG['F_CALS_LOGO'] ?>" />
+		</a>
 		<img></img>
 		<img></img>
 		<img></img>
