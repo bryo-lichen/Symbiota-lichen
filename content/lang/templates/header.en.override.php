@@ -34,6 +34,8 @@ $LANG['MEXICO'] = 'Mexico';
 
 $LANG['F_ABLS'] = 'American Bryological and Lichenological Society (ABLS)';
 $LANG['F_ABLS_LOGO'] = "ABLS Logo";
+$LANG['F_CALS'] = 'California Lichen Society (CALS)';
+$LANG['F_CALS_LOGO'] = 'CALS Logo';
 $LANG['H_ENDORSEMENTS'] = 'Endorsements';
 $LANG['RECENT_LITERATURE'] = 'Recent Literature on Lichens';
 
