@@ -34,6 +34,8 @@ $LANG['MEXICO'] = 'México';
 
 $LANG['F_ABLS'] = 'Sociedad Americana de Briología y Liquenología (ABLS)';
 $LANG['F_ABLS_LOGO'] = 'Logotipo de ABLS';
+$LANG['F_CALS'] = 'La Sociedad de Líquenes de California (CALS)';
+$LANG['F_CALS_LOGO'] = 'Logotipo de CALS';
 $LANG['H_ENDORSEMENTS'] = 'Recomendaciones';
 $LANG['RECENT_LITERATURE'] = 'Literatura Reciente sobre Líquenes';
 
