@@ -3,6 +3,7 @@
 		<?php
 		//include($SERVER_ROOT . '/accessibility/module.php');
 		?>
+		<img></img>
 		<a href="https://biokic.asu.edu" target="_blank" title="Biodiversity Knowledge Integration Center" aria-label="Visit BioKIC website">
 			<img src="<?= $CLIENT_ROOT; ?>/images/layout/logo-asu-biokic.png"  alt="Logo for the Biodiversity Knowledge Integration Center" />
 		</a>
@@ -19,6 +20,9 @@
 			<img src="<?= $CLIENT_ROOT; ?>/images/layout/logo_nsf.gif" alt="Logo for the National Science Foundation" />
 		</a>
 		<a href="https://globaltcn.utk.edu/" target="_blank"><img src="<?= $CLIENT_ROOT; ?>/images/layout/global_logo.png" style="width:150px" /></a>
+		<img></img>
+		<img></img>
+		<img></img>
 		<a href="https://revistas.unc.edu.ar/index.php/glalia/index" target="_blank" title="Grupo Latinoamericano de Liquen&oacute;logos">
 			<img src="<?= $CLIENT_ROOT; ?>/images/layout/GLALIA-Logo.jpg" style="width:120px" />
 		</a>
@@ -31,9 +35,6 @@
 		<a href="https://www.californialichens.org/" target="_blank" title="<?= $LANG['F_CALS'] ?>" aria-label="<?= $LANG['F_CALS'] ?>">
 			<img src="<?= $CLIENT_ROOT; ?>/images/layout/CALS_logo.jpg"  alt="<?= $LANG['F_CALS_LOGO'] ?>" />
 		</a>
-		<img></img>
-		<img></img>
-		<img></img>
 		<a href="https://symbiota.org/" target="_blank" title="<?= $LANG['F_SSH'] ?>" aria-label="<?= $LANG['F_SSH'] ?>">
 			<img src="<?= $CLIENT_ROOT; ?>/images/layout/SSH.png"  alt="<?= $LANG['F_SSH_LOGO'] ?>" />
 		</a>
