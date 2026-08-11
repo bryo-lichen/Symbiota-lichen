@@ -36,7 +36,7 @@
 			<img src="<?= $CLIENT_ROOT; ?>/images/layout/CALS_logo.jpg"  alt="<?= $LANG['F_CALS_LOGO'] ?>" />
 		</a>
 		<a href="https://northwest-lichenologists.wildapricot.org/" target="_blank" title="<?= $LANG['F_NWL'] ?>" aria-label="<?= $LANG['F_NWL'] ?>">
-			<img src="<?= $CLIENT_ROOT; ?>/images/layout/NW_lichenologists.jpg"  alt="<?= $LANG['F_NWL_LOGO'] ?>" />
+			<img src="<?= $CLIENT_ROOT; ?>/images/layout/NorthwestLichenologists_black-logo.png"  alt="<?= $LANG['F_NWL_LOGO'] ?>" />
 		</a>
 		<a href="https://symbiota.org/" target="_blank" title="<?= $LANG['F_SSH'] ?>" aria-label="<?= $LANG['F_SSH'] ?>">
 			<img src="<?= $CLIENT_ROOT; ?>/images/layout/SSH.png"  alt="<?= $LANG['F_SSH_LOGO'] ?>" />
