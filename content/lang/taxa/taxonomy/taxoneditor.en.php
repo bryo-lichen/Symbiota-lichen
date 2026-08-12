@@ -33,6 +33,7 @@ $LANG['RANK_NAME'] = 'Rank Name';
 $LANG['NON_RANKED_NODE'] = 'Non-Ranked Node';
 $LANG['NOTES'] = 'Notes';
 $LANG['SOURCE'] = 'Source';
+$LANG['NOMENCLATURAL_STATUS'] = 'Nomenclatural Status';
 $LANG['LOC_SECURITY'] = 'Locality Security';
 $LANG['SEL_LOC_SETTING'] = 'select a locality setting';
 $LANG['SHOW_ALL_LOC'] = 'show all locality data';
