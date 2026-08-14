@@ -189,6 +189,11 @@ foreach($labelArr as $occid => $occArr){
 				$textrun->addText(' ' . $occArr['dateidentified'], 'identifiedFont');
 			}
 		}
+		if(array_key_exists('print-collector',$_POST) && $_POST['print-collector'] && ($occArr['recordedby'] || $occArr['recordnumber'])){
+			$textrun = $leftCell->addTextRun('other');
+			$currentTxt = htmlspecialchars(trim($occArr['recordedby'].' '.$occArr['recordnumber'])).' ';
+			$textrun->addText($currentTxt, 'identifiedFont');
+		}
 		if(array_key_exists('printcatnum',$_POST) && $_POST['printcatnum'] && $occArr['catalognumber']){
 			$textrun = $leftCell->addTextRun('other');
             // $textrunRt = $rightCell->addTextRun('other');

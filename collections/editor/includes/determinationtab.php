@@ -187,12 +187,16 @@ $specImgArr = $occManager->getImageMap();  // find out if there are images in or
 							<input id="add_dateidentified" type="text" name="dateidentified" required onchange="detDateChanged(this.form);" />
 						</div>
 						<div style='margin:3px;'>
-							<b><?php echo $LANG['REFERENCE']; ?>:</b>
+							<b><?php echo $LANG['ID_REFERENCES']; ?>:</b>
 							<input type="text" name="identificationreferences" style="width:350px;" />
 						</div>
 						<div style='margin:3px;'>
-							<b><?php echo $LANG['NOTES']; ?>:</b>
+							<b><?php echo $LANG['ID_REMARKS']; ?>:</b>
 							<input type="text" name="identificationremarks" style="width:350px;" />
+						</div>
+						<div style='margin:3px;'>
+							<b><?php echo $LANG['TAXON_REMARKS']; ?>:</b>
+							<input type="text" name="taxonremarks" style="width:350px;" />
 						</div>
 						<div style='margin:3px;'>
 							<input type="checkbox" name="makecurrent" value="1" /> <?php echo $LANG['MAKE_THIS_CURRENT']; ?>
@@ -258,14 +262,21 @@ $specImgArr = $occManager->getImageMap();  // find out if there are images in or
 					if($detRec['identificationreferences']){
 						?>
 						<div style='margin:3px 0px 0px 15px;'>
-							<b><?php echo $LANG['REFERENCE']; ?>:</b> <?php echo $detRec['identificationreferences']; ?>
+							<b><?php echo $LANG['ID_REFERENCES']; ?>:</b> <?php echo $detRec['identificationreferences']; ?>
 						</div>
 						<?php
 					}
 					if($detRec['identificationremarks']){
 						?>
 						<div style='margin:3px 0px 0px 15px;'>
-							<b><?php echo $LANG['NOTES']; ?>:</b> <?php echo $detRec['identificationremarks']; ?>
+							<b><?php echo $LANG['ID_REMARKS']; ?>:</b> <?php echo $detRec['identificationremarks']; ?>
+						</div>
+						<?php
+					}
+					if($detRec['taxonremarks']){
+						?>
+						<div style='margin:3px 0px 0px 15px;'>
+							<b><?php echo $LANG['TAXON_REMARKS']; ?>:</b> <?php echo $detRec['taxonremarks']; ?>
 						</div>
 						<?php
 					}
@@ -308,12 +319,16 @@ $specImgArr = $occManager->getImageMap();  // find out if there are images in or
 									<input id="edit_identifiedby" type="text" name="dateidentified" value="<?php echo $detRec['dateidentified']; ?>" required />
 								</div>
 								<div style='margin:3px;'>
-									<b><?php echo $LANG['REFERENCE']; ?>:</b>
+									<b><?php echo $LANG['ID_REFERENCES']; ?>:</b>
 									<input type="text" name="identificationreferences" value="<?php echo $detRec['identificationreferences']; ?>" style="width:350px;" />
 								</div>
 								<div style='margin:3px;'>
-									<b><?php echo $LANG['NOTES']; ?>:</b>
+									<b><?php echo $LANG['ID_REMARKS']; ?>:</b>
 									<input type="text" name="identificationremarks" value="<?php echo $detRec['identificationremarks']; ?>" style="width:350px;" />
+								</div>
+								<div style='margin:3px;'>
+									<b><?php echo $LANG['TAXON_REMARKS']; ?>:</b>
+									<input type="text" name="taxonremarks" value="<?php echo $detRec['taxonremarks']; ?>" style="width:350px;" />
 								</div>
 								<div style='margin:3px;'>
 									<b><?php echo $LANG['SORT_SEQUENCE']; ?>:</b>
