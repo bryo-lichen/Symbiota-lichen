@@ -816,8 +816,7 @@ class OccurrenceLabel {
 				$familyAdditionStr .= 'd.family as family1, o.family as family2, ';
 			}
 			$sql2 = 'SELECT ' . $familyAdditionStr . 'd.detid, d.identifiedBy, d.dateIdentified, d.sciname, d.scientificNameAuthorship, d.identificationQualifier, ' .
-				'd.identificationReferences, d.identificationRemarks, IFNULL(o.catalogNumber,o.otherCatalogNumbers) AS catalogNumber, ' .
-				'o.recordedby, o.recordnumber ' .
+				'd.identificationReferences, d.identificationRemarks, IFNULL(o.catalogNumber,o.otherCatalogNumbers) AS catalogNumber ' .
 				'FROM omoccurdeterminations d INNER JOIN omoccurrences o ON d.occid = o.occid ' . $sqlWhere;
 			//echo 'SQL: '.$sql2;
 			if ($rs2 = $this->conn->query($sql2)) {

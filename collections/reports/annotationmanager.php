@@ -80,10 +80,6 @@ if($isEditor){
 					f.action = 'defaultannotationsword.php';
 					f.target = '_self';
 				}
-				else if(target == 'csv'){
-					f.action = 'annotationcsv.php';
-					f.target = '_self';
-				}
 				else{
 					//Print in browser
 					f.action = 'defaultannotations.php';
@@ -198,10 +194,6 @@ if($isEditor){
 									<input type="checkbox" name="print-family" value="1" onclick="" />
 									<b><?php echo $LANG['PRINT_FAMILY_NAME']; ?></b>
 								</div>
-								<div style="margin:4px;">
-									<input type="checkbox" name="print-collector" value="1" />
-									<b><?php echo $LANG['PRINT_COLLECTOR']; ?></b>
-								</div>
 							</div>
 							<div style="float:left;margin-left:50px">
 								<div style="">
@@ -236,7 +228,6 @@ if($isEditor){
 									<?php
 								}
 								?>
-								<div style="margin-top:5px"><button type="submit" name="submitaction" onclick="changeAnnoFormTarget(this.form, 'csv');" value="Download CSV"><?php echo $LANG['DOWNLOAD_CSV']; ?></button></div>
 							</div>
 						</fieldset>
 					</form>

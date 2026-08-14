@@ -83,7 +83,6 @@ if($isEditor){
 									</th>
 									<th><?php echo $LANG['SPEC_ID']; ?></th>
 									<th><?php echo $LANG['COLLECTOR']; ?></th>
-									<th><?php echo $LANG['ID_QUALIFIER']; ?></th>
 									<th><?php echo $LANG['LOCALITY']; ?></th>
 								</tr>
 								<?php
@@ -102,7 +101,6 @@ if($isEditor){
 										echo $oArr['collcode'];
 										echo '</a>';
 										echo '</td>';
-										echo '<td>'.($oArr['identificationqualifier']?$oArr['identificationqualifier']:'').'</td>';
 										echo '<td>'.$oArr['locality'].'</td>';
 										echo '</tr>';
 										$recCnt++;

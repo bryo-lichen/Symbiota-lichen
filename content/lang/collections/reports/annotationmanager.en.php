@@ -30,7 +30,5 @@ $LANG['EXPORT_TO_DOC'] = 'Export to DOCX';
 $LANG['NO_ANNO'] = 'There are no annotations queued to be printed.';
 $LANG['NO_ANNO_PERMISSIONS'] = 'You do not have permissions to print annotation labels for this collection. Please contact the site administrator to obtain the necessary permissions.';
 $LANG['PRINT_FAMILY_NAME'] = 'Print Family Name';
-$LANG['PRINT_COLLECTOR'] = 'Print Collector &amp; Collector Number';
-$LANG['DOWNLOAD_CSV'] = 'Download CSV';
 
 ?>
