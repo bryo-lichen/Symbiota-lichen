@@ -125,13 +125,6 @@ if($SYMB_UID){
 										</div>
 										<?php
 									}
-									if(array_key_exists('print-collector',$_POST) && $_POST['print-collector'] && ($occArr['recordedby'] || $occArr['recordnumber'])){
-										?>
-										<div class="subfielddiv">
-											<?php echo trim($occArr['recordedby'].' '.$occArr['recordnumber']); ?>
-										</div>
-										<?php
-									}
 									if(array_key_exists('printcatnum',$_POST) && $_POST['printcatnum'] && $occArr['catalognumber']){
 										?>
 										<div class="subfielddiv">

@@ -18,7 +18,6 @@ $LANG['ENTER_MULT_STATES'] = 'Enter multiple states separated by semicolons';
 $LANG['COUNTY'] = 'County';
 $LANG['ENTER_MULT_COUNTIES'] = 'Enter multiple counties separated by semicolons';
 $LANG['LOCALITY'] = 'Locality';
-$LANG['ID_QUALIFIER'] = 'ID Qualifier';
 $LANG['TAXON'] = 'Taxon';
 $LANG['GEN_FAM_HIGHER'] = 'Genus, family, or higher rank';
 $LANG['COLLECTION'] = 'Collection';

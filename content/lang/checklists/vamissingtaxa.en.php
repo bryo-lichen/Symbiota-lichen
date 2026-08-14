@@ -18,7 +18,6 @@ $LANG['NOT_FOUND'] = 'Listed below are specimens identified to a species not fou
 $LANG['SELECT_ALL'] = 'Select All';
 $LANG['SPEC_ID'] = 'Specimen ID';
 $LANG['COLLECTOR'] = 'Collector';
-$LANG['ID_QUALIFIER'] = 'ID Qualifier';
 $LANG['LOCALITY'] = 'Locality';
 $LANG['ADD_CURRENT'] = 'Add name using current taxonomy';
 $LANG['DOWNLOAD_SPECIMEN_DATA'] = 'Download Specimen Data';
