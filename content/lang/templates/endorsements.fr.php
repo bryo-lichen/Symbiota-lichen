@@ -7,7 +7,9 @@ Language: English
 
 $LANG['HOME'] = 'Accueil';
 $LANG['ENDORSEMENTS'] = 'Soutiens';
-$LANG['ENDORSING_ORGS'] = '<a href="https://www.abls.org/" target="_blank">L\'American Bryological and Lichenological Society</a> (ABLS) soutient officiellement le Consortium of Lichen Herbaria en tant que plateforme de partage et de gestion des données sur la biodiversité des champignons lichénisés. Nous invitons les collaborateurs et les institutions du monde entier à envisager de participer en rejoignant le Consortium.
+$LANG['ENDORSING_ORGS'] = 'L\'<a href="https://ial-lichenology.org/" target="_blank">International Association for Lichenology</a> (IAL) reconnaît l\'importance du libre accès aux données sur la biodiversité des champignons lichénisés, lichénicoles et apparentés. L\'IAL soutient donc officiellement le Consortium of Lichen Herbaria ; nous encourageons nos membres à le rejoindre, à y contribuer et à collaborer avec lui.
+<br><br>
+<a href="https://www.abls.org/" target="_blank">L\'American Bryological and Lichenological Society</a> (ABLS) soutient officiellement le Consortium of Lichen Herbaria en tant que plateforme de partage et de gestion des données sur la biodiversité des champignons lichénisés. Nous invitons les collaborateurs et les institutions du monde entier à envisager de participer en rejoignant le Consortium.
 <br><br>
 La <a href="https://www.californialichens.org" target="_blank">California Lichen Society</a> (CALS) soutient officiellement le Consortium of Lichen Herbaria en tant que plateforme de partage et de gestion des données sur la biodiversité des champignons lichénisés. Nous invitons les collaborateurs et les institutions du monde entier à envisager de participer en rejoignant le Consortium.
 <br><br>
