@@ -11,8 +11,9 @@ $LANG['ENDORSING_ORGS'] = 'L\'<a href="https://ial-lichenology.org/" target="_bl
 <br><br>
 <a href="https://www.abls.org/" target="_blank">L\'American Bryological and Lichenological Society</a> (ABLS) soutient officiellement le Consortium of Lichen Herbaria en tant que plateforme de partage et de gestion des données sur la biodiversité des champignons lichénisés, lichénicoles et apparentés. Nous invitons les collaborateurs et les institutions du monde entier à envisager de participer en rejoignant le Consortium.
 <br><br>
+La <a href="https://www.blam-bl.de/" target="_blank">Bryologisch-lichenologische Arbeitsgemeinschaft für Mitteleuropa</a> (BLAM) soutient le Consortium of Lichen Herbaria en tant que source de données unique et indispensable, regroupant des informations sur les lichens et leur biodiversité provenant de centaines d\'institutions et de particuliers participants. Nous encourageons vivement nos membres et les institutions pour lesquelles ils travaillent à partager leurs données avec le Consortium.
+<br><br>
 La <a href="https://www.californialichens.org" target="_blank">California Lichen Society</a> (CALS) soutient officiellement le Consortium of Lichen Herbaria en tant que plateforme de partage et de gestion des données sur la biodiversité des champignons lichénisés, lichénicoles et apparentés. Nous invitons les collaborateurs et les institutions du monde entier à envisager de participer en rejoignant le Consortium.
 <br><br>
 <a href="https://northwest-lichenologists.wildapricot.org/" target="_blank">L\'organisation Northwest Lichenologists</a> utilise régulièrement le Consortium of Lichen Herbaria — et en dépend — comme plateforme officielle pour partager et gérer les données sur la biodiversité des champignons lichénisés, lichénicoles et apparentés. Cet espace de partage de données fondées sur des spécimens est unique et indispensable aux études, tant mondiales que régionales, portant sur la biodiversité, la qualité de l\'air et les effets biologiques des changements environnementaux. Nos membres et les herbiers régionaux qui nous sont associés sont profondément investis dans les données conservées au sein du CLH.';
-
 ?>

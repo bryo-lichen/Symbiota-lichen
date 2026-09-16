@@ -12,9 +12,6 @@
 		<a href="https://www.iucnredlist.org/" target="_blank" title="IUCN" aria-label="Visit IUCN">
 			<img src="<?= $CLIENT_ROOT; ?>/images/layout/1521112071-iucn.png" alt="Logo for IUCN" />
 		</a>
-		<a href="http://idigbio.org" target="_blank" title="iDigBio" aria-label="Visit iDigBio">
-			<img src="<?= $CLIENT_ROOT; ?>/images/layout/logo_idig.png" alt="Logo for iDigBio, or, Integrated Digitized Biocollections"/>
-		</a>
 		<a href="https://www.nsf.gov" target="_blank" aria-label="Visit National Science Foundation website">
 			<img src="<?= $CLIENT_ROOT; ?>/images/layout/logo_nsf.gif" alt="Logo for the National Science Foundation" />
 		</a>
@@ -29,9 +26,14 @@
 		<a href="https://www.abls.org/" target="_blank" title="<?= $LANG['F_ABLS'] ?>" aria-label="<?= $LANG['F_ABLS'] ?>">
 			<img src="<?= $CLIENT_ROOT; ?>/images/layout/abls.png"  alt="<?= $LANG['F_ABLS_LOGO'] ?>" />
 		</a>
+		<a href="https://ial-lichenology.org/" target="_blank" title="IAL" aria-label="IAL">
+			<img src="<?= $CLIENT_ROOT; ?>/images/layout/IAL.jpg"  alt="IAL Logo" />
+		</a>
 		<img></img>
 		<img></img>
-		<img></img>
+		<a href="https://www.blam-bl.de/" target="_blank" title="BLAM" aria-label="BLAM">
+			<img src="<?= $CLIENT_ROOT; ?>/images/layout/blam_logo.png"  alt="BLAM" />
+		</a>
 		<a href="https://www.californialichens.org/" target="_blank" title="<?= $LANG['F_CALS'] ?>" aria-label="<?= $LANG['F_CALS'] ?>">
 			<img src="<?= $CLIENT_ROOT; ?>/images/layout/CALS_logo.jpg"  alt="<?= $LANG['F_CALS_LOGO'] ?>" />
 		</a>
