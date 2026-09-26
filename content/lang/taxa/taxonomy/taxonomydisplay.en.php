@@ -18,6 +18,7 @@ $LANG['TAX_SEARCH'] = 'Taxon Search';
 $LANG['TAXON'] = 'Taxon';
 $LANG['DISP_TAX_TREE'] = 'Display Taxon Tree';
 $LANG['DISP_AUTHORS'] = 'Display authors';
+$LANG['DISP_SOURCE_ID'] = 'Display source identifier';
 $LANG['MATCH_WHOLE_WORDS'] = 'Match on whole words';
 $LANG['DISP_FULL_TREE'] = 'Display full tree below family';
 $LANG['DISP_SUBGENERA'] = 'Display species with subgenera';

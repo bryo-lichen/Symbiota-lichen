@@ -30,6 +30,8 @@ class TaxonomyEditorManager extends Manager{
 	private $parentName;
 	private $parentNameFull;
 	private $source;
+	private $sourceIdentifier;
+	private $nomenclaturalStatus;
 	private $notes;
 	private $hierarchyArr;
 	private $securityStatus;
@@ -49,7 +51,7 @@ class TaxonomyEditorManager extends Manager{
 
 	public function setTaxon(){
 		$sqlTaxon = 'SELECT tid, rankid, sciname, unitind1, unitname1, '.
-			'unitind2, unitname2, unitind3, unitname3, cultivarEpithet, tradeName, author, source, notes, securitystatus, initialtimestamp '.
+			'unitind2, unitname2, unitind3, unitname3, cultivarEpithet, tradeName, author, source, sourceIdentifier, nomenclaturalStatus, notes, securitystatus, initialtimestamp '.
 			'FROM taxa '.
 			'WHERE (tid = '.$this->tid.')';
 		//echo $sqlTaxon;
@@ -67,6 +69,8 @@ class TaxonomyEditorManager extends Manager{
 			$this->tradeName = $r->tradeName;
 			$this->author = $r->author;
 			$this->source = $r->source;
+			$this->sourceIdentifier = $r->sourceIdentifier;
+			$this->nomenclaturalStatus = $r->nomenclaturalStatus;
 			$this->notes = $r->notes;
 			$this->securityStatus = $r->securitystatus;
 		}
@@ -245,6 +249,8 @@ class TaxonomyEditorManager extends Manager{
 			'author = "'.($postArr['author']?$this->cleanInStr($postArr['author']):'').'", '.
 			'rankid = '.(is_numeric($postArr['rankid'])?$postArr['rankid']:'NULL').', '.
 			'source = '.($postArr['source']?'"'.$this->cleanInStr($postArr['source']).'"':'NULL').', '.
+			'sourceIdentifier = '.(array_key_exists('sourceidentifier', $postArr) && $postArr['sourceidentifier'] ? '"'.$this->cleanInStr($postArr['sourceidentifier']).'"':'NULL').', '.
+			'nomenclaturalStatus = '.(array_key_exists('nomenclaturalstatus', $postArr) && $postArr['nomenclaturalstatus'] ? '"'.$this->cleanInStr($postArr['nomenclaturalstatus']).'"':'NULL').', '.
 			'notes = '.($postArr['notes']?'"'.$this->cleanInStr($postArr['notes']).'"':'NULL').', '.
 			'securitystatus = '.(is_numeric($postArr['securitystatus'])?$postArr['securitystatus']:'0').', '.
 			'modifiedUid = '.$GLOBALS['SYMB_UID'].', '.
@@ -596,24 +602,27 @@ class TaxonomyEditorManager extends Manager{
 
 
 		$sqlTaxa = 'INSERT INTO taxa(kingdomName, sciname, author, rankid, unitind1, unitname1, unitind2, unitname2, unitind3, unitname3, cultivarEpithet, tradeName, '.
-			'source, notes, securitystatus, modifiedUid, modifiedTimeStamp) '.
-			'VALUES (' . ($kingdomName ? ('"' . $this->cleanInStr($kingdomName) . '"') : '""') . ',
-			"'.$this->cleanInStr($processedSciname).'","'.
-			($dataArr['author']? ($this->cleanInStr($dataArr['author'])) : '').'",'.
+			'source, sourceIdentifier, nomenclaturalStatus, notes, securitystatus, modifiedUid, modifiedTimeStamp) '.
+			'VALUES (' . ($kingdomName ? ('”' . $this->cleanInStr($kingdomName) . '”') : '””') . ',
+			“'.$this->cleanInStr($processedSciname).'”,”'.
+			($dataArr['author']? ($this->cleanInStr($dataArr['author'])) : '').'”,'.
 			(isset($dataArr['rankid'])?$dataArr['rankid']:0).','.
-			($dataArr['unitind1']?'"'.$this->cleanInStr($dataArr['unitind1']).'"':'NULL').',"'.
-			$this->cleanInStr($dataArr['unitname1']).'",'.
-			($dataArr['unitind2']?'"'.$this->cleanInStr($dataArr['unitind2']).'"':'NULL').','.
-			($dataArr['unitname2']?'"'.$this->cleanInStr($dataArr['unitname2']).'"':'NULL').','.
-			($dataArr['unitind3']?'"'.$this->cleanInStr($dataArr['unitind3']).'"':'NULL').','.
-			($dataArr['unitname3']?'"'.$this->cleanInStr($dataArr['unitname3']).'"':'NULL').','.
-			((array_key_exists('cultivarEpithet', $dataArr) && $dataArr['cultivarEpithet']) ? ('"' . $this->cleanInStr(preg_replace('/(^["\'“]+)|(["\'”]+$)/', '', $processedCultivarEpithet)) . '"') : '""') . ',' .
-			((array_key_exists('tradeName', $dataArr) && $dataArr['tradeName']) ? ('"' . $this->cleanInStr($processedTradeName) . '"') : '""') . ',' .
-			($dataArr['source']? '"'.$this->cleanInStr($dataArr['source']).'"':'NULL').','.
-			($dataArr['notes']?'"'.$this->cleanInStr($dataArr['notes']).'"':'NULL').','.
-			($dataArr['securitystatus']? '"' . $this->cleanInStr($dataArr['securitystatus']) . '",' : '0,').
-			$GLOBALS['SYMB_UID'].',"'.
-			date('Y-m-d H:i:s').'")';
+			($dataArr['unitind1']?'”'.$this->cleanInStr($dataArr['unitind1']).'”':'NULL').',”'.
+			$this->cleanInStr($dataArr['unitname1']).'”,'.
+			($dataArr['unitind2']?'”'.$this->cleanInStr($dataArr['unitind2']).'”':'NULL').','.
+			($dataArr['unitname2']?'”'.$this->cleanInStr($dataArr['unitname2']).'”':'NULL').','.
+			($dataArr['unitind3']?'”'.$this->cleanInStr($dataArr['unitind3']).'”':'NULL').','.
+			($dataArr['unitname3']?'”'.$this->cleanInStr($dataArr['unitname3']).'”':'NULL').','.
+			((array_key_exists('cultivarEpithet', $dataArr) && $dataArr['cultivarEpithet']) ? ('”' . $this->cleanInStr(preg_replace('/(^[“\'”]+)|([“\'”]+$)/', '', $processedCultivarEpithet)) . '”') : '””') . ',' .
+			((array_key_exists('tradeName', $dataArr) && $dataArr['tradeName']) ? ('”' . $this->cleanInStr($processedTradeName) . '”') : '””') . ',' .
+			($dataArr['source']? '”'.$this->cleanInStr($dataArr['source']).'”':'NULL').','.
+			(array_key_exists('sourceidentifier', $dataArr) && $dataArr['sourceidentifier'] ? '”'.$this->cleanInStr($dataArr['sourceidentifier']).'”':'NULL').','.
+			(array_key_exists('nomenclaturalstatus', $dataArr) && $dataArr['nomenclaturalstatus'] ? '”'.$this->cleanInStr($dataArr['nomenclaturalstatus']).'”':'NULL').','.
+			($dataArr['notes']?'”'.$this->cleanInStr($dataArr['notes']).'”':'NULL').','.
+			$this->cleanInStr($dataArr['securitystatus']).','.
+			$GLOBALS['SYMB_UID'].',”'.
+			date('Y-m-d H:i:s').'”)';
+
 		$insertStatus = false;
 		try{
 			$insertStatus = $this->conn->query($sqlTaxa);
@@ -1067,6 +1076,14 @@ class TaxonomyEditorManager extends Manager{
 
 	public function getSource(){
 		return $this->source ?? '';
+	}
+
+	public function getSourceIdentifier(){
+		return $this->sourceIdentifier ?? '';
+	}
+
+	public function getNomenclaturalStatus(){
+		return $this->nomenclaturalStatus ?? '';
 	}
 
 	public function getNotes(){

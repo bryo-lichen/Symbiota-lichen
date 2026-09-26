@@ -8,7 +8,8 @@ Language::load('taxa/taxonomy/taxonomydisplay');
 header('Content-Type: text/html; charset=' . $CHARSET);
 
 $target = $_REQUEST['target'] ?? '';
-$displayAuthor = !empty($_REQUEST['displayauthor']) ? 1: 0;
+$displayAuthor = isset($_POST['tdsubmit']) ? (!empty($_REQUEST['displayauthor']) ? 1 : 0) : 1;
+$displaySourceId = !empty($_REQUEST['displaysourceid']) ? 1: 0;
 $matchOnWords = !empty($_POST['matchonwords']) ? 1 : 0;
 $displayFullTree = !empty($_REQUEST['displayfulltree']) ? 1 : 0;
 $displaySubGenera = !empty($_REQUEST['displaysubgenera']) ? 1 : 0;
@@ -22,6 +23,7 @@ $taxonDisplayObj = new TaxonomyDisplayManager();
 $taxonDisplayObj->setTargetStr($target);
 $taxonDisplayObj->setTaxAuthId($taxAuthId);
 $taxonDisplayObj->setDisplayAuthor($displayAuthor);
+$taxonDisplayObj->setDisplaySourceId($displaySourceId);
 $taxonDisplayObj->setMatchOnWholeWords($matchOnWords);
 $taxonDisplayObj->setDisplayFullTree($displayFullTree);
 $taxonDisplayObj->setDisplaySubGenera($displaySubGenera);
@@ -52,6 +54,23 @@ if($IS_ADMIN || array_key_exists('Taxonomy', $USER_RIGHTS)){
 	<script src="<?php echo $CLIENT_ROOT; ?>/js/jquery-3.7.1.min.js" type="text/javascript"></script>
 	<script src="<?php echo $CLIENT_ROOT; ?>/js/jquery-ui.min.js" type="text/javascript"></script>
 	<script type="text/javascript">
+		function renderTaxonItem(ul, item) {
+			var $label = $("<span>").append($("<i>").css({color: "#000"}).text(item.value));
+			if(item.author) {
+				$label.append(document.createTextNode(" "));
+				$label.append($("<span>").text(item.author).css({color: "#4e7fa8"}));
+			}
+			if(item.taxonstatus) {
+				var color = item.taxonstatus === "accepted" ? "#6a8759" : "#cc7832";
+				$label.append($("<span>").text(" [" + item.taxonstatus + "]").css({color: color, fontSize: "0.85em"}));
+			}
+			if(item.sourceidentifier) {
+				$label.append(document.createTextNode(" "));
+				$label.append($("<span>").text(item.sourceidentifier).css({color: "#9876aa", fontSize: "0.85em"}));
+			}
+			return $("<li>").append($("<div>").append($label)).appendTo(ul);
+		}
+
 
 		$(document).ready(function() {
 			$("#taxontarget").autocomplete({
@@ -60,7 +79,7 @@ if($IS_ADMIN || array_key_exists('Taxonomy', $USER_RIGHTS)){
 				},
 				autoFocus: true,
 				minLength: 3 }
-			);
+			).autocomplete("instance")._renderItem = renderTaxonItem;
 
 			$('form input').keydown(function(event) {
 				if (event.keyCode === 13) {
@@ -148,6 +167,10 @@ if($IS_ADMIN || array_key_exists('Taxonomy', $USER_RIGHTS)){
 						<div>
 							<input id="displayauthor" name="displayauthor" type="checkbox" value="1" <?= ($displayAuthor ? 'checked' : '') ?> />
 							<label for="displayauthor" > <?= $LANG['DISP_AUTHORS']; ?> </label>
+						</div>
+						<div>
+							<input id="displaysourceid" name="displaysourceid" type="checkbox" value="1" <?= ($displaySourceId ? 'checked' : '') ?> />
+							<label for="displaysourceid" > <?= $LANG['DISP_SOURCE_ID']; ?> </label>
 						</div>
 						<div>
 							<input id="matchonwords" name="matchonwords" type="checkbox" value="1" <?= ($matchOnWords ? 'checked' : '') ?> />

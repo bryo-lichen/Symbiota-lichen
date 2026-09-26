@@ -8,11 +8,12 @@ $targetId = !empty($_REQUEST['targetid']) ? filter_var($_REQUEST['targetid'], FI
 $taxAuthId = !empty($_REQUEST['taxauthid']) ? filter_var($_REQUEST['taxauthid'], FILTER_SANITIZE_NUMBER_INT) : 1;
 $editorMode = empty($_REQUEST['emode']) ? 0 : 1;
 $displayAuthor = !empty($_REQUEST['authors']) ? 1 : 0;
+$displaySourceId = !empty($_REQUEST['displaysourceid']) ? 1 : 0;
 $limitToOccurrences = !empty($_REQUEST['limittooccurrences']) ? 1 : 0;
 
 $rpcManager = new RpcTaxonomy();
 $rpcManager->setTaxAuthId($taxAuthId);
 
-$retArr = $rpcManager->getDynamicChildren($objId, $targetId, $displayAuthor, $limitToOccurrences, $editorMode);
+$retArr = $rpcManager->getDynamicChildren($objId, $targetId, $displayAuthor, $displaySourceId, $limitToOccurrences, $editorMode);
 echo json_encode($retArr);
 ?>

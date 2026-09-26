@@ -45,17 +45,24 @@ $(document).ready(async function () {
 
   document.getElementById("taxoneditsubmit").addEventListener("click", async ()=>{
     const formForSubmission = document.getElementById("taxoneditform");
-    const taxoneditsubmitElem = document.createElement("input", )
+    const taxoneditsubmitElem = document.createElement("input");
     taxoneditsubmitElem.setAttribute("type", "hidden");
     taxoneditsubmitElem.setAttribute("id", "taxonedits");
     taxoneditsubmitElem.setAttribute("name", "taxonedits");
     taxoneditsubmitElem.setAttribute("value", "submitEdits");
     formForSubmission.appendChild(taxoneditsubmitElem);
+    const sourceIdField = document.getElementById("sourceidentifier");
+    if(sourceIdField && sourceIdField.defaultValue && sourceIdField.value !== sourceIdField.defaultValue){
+      if(!confirm("Do you really intend to change the identifier that is uniquely associated with this taxon name?")){
+        sourceIdField.value = sourceIdField.defaultValue;
+        return;
+      }
+    }
     const isUniqueEntry = await checkNameExistence(formForSubmission, true);
     const taxonomyFieldsIntact = await isTheSameEntryAsItStarted(formForSubmission, originalForm);
     if(!isUniqueEntry && !taxonomyFieldsIntact){
       if(confirm(translations.TAXON_NAME_MATCH_WARNING)){
-        formForSubmission.submit();  
+        formForSubmission.submit();
       }
     }else{
       formForSubmission.submit();
@@ -248,6 +255,15 @@ async function validateTaxonEditForm(f, originalForm) {
   if (f.unitname1.value.trim() == "") {
     alert("Unitname 1 field must have a value");
     return false;
+  }
+  const origStatus = originalForm.querySelector('[name="nomenclaturalstatus"]');
+  const newStatus = f.querySelector('[name="nomenclaturalstatus"]');
+  if (origStatus && newStatus && origStatus.value !== newStatus.value) {
+    const from = origStatus.value || '(none)';
+    const to = newStatus.value || '(none)';
+    if (!confirm('Are you sure you want to change the nomenclatural status from "' + from + '" to "' + to + '"?')) {
+      return false;
+    }
   }
   return true;
 }
