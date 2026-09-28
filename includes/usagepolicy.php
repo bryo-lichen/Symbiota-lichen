@@ -1,9 +1,10 @@
 <?php
 include_once('../config/symbini.php');
-if($LANG_TAG == 'en' || !file_exists($SERVER_ROOT.'/content/lang/templates/usagepolicy.' . $LANG_TAG . '.php'))
-	include_once($SERVER_ROOT . '/content/lang/templates/usagepolicy.en.php');
-else include_once($SERVER_ROOT . '/content/lang/templates/usagepolicy.' . $LANG_TAG . '.php');
+include_once($SERVER_ROOT . '/classes/utilities/Language.php');
 include_once ($SERVER_ROOT . '/classes/utilities/GeneralUtil.php');
+
+Language::load('templates/usagepolicy');
+
 header("Content-Type: text/html; charset=" . $CHARSET);
 $serverHost = GeneralUtil::getDomain();
 ?>
@@ -13,7 +14,6 @@ $serverHost = GeneralUtil::getDomain();
 <head>
 	<title><?= $DEFAULT_TITLE . ($LANG_TAG=='es' ? ' Política de Uso de Datos' : ($LANG_TAG=='fr' ? " Directives d'utilisation des données" : ' Data Usage Guidelines')) ?></title>
 	<?php
-
 	include_once($SERVER_ROOT . '/includes/head.php');
 	?>
 </head>
@@ -24,11 +24,11 @@ $serverHost = GeneralUtil::getDomain();
 	include($SERVER_ROOT . '/includes/header.php');
 	?>
 	<div class="navpath">
-		<a href="<?php echo htmlspecialchars($CLIENT_ROOT, ENT_COMPAT | ENT_HTML401 | ENT_SUBSTITUTE); ?>/index.php"><?= $LANG['HOME'] ?></a> &gt;&gt;
-		<b><?= $LANG['DATA_USAGE_GUIDELINES'] ?></b>
+		<a href="<?php echo htmlspecialchars($CLIENT_ROOT, ENT_COMPAT | ENT_HTML401 | ENT_SUBSTITUTE); ?>/index.php"><?php echo $LANG['HOME']; ?></a> &gt;&gt;
+		<b><?php echo $LANG['DATA_USAGE_GUIDELINES']; ?></b>
 	</div>
 	<!-- This is inner text! -->
-	<main id="innertext">
+	<div role="main" id="innertext">
 
 		<?php
 		if($LANG_TAG=='es'){
@@ -37,42 +37,41 @@ $serverHost = GeneralUtil::getDomain();
 		<h2>Recomendaciones Para Citar</h2>
 		<div style="margin:10px">
 			Sugerimos usar el siguiente formato para citar los datos descargados desde del Consorcio de Herbarios de Líquenes:
-			</div>
-			<h3>Citación General:</h3>
-			<div style="margin:10px;">
-				<?php 
-				echo 'Consorcio de Herbarios de Líquenes'; 
-				echo ' ('.date('Y').') '; 
-				echo 'http//:'.$_SERVER['HTTP_HOST'].$CLIENT_ROOT.(substr($CLIENT_ROOT,-1)=='/'?'':'/').'index.php. '; 
-				echo 'Fecha de acceso: '.date('d m Y').'. ';
-				?>
-			</div>
-			<h3>Uso de datos de ocurrencia para instituciones específicas:</h3>
-			<div style="margin:10px;">
-				Datos de biodiversidad de ocurrencias de especímenes publicado por &lt;listado de colecciones&gt;
-				(obtenido de <?php echo $DEFAULT_TITLE; ?>, 
-				<?php echo 'http//:'.$_SERVER['HTTP_HOST'].$CLIENT_ROOT.(substr($CLIENT_ROOT,-1)=='/'?'':'/').'index.php'; ?>, DD-MM-YYYY)<br/><br/>
-				<b>Por ejemplo:</b><br/>
-				Datos de biodiversidad de ocurrencias de especímenes publicado por 
-				publicado por el Herbario de Líquenes de la Universidad de Talca, Chile
-				(obtenido de <?php echo $DEFAULT_TITLE; ?>, 
-				<?php echo 'http//:'.$_SERVER['HTTP_HOST'].$CLIENT_ROOT.(substr($CLIENT_ROOT,-1)=='/'?'':'/').'index.php, '.date('Y-m-d').')'; ?>
-			</div>
-			<h3>Citar el Tesauro Taxonómico Central:</h3>
-			<div style="margin:10px;">
-				<?= 'Bungartz, F. & Perlmutter, G. (' . date('Y') . ') Tesauro taxonómico central de nombres aceptados y sus sinónimos, 
-				mantenido por el Consorcio de Herbarios de Líquenes(con contribuciones de P. Kirk, K. Bensch, U. Søchting, A. Fryday, 
-				R. Lücking y otros). ' . 'https//:' . $_SERVER['HTTP_HOST'] . $CLIENT_ROOT . 
-				(substr($CLIENT_ROOT,-1)=='/' ? '' : '/') . '/taxa/taxonomy/taxonomydisplay.php. Consultado ' . date('Y-m-d') . '.' ?>
-			</div>
-			<h3>Citar el Glosario:</h3>
-			<div style="margin:10px">
-				<?= 'Bungartz, F. (' . date('Y') . ') Glosario de terminología de líquenes del Consorcio de Herbarios de Líquenes 
-				(basado en definiciones originalmente publicadas en la Lichen Flora of the Greater Sonoran Desert Region y el LIAS 
-				Glossary, con imágenes compartidas por B. McCune, S. Yang, A.A. Spielmann,  y F. Schumm, y cromatogramas y datos de la química 
-				secundaria por J.A. Elix y F. Schumm). https//:' . $_SERVER['HTTP_HOST'] . $CLIENT_ROOT . 
-				(substr($CLIENT_ROOT,-1)=='/' ? '' : '/') . '/glossary/index.php. Consultado ' . date('Y-m-d') . '.' ?>
-			</div>
+		</div>
+		<h3>Citación General:</h3>
+		<div style="margin:10px;">
+			<?php 
+			echo 'Consorcio de Herbarios de Líquenes'; 
+			echo ' ('.date('Y').') '; 
+			echo 'http//:'.$_SERVER['HTTP_HOST'].$CLIENT_ROOT.(substr($CLIENT_ROOT,-1)=='/'?'':'/').'index.php. '; 
+			echo 'Fecha de acceso: '.date('d m Y').'. ';
+			?>
+		</div>
+		<h3>Uso de datos de ocurrencia para instituciones específicas:</h3>
+		<div style="margin:10px;">
+			Datos de biodiversidad de ocurrencias de especímenes publicado por &lt;listado de colecciones&gt;
+			(obtenido de <?php echo $DEFAULT_TITLE; ?>, 
+			<?php echo 'http//:'.$_SERVER['HTTP_HOST'].$CLIENT_ROOT.(substr($CLIENT_ROOT,-1)=='/'?'':'/').'index.php'; ?>, DD-MM-YYYY)<br/><br/>
+			<b>Por ejemplo:</b><br/>
+			Datos de biodiversidad de ocurrencias de especímenes publicado por 
+			publicado por el Herbario de Líquenes de la Universidad de Talca, Chile
+			(obtenido de <?php echo $DEFAULT_TITLE; ?>, 
+			<?php echo 'http//:'.$_SERVER['HTTP_HOST'].$CLIENT_ROOT.(substr($CLIENT_ROOT,-1)=='/'?'':'/').'index.php, '.date('Y-m-d').')'; ?>
+		</div>
+		<h3>Citar el Tesauro Taxonómico Central:</h3>
+		<div style="margin:10px;">
+			<?= 'Bungartz, F. & Perlmutter, G. (' . date('Y') . ') Tesauro taxonómico central de nombres aceptados y sus sinónimos, 
+			mantenido por el Consorcio de Herbarios de Líquenes(con contribuciones de P. Kirk, K. Bensch, U. Søchting, A. Fryday, 
+			R. Lücking y otros). ' . 'https://' . $_SERVER['HTTP_HOST'] . $CLIENT_ROOT . 
+			'/taxa/taxonomy/taxonomydisplay.php. Consultado ' . date('Y-m-d') . '.' ?>
+		</div>
+		<h3>Citar el Glosario:</h3>
+		<div style="margin:10px">
+			<?= 'Bungartz, F. (' . date('Y') . ') Glosario de terminología de líquenes del Consorcio de Herbarios de Líquenes 
+			(basado en definiciones originalmente publicadas en la Lichen Flora of the Greater Sonoran Desert Region y el LIAS 
+			Glossary, con imágenes compartidas por B. McCune, S. Yang, A.A. Spielmann,  y F. Schumm, y cromatogramas y datos de la química 
+			secundaria por J.A. Elix y F. Schumm). https://' . $_SERVER['HTTP_HOST'] . $CLIENT_ROOT . 
+			'/glossary/index.php. Consultado ' . date('Y-m-d') . '.' ?>
 		</div>
 		<a name="occurrences"></a>
 		<h2>Política de Uso de datos de ocurrencia</h2>
@@ -146,40 +145,39 @@ $serverHost = GeneralUtil::getDomain();
 		<h1 class="page-heading">Lignes directrices pour une utilisation acceptable des données</h1><br />
 		<h2>Formats de citation recommandés</h2>
 		<div style="margin:10px">
-		Utilisez l'un des formats suivants pour citer les données extraites du réseau du Consortium des herbiers à lichens:
-			</div>
-			<h3>Citation Générale:</h3>
-			<div style="margin:10px;">
-				<?php 
-				echo 'Consortium des herbiers à lichens'; 
-				echo ' ('.date('Y').') '; 
-				echo 'https//:'.$_SERVER['HTTP_HOST'].$CLIENT_ROOT.(substr($CLIENT_ROOT,-1)=='/'?'':'/').'index.php. '; 
-				echo 'Consulté le: '.date('d m Y').'. ';
-				?>
-			</div>
-			<h3>Utilisation des données d'occurrence provenant d'institutions spécifiques:</h3>
-			<div style="margin:10px;">
-				Données d'occurrence sur la biodiversité publiées par: <Liste des collections> (Consulté via le portail de données du Consortium des herbiers à lichens, <a href="http://lichenportal.org/portal/index.php">http://lichenportal.org/portal/index.php</a>, AAAA-MM-JJ)</br>
-				<br><b>Par exemple:</b><br/>
-				Données sur la biodiversité provenant d'occurrences de spécimens publiées par l'Herbier de lichens de l'Université de Talca, Chili
-				(extraites du <?php echo $DEFAULT_TITLE; ?>, 
-				<?php echo 'https//:'.$_SERVER['HTTP_HOST'].$CLIENT_ROOT.(substr($CLIENT_ROOT,-1)=='/'?'':'/').'index.php, '.date('Y-m-d').')'; ?>
-			</div>
-			<h3>Citation du Thésaurus taxonomique central:</h3>
-			<div style="margin:10px;">
-				<?= "Bungartz, F. & Perlmutter, G. (" . date('Y') . ") Thésaurus taxonomique central des noms acceptés et de leurs synonymes, 
-				géré par le Consortium des Herbiers de Lichens (avec les contributions de P. Kirk, K. Bensch, U. Søchting, A. Fryday, R. Lücking et d'autres). "
-				. 'https//:' . $_SERVER['HTTP_HOST'] . $CLIENT_ROOT . 
-				(substr($CLIENT_ROOT,-1)=='/' ? '' : '/') . '/taxa/taxonomy/taxonomydisplay.php. Consulté ' . date('Y-m-d') . '.' ?>
-			</div>
-			<h3>Citation du glossaire:</h3>
-			<div style="margin:10px">
-				<?= 'Bungartz, F. (' . date('Y') . ') Glossaire de la terminologie des lichens fourni par le Consortium des Herbiers de Lichens 
-				(basé sur les définitions initialement publiées dans Lichen Flora of the Greater Sonoran Desert Region et le glossaire du LIAS, 
-				avec des images fournies par B. McCune, S. Yang, A.A. Spielmann et F. Schumm, et des données de chimie secondaire et des 
-				chromatogrammes par J.A. Elix et F. Schumm). https//:' . $_SERVER['HTTP_HOST'] . $CLIENT_ROOT . 
-				(substr($CLIENT_ROOT,-1)=='/' ? '' : '/') . '/glossary/index.php. Consulté ' . date('Y-m-d') . '.' ?>
-			</div>
+			Utilisez l'un des formats suivants pour citer les données extraites du réseau du Consortium des herbiers à lichens:
+		</div>
+		<h3>Citation Générale:</h3>
+		<div style="margin:10px;">
+			<?php 
+			echo 'Consortium des herbiers à lichens'; 
+			echo ' ('.date('Y').') '; 
+			echo 'https//:'.$_SERVER['HTTP_HOST'].$CLIENT_ROOT.(substr($CLIENT_ROOT,-1)=='/'?'':'/').'index.php. '; 
+			echo 'Consulté le: '.date('d m Y').'. ';
+			?>
+		</div>
+		<h3>Utilisation des données d'occurrence provenant d'institutions spécifiques:</h3>
+		<div style="margin:10px;">
+			Données d'occurrence sur la biodiversité publiées par: <Liste des collections> (Consulté via le portail de données du Consortium des herbiers à lichens, <a href="http://lichenportal.org/portal/index.php">http://lichenportal.org/portal/index.php</a>, AAAA-MM-JJ)</br>
+			<br><b>Par exemple:</b><br/>
+			Données sur la biodiversité provenant d'occurrences de spécimens publiées par l'Herbier de lichens de l'Université de Talca, Chili
+			(extraites du <?php echo $DEFAULT_TITLE; ?>, 
+			<?php echo 'https//:'.$_SERVER['HTTP_HOST'].$CLIENT_ROOT.(substr($CLIENT_ROOT,-1)=='/'?'':'/').'index.php, '.date('Y-m-d').')'; ?>
+		</div>
+		<h3>Citation du Thésaurus taxonomique central:</h3>
+		<div style="margin:10px;">
+			<?= "Bungartz, F. & Perlmutter, G. (" . date('Y') . ") Thésaurus taxonomique central des noms acceptés et de leurs synonymes, 
+			géré par le Consortium des Herbiers de Lichens (avec les contributions de P. Kirk, K. Bensch, U. Søchting, A. Fryday, R. Lücking et d'autres). "
+			. 'https://' . $_SERVER['HTTP_HOST'] . $CLIENT_ROOT . 
+			'/taxa/taxonomy/taxonomydisplay.php. Consulté ' . date('Y-m-d') . '.' ?>
+		</div>
+		<h3>Citation du glossaire:</h3>
+		<div style="margin:10px">
+			<?= 'Bungartz, F. (' . date('Y') . ') Glossaire de la terminologie des lichens fourni par le Consortium des Herbiers de Lichens 
+			(basé sur les définitions initialement publiées dans Lichen Flora of the Greater Sonoran Desert Region et le glossaire du LIAS, 
+			avec des images fournies par B. McCune, S. Yang, A.A. Spielmann et F. Schumm, et des données de chimie secondaire et des 
+			chromatogrammes par J.A. Elix et F. Schumm). https://' . $_SERVER['HTTP_HOST'] . $CLIENT_ROOT . 
+			'/glossary/index.php. Consulté ' . date('Y-m-d') . '.' ?>
 		</div>
 		<a name="occurrences"></a>
 		<h2>Politique d'utilisation des données d'occurrence</h2>
@@ -248,7 +246,7 @@ $serverHost = GeneralUtil::getDomain();
 		<h2>Recommended Citation Formats</h2>
 		<div style="margin:10px">
 			Use one of the following formats to cite data retrieved from the <?php echo $DEFAULT_TITLE; ?> network:
-			</div>
+		</div>
 			<h3>General Citation:</h3>
 			<div style="margin:10px;">
 				<?php 
@@ -258,7 +256,6 @@ $serverHost = GeneralUtil::getDomain();
 				?>
 			</div>
 			<h3>Usage of occurrence data from specific institutions:</h3>
-			</div>
 			<div style="margin:10px;">
 				Biodiversity occurrence data published by: &lt;List of Collections&gt; 
 				(Accessed through <?php echo $DEFAULT_TITLE; ?> Data Portal, 
@@ -270,22 +267,20 @@ $serverHost = GeneralUtil::getDomain();
 				<?php echo 'https//:'.$_SERVER['HTTP_HOST'].$CLIENT_ROOT.(substr($CLIENT_ROOT,-1)=='/'?'':'/').'index.php, '.date('Y-m-d').')'; ?>
 			</div>
 			<h3>Citing the Central Taxonomic Thesaurus:</h3>
-			</div>
 			<div style="margin:10px;">
 				<?= 'Bungartz, F. & Perlmutter, G. (' . date('Y') . ') Central taxonomic thesaurus of accepted names and their 
 				synonyms, maintained by the Consortium of Lichen Herbaria (with contributions by P. Kirk, K. Bensch, U. Søchting, A. 
-				Fryday, R. Lücking, and others). ' . 'https//:' . $_SERVER['HTTP_HOST'] . $CLIENT_ROOT . 
-				(substr($CLIENT_ROOT,-1)=='/' ? '' : '/') . '/taxa/taxonomy/taxonomydisplay.php. Accessed on ' . date('F j') . '.' ?>
+				Fryday, R. Lücking, and others). ' . 'https://' . $_SERVER['HTTP_HOST'] . $CLIENT_ROOT . 
+				'/taxa/taxonomy/taxonomydisplay.php. Accessed on ' . date('F j') . '.' ?>
 			</div>
 			<h3>Citing the Glossary:</h3>
 			<div style="margin:10px">
 				<?= 'Bungartz, F. (' . date('Y') . ') Glossary of lichen terminology provided by the Consortium of Lichen Herbaria 
 				(based on definitions originally published in the Lichen Flora of the Greater Sonoran Desert Region and the LIAS 
 				glossary, with image resources provided by B. McCune, S. Yang, A.A. Spielmann, and F. Schumm, and secondary chemistry data and 
-				chormatograms by J.A. Elix, F. Schumm). https//:' . $_SERVER['HTTP_HOST'] . $CLIENT_ROOT . 
-				(substr($CLIENT_ROOT,-1)=='/' ? '' : '/') . '/glossary/index.php. Accessed on ' . date('F j') . '.' ?>
+				chormatograms by J.A. Elix, F. Schumm). https://' . $_SERVER['HTTP_HOST'] . $CLIENT_ROOT . 
+				'/glossary/index.php. Accessed on ' . date('F j') . '.' ?>
 			</div>
-		</div>
 		<a name="occurrences"></a>
 		<h2>Occurrence Record Use Policy</h2>
 		<div style="margin:10px;">
@@ -352,7 +347,7 @@ $serverHost = GeneralUtil::getDomain();
 		<?php
 		}
 		?>
-	</main>
+	</div>
 	<?php
 	include($SERVER_ROOT . '/includes/footer.php');
 	?>
