@@ -30,7 +30,6 @@
 			<img src="<?= $CLIENT_ROOT; ?>/images/layout/IAL.jpg"  alt="IAL Logo" />
 		</a>
 		<img></img>
-		<img></img>
 		<a href="https://www.blam-bl.de/" target="_blank" title="BLAM" aria-label="BLAM">
 			<img src="<?= $CLIENT_ROOT; ?>/images/layout/blam_logo.png"  alt="BLAM" />
 		</a>
@@ -39,6 +38,9 @@
 		</a>
 		<a href="https://northwest-lichenologists.wildapricot.org/" target="_blank" title="<?= $LANG['F_NWL'] ?>" aria-label="<?= $LANG['F_NWL'] ?>">
 			<img src="<?= $CLIENT_ROOT; ?>/images/layout/NorthwestLichenologists_black-logo.png"  alt="<?= $LANG['F_NWL_LOGO'] ?>" />
+		</a>
+		<a href="https://www.gbif.org/network/0479d6b2-a4f4-4307-8346-0b80e8c88c66" target="_blank" title="GBIF" aria-label="GBIF">
+			<img src="<?= $CLIENT_ROOT; ?>/images/layout/gbif.png"  alt="GBIF logo" />
 		</a>
 		<a href="https://symbiota.org/" target="_blank" title="<?= $LANG['F_SSH'] ?>" aria-label="<?= $LANG['F_SSH'] ?>">
 			<img src="<?= $CLIENT_ROOT; ?>/images/layout/SSH.png"  alt="<?= $LANG['F_SSH_LOGO'] ?>" />
