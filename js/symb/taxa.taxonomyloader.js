@@ -70,10 +70,29 @@ $(document).ready(function () {
 
   document.getElementById("submitaction").addEventListener("click", async ()=>{
     const formForSubmission = document.getElementById("loaderform");
+    const errorDisplay = document.getElementById("error-display");
+    const sourceIdField = document.getElementById("sourceidentifier");
+    const sourceId = sourceIdField.value.trim();
+    const sourceIdPattern = /^(mb|if):\d+$/i;
+    if(!sourceIdPattern.test(sourceId)){
+      if(!confirm("Source identifier is missing or invalid. Expected format: mb:12345 or if:12345. Continue anyway?")){
+        sourceIdField.focus();
+        return;
+      }
+    } else {
+      const dupCheck = await fetch("rpc/checksourceidentifier.php?sourceidentifier=" + encodeURIComponent(sourceId))
+        .then(r => r.json());
+      if(dupCheck.exists){
+        errorDisplay.textContent = "Source identifier \"" + sourceId + "\" is already in use by \"" + dupCheck.sciname + "\".";
+        sourceIdField.focus();
+        return;
+      }
+    }
+    errorDisplay.textContent = "";
     const isUniqueEntry = await checkNameExistence(formForSubmission, true);
     if(!isUniqueEntry){
       if(confirm(translations.TAXON_NAME_MATCH_WARNING)){
-        formForSubmission.submit();  
+        formForSubmission.submit();
       }
     }else{
       formForSubmission.submit();

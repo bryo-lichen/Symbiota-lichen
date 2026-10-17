@@ -14,6 +14,7 @@ class TaxonomyDisplayManager extends Manager{
 	private $taxAuthId = 1;
 	private $taxonomyMeta = array();
 	private $displayAuthor = false;
+	private $displaySourceId = false;
 	private $displayFullTree = false;
 	private $displaySubGenera = false;
 	private $matchOnWholeWords = true;
@@ -48,7 +49,7 @@ class TaxonomyDisplayManager extends Manager{
 		$this->primeTaxaEnumTree();
 		$taxaParentIndex = Array();
 		$zeroRank = array();
-		$sql = 'SELECT DISTINCT t.tid, ts.tidaccepted, t.sciname, t.cultivarepithet, t.tradename, t.author, t.rankid, ts.parenttid
+		$sql = 'SELECT DISTINCT t.tid, ts.tidaccepted, t.sciname, t.cultivarepithet, t.tradename, t.author, t.nomenclaturalStatus, t.sourceidentifier, t.rankid, ts.parenttid
 			FROM taxa t LEFT JOIN taxstatus ts ON t.tid = ts.tid ';
 		if($this->limitToOccurrences){
 			$sql .= 'INNER JOIN taxaenumtree pe ON t.tid = pe.parenttid INNER JOIN omoccurrences o ON pe.tid = o.tidInterpreted ';
@@ -87,6 +88,8 @@ class TaxonomyDisplayManager extends Manager{
 				$this->taxaArr[$tid]['cultivarEpithet'] = $r->cultivarepithet;
 				$this->taxaArr[$tid]['tradeName'] = $r->tradename;
 				$this->taxaArr[$tid]['author'] = $r->author;
+				$this->taxaArr[$tid]['nomenclaturalStatus'] = $r->nomenclaturalStatus;
+				$this->taxaArr[$tid]['sourceidentifier'] = $r->sourceidentifier;
 				$this->taxaArr[$tid]['rankid'] = $r->rankid;
 				if(!$r->rankid) $zeroRank[] = $tid;
 				$this->taxaArr[$tid]['parenttid'] = $r->parenttid;
@@ -100,7 +103,7 @@ class TaxonomyDisplayManager extends Manager{
 		$rs->free();
 		//Get details for synonyms
 		if($tidAcceptedArr){
-			$sql1 = 'SELECT t.tid, t.sciname, t.cultivarepithet, t.tradename, t.author, t.rankid, ts.parenttid FROM taxa t INNER JOIN taxstatus ts ON t.tid = ts.tid WHERE t.tid IN('.implode(',',$tidAcceptedArr).')';
+			$sql1 = 'SELECT t.tid, t.sciname, t.cultivarepithet, t.tradename, t.author, t.nomenclaturalStatus, t.sourceidentifier, t.rankid, ts.parenttid FROM taxa t INNER JOIN taxstatus ts ON t.tid = ts.tid WHERE t.tid IN('.implode(',',$tidAcceptedArr).')';
 			$rs1 = $this->conn->query($sql1);
 			while($r1 = $rs1->fetch_object()){
 				$tid = $r1->tid;
@@ -108,6 +111,8 @@ class TaxonomyDisplayManager extends Manager{
 				$this->taxaArr[$tid]['cultivarEpithet'] = $r1->cultivarepithet;
 				$this->taxaArr[$tid]['tradeName'] = $r1->tradename;
 				$this->taxaArr[$tid]['author'] = $r1->author;
+				$this->taxaArr[$tid]['nomenclaturalStatus'] = $r1->nomenclaturalStatus;
+				$this->taxaArr[$tid]['sourceidentifier'] = $r1->sourceidentifier;
 				$this->taxaArr[$tid]['rankid'] = $r1->rankid;
 				if(!$r1->rankid) $zeroRank[] = $tid;
 				$this->taxaArr[$tid]['parenttid'] = $r1->parenttid;
@@ -120,7 +125,7 @@ class TaxonomyDisplayManager extends Manager{
 		if($this->taxaArr){
 			//Get direct children, but only accepted children
 			$tidStr = implode(',',array_keys($this->taxaArr));
-			$sql2 = 'SELECT DISTINCT t.tid, t.sciname, t.cultivarepithet, t.tradename, t.author, t.rankid, ts.parenttid
+			$sql2 = 'SELECT DISTINCT t.tid, t.sciname, t.cultivarepithet, t.tradename, t.author, t.nomenclaturalStatus, t.sourceidentifier, t.rankid, ts.parenttid
 				FROM taxa t INNER JOIN taxstatus ts ON t.tid = ts.tid
 				INNER JOIN taxaenumtree e ON t.tid = e.tid ';
 			if($this->limitToOccurrences){
@@ -137,6 +142,8 @@ class TaxonomyDisplayManager extends Manager{
 				$this->taxaArr[$tid]['cultivarEpithet'] = $row2->cultivarepithet;
 				$this->taxaArr[$tid]['tradeName'] = $row2->tradename;
 				$this->taxaArr[$tid]['author'] = $row2->author;
+				$this->taxaArr[$tid]['nomenclaturalStatus'] = $row2->nomenclaturalStatus;
+				$this->taxaArr[$tid]['sourceidentifier'] = $row2->sourceidentifier;
 				$this->taxaArr[$tid]['rankid'] = $row2->rankid;
 				if(!$row2->rankid) $zeroRank[] = $tid;
 				$parentTid = $row2->parenttid;
@@ -146,7 +153,7 @@ class TaxonomyDisplayManager extends Manager{
 			$rs2->free();
 
 			//Get all parent taxa
-			$sql3 = 'SELECT DISTINCT t.tid, t.sciname, t.cultivarepithet, t.tradename, t.author, t.rankid, ts.parenttid '.
+			$sql3 = 'SELECT DISTINCT t.tid, t.sciname, t.cultivarepithet, t.tradename, t.author, t.nomenclaturalStatus, t.sourceidentifier, t.rankid, ts.parenttid '.
 				'FROM taxa t INNER JOIN taxaenumtree te ON t.tid = te.parenttid '.
 				'INNER JOIN taxstatus ts ON t.tid = ts.tid '.
 				'WHERE (te.taxauthid = '.$this->taxAuthId.') AND (ts.taxauthid = '.$this->taxAuthId.') AND (te.tid IN('.$tidStr.')) ';
@@ -158,6 +165,8 @@ class TaxonomyDisplayManager extends Manager{
 				$this->taxaArr[$tid]['cultivarEpithet'] = $row3->cultivarepithet;
 				$this->taxaArr[$tid]['tradeName'] = $row3->tradename;
 				$this->taxaArr[$tid]['author'] = $row3->author;
+				$this->taxaArr[$tid]['nomenclaturalStatus'] = $row3->nomenclaturalStatus;
+				$this->taxaArr[$tid]['sourceidentifier'] = $row3->sourceidentifier;
 				$this->taxaArr[$tid]['rankid'] = $row3->rankid;
 				if(!$row3->rankid) $zeroRank[] = $tid;
 				$this->taxaArr[$tid]['parenttid'] = $parentTid;
@@ -166,23 +175,24 @@ class TaxonomyDisplayManager extends Manager{
 			$rs3->free();
 
 			//Get synonyms for all accepted taxa
-			$sqlSyns = 'SELECT ts.tidaccepted, t.tid, t.sciname, t.cultivarepithet, t.tradename, t.author, t.rankid
+			$sqlSyns = 'SELECT ts.tidaccepted, t.tid, t.sciname, t.cultivarepithet, t.tradename, t.author, t.nomenclaturalStatus, t.sourceidentifier, t.rankid
 				FROM taxa t INNER JOIN taxstatus ts ON t.tid = ts.tid
 				WHERE (ts.tid <> ts.tidaccepted) AND (ts.taxauthid = ' . $this->taxAuthId . ') AND (ts.tidaccepted IN(' . implode(',', array_keys($this->taxaArr)) . '))';
 			$rsSyns = $this->conn->query($sqlSyns);
 			while($row = $rsSyns->fetch_object()){
-				$synName = $row->sciname;
-				if($row->rankid > 140){
-					$synName = '<i>'.$row->sciname.'</i>';
-				}
-				if($this->displayAuthor) $synName .= ' '.$row->author;
-				$this->taxaArr[$row->tidaccepted]["synonyms"][$row->tid] = $synName;
+				$synName = ($row->rankid > 140) ? '<i>'.$row->sciname.'</i>' : $row->sciname;
+				$this->taxaArr[$row->tidaccepted]["synonyms"][$row->tid] = array(
+					'name' => $synName,
+					'author' => $row->author,
+					'nomenclaturalStatus' => $row->nomenclaturalStatus,
+					'sourceidentifier' => $row->sourceidentifier,
+				);
 			}
 			$rsSyns->free();
 
 			//Grab parentTids that are not indexed in $taxaParentIndex. This would be due to a parent mismatch or a missing hierarchy definition
 			if($orphanTaxa = array_unique(array_diff($taxaParentIndex, array_keys($taxaParentIndex)))){
-				$sqlOrphan = 'SELECT t.tid, t.sciname, t.author, ts.parenttid, t.rankid '.
+				$sqlOrphan = 'SELECT t.tid, t.sciname, t.author, t.nomenclaturalStatus, t.sourceidentifier, ts.parenttid, t.rankid '.
 					'FROM taxa t INNER JOIN taxstatus ts ON t.tid = ts.tid '.
 					'WHERE (ts.taxauthid = '.$this->taxAuthId.') AND (ts.tid = ts.tidaccepted) AND (t.tid IN ('.implode(',',$orphanTaxa).'))';
 				$rsOrphan = $this->conn->query($sqlOrphan);
@@ -191,6 +201,8 @@ class TaxonomyDisplayManager extends Manager{
 					$taxaParentIndex[$tid] = $row4->parenttid;
 					$this->taxaArr[$tid]["sciname"] = $row4->sciname;
 					$this->taxaArr[$tid]["author"] = $row4->author;
+					$this->taxaArr[$tid]["nomenclaturalStatus"] = $row4->nomenclaturalStatus;
+					$this->taxaArr[$tid]["sourceidentifier"] = $row4->sourceidentifier;
 					$this->taxaArr[$tid]["parenttid"] = $row4->parenttid;
 					$this->taxaArr[$tid]["rankid"] = $row4->rankid;
 					if(!$row4->rankid) $zeroRank[] = $tid;
@@ -277,7 +289,12 @@ class TaxonomyDisplayManager extends Manager{
 						if($taxonRankId >= 180) $sciName = '<i>'.$sciName.'</i>';
 						if(!empty($sciNameParts['cultivarEpithet'])) $sciName .= " '" . $sciNameParts['cultivarEpithet'] . "'";
 						if(!empty($sciNameParts['tradeName'])) $sciName .= " " . $sciNameParts['tradeName'];
-						if($this->displayAuthor) $sciName .= " " . $author;
+						if($this->displayAuthor) {
+							$sciName .= ' <span style="color:#4e7fa8;">' . htmlspecialchars($author) . '</span>';
+							if(!empty($this->taxaArr[$key]['nomenclaturalStatus'])) $sciName .= ' <em style="color:#4e7fa8;">' . htmlspecialchars($this->taxaArr[$key]['nomenclaturalStatus']) . '</em>';
+						}
+						$sciName .= ' <span style="color:#6a8759;font-size:0.85em;">[accepted]</span>';
+						if($this->displaySourceId && !empty($this->taxaArr[$key]['sourceidentifier'])) $sciName .= ' ' . $this->sourceIdentifierToLink($this->taxaArr[$key]['sourceidentifier']);
 					}
 				}
 				elseif(!$key){
@@ -308,15 +325,19 @@ class TaxonomyDisplayManager extends Manager{
 				if(array_key_exists($key,$this->taxaArr) && array_key_exists('synonyms', $this->taxaArr[$key])){
 					$synNameArr = $this->taxaArr[$key]['synonyms'];
 					asort($synNameArr);
-					foreach($synNameArr as $synTid => $synName){
-						$synName = str_replace($this->targetStr, '<b>' . htmlspecialchars($this->targetStr) . '</b>', $synName);
+					foreach($synNameArr as $synTid => $synData){
+						$synNameStr = str_replace($this->targetStr, '<b>' . htmlspecialchars($this->targetStr) . '</b>', $synData['name']);
 						echo '<div>' . str_repeat('&nbsp;', $indent/5) . str_repeat('&nbsp;', 7);
 						echo '[';
 						if($taxonRankId > 139) echo '<a href="../index.php?taxon=' . $synTid . '" target="_blank">';
-						echo $synName;
+						echo $synNameStr;
 						if($taxonRankId > 139) echo '</a>';
 						if($this->isEditor) echo ' <a href="taxoneditor.php?tid=' . $synTid . '" target="_blank"><img class="icon-image" src="../../images/edit.png" ></a>';
 						echo ']';
+						if($this->displayAuthor && $synData['author']) echo ' <span style="color:#4e7fa8;">' . htmlspecialchars($synData['author']) . '</span>';
+						if($this->displayAuthor && !empty($synData['nomenclaturalStatus'])) echo ' <em style="color:#4e7fa8;">' . htmlspecialchars($synData['nomenclaturalStatus']) . '</em>';
+						echo ' <span style="color:#cc7832;font-size:0.85em;">[synonym]</span>';
+						if($this->displaySourceId && !empty($synData['sourceidentifier'])) echo ' ' . $this->sourceIdentifierToLink($synData['sourceidentifier']);
 						echo '</div>';
 					}
 				}
@@ -495,6 +516,19 @@ class TaxonomyDisplayManager extends Manager{
 
 	public function setDisplayAuthor($display){
 		if($display) $this->displayAuthor = true;
+	}
+
+	public function setDisplaySourceId($display){
+		if($display) $this->displaySourceId = true;
+	}
+
+	private function sourceIdentifierToLink($sourceId){
+		if(preg_match('/^mb:(\d+)$/i', $sourceId, $m)){
+			return '<a href="http://www.mycobank.org/mb/' . $m[1] . '" target="_blank" style="color:#9876aa;">' . htmlspecialchars($sourceId) . '</a>';
+		} elseif(preg_match('/^if:(\d+)$/i', $sourceId, $m)){
+			return '<a href="https://www.indexfungorum.org/Names/NamesRecord.asp?RecordID=' . $m[1] . '" target="_blank" style="color:#9876aa;">' . htmlspecialchars($sourceId) . '</a>';
+		}
+		return '<span style="color:#9876aa;">' . htmlspecialchars($sourceId) . '</span>';
 	}
 
 	public function setDisplayFullTree($displayTree){
