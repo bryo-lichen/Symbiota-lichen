@@ -1,7 +1,7 @@
 <?php
 include_once('../config/symbini.php');
-include_once($SERVER_ROOT . '/classes/utilities/GeneralUtil.php');
 include_once($SERVER_ROOT . '/classes/ProfileManager.php');
+
 if(!empty($THIRD_PARTY_OID_AUTH_ENABLED)){
 	include_once($SERVER_ROOT . '/config/auth_config.php');
 	require_once($SERVER_ROOT . '/vendor/autoload.php');
@@ -165,9 +165,13 @@ if (array_key_exists('last_message', $_SESSION)){
 			document.forms["loginform"].submit();
 		}
 
-		function checkCreds(f){
-			if(f.password.value == ""){
-				alert("<?= $LANG['ENTER_LOGIN'] ?>");
+		function checkCreds(){
+			if(document.getElementById("portal-login").value == "" || document.getElementById("password").value == ""){
+				<?php
+				$alertStr = 'Please enter your login and password';
+				if(isset($LANG['ENTER_LOGIN'])) $alertStr = $LANG['ENTER_LOGIN'];
+				?>
+				alert("<?php echo $alertStr; ?>");
 				return false;
 			}
 			return true;
