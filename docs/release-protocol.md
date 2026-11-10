@@ -33,7 +33,7 @@ Be sure to include notes made in [this document](https://docs.google.com/documen
 
 After completion of the previous steps, draft a new release of the master branch on GitHub:
 
-1. Navigate to [https://github.com/BioKIC/Symbiota/releases/new](https://github.com/BioKIC/Symbiota/releases/new).
+1. Navigate to [https://github.com/Symbiota/Symbiota/releases/new](https://github.com/BioKIC/Symbiota/releases/new).
 2. Designate the target as the `master` branch.
 3. Create a new tag with the same version as designated in the `config/symbbase.php` document above. The release title should follow the pattern, "Symbiota vX.Y.Z". You can leave the release description blank.
 4. Publish the release.

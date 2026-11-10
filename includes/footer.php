@@ -3,10 +3,10 @@
 		<?php
 		//include($SERVER_ROOT . '/accessibility/module.php');
 		?>
-		<a href="https://biokic.asu.edu" target="_blank" title="Biodiversity Knowledge Integration Center" aria-label="Visit BioKIC website">
-			<img src="<?= $CLIENT_ROOT; ?>/images/layout/logo-asu-biokic.png"  alt="Logo for the Biodiversity Knowledge Integration Center" />
+		<a href="https://biocollections.asu.edu/" target="_blank" title="Center for Biological Collections and Discovery" aria-label="Visit website">
+			<img src="<?= $CLIENT_ROOT; ?>/images/layout/logo-asu-cbcd.png"  alt="Logo for the Center for Biological Collections and Discovery	" />
 		</a>
-		<a href="https://biokic.asu.edu/lichen-herbarium" target="_blank" title="ASU Lichen Herbarium" aria-label="Visit ASU Lichen Herbarium">
+		<a href="https://biocollections.asu.edu/natural-history/lichen-herbarium" target="_blank" title="ASU Lichen Herbarium" aria-label="Visit ASU Lichen Herbarium">
 			<img src="<?= $CLIENT_ROOT; ?>/images/layout/logo_asu-lichen.jpg" alt="Logo ASU Lichen Herbarium"/>
 		</a>
 		<a href="https://www.iucnredlist.org/" target="_blank" title="IUCN" aria-label="Visit IUCN">
