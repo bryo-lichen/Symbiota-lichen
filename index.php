@@ -111,8 +111,7 @@ header('Content-Type: text/html; charset=' . $CHARSET);
 			observaciones de investigaci&oacute;n.
 			</p>
 			<p>
-			Nuestra iniciativa cuenta con el apoyo del <i>Biodiversity Knowledge Integration Center</i> (BioKIC) de <i>Arizona State
-			University</i>, el <i>ASU Lichen Herbarium</i>, la <i>Uni&oacute;n Internacional para la Conservaci&oacute;n de la Naturaleza</i> (UICN),
+			Nuestra iniciativa cuenta con el apoyo del <i>Center for Biological Collections and Discovery</i> en la Escuela de Ciencias de la Vida de la Arizona State University (ASU Biocollections), el <i>ASU Lichen Herbarium</i>, la <i>Uni&oacute;n Internacional para la Conservaci&oacute;n de la Naturaleza</i> (UICN),
 			el <i>Grupo Latinoamericano de Liquen&oacute;logos</i> (GLAL) y el <i>Grupo Ecuatoriano de Liquenolog&iacute;a</i> ( GEL), <i>iDigBio</i>,
 			la <i>National Science Foundation</i> (NSF) y con el <i>GLOBAL Bryophytes and Lichens Network</i>.
 			</p>
@@ -137,8 +136,8 @@ header('Content-Type: text/html; charset=' . $CHARSET);
 			d'Europe, d'Asie, d'Afrique et d'Océanie, ainsi que des collections personnelles et des observations de recherche.
 			</p>
 			<p>
-			Notre initiative est soutenue par le <i>Biodiversity Knowledge Integration Center</i> (BioKIC) de l'<i>Arizona State University, 
-			l'ASU Lichen Herbarium</i>, l'<i>Union Internationale pour la Conservation de la Nature</i> (UICN), le <i>Grupo Latinoamericano de Liquenólogos</i> (GLAL), 
+			Notre initiative est soutenue par le <i>Center for Biological Collections and Discovery</i> à l'École des Sciences de la Vie de Arizona State University (ASU Biocollections), 
+			l'<i>ASU Lichen Herbarium</i>, l'<i>Union Internationale pour la Conservation de la Nature</i> (UICN), le <i>Grupo Latinoamericano de Liquenólogos</i> (GLAL), 
 			le <i>Grupo Ecuatoriano de Liquenología</i> (GEL), <i>iDigBio</i>, la <i>National Science Foundation</i> (NSF) et le <i>GLOBAL Bryophytes and Lichens Network</i>.
 			</p>
 			<p>
@@ -158,7 +157,7 @@ header('Content-Type: text/html; charset=' . $CHARSET);
 			but also from herbaria in Latin America, Europe, Asia, Africa, Oceania, as well as personal collections and research observations.
 			</p>
 			<p>
-			Our initiative is supported by the <i>Biodiversity Knowledge Integration Center</i> (BioKIC) of <i>Arizona State University</i>, the <i>ASU Lichen Herbarium</i>, 
+			Our initiative is supported by the <i>Center for Biological Collections and Discovery</i> at the School of Life Sciences of Arizona State University (ASU Biocollections), the <i>ASU Lichen Herbarium</i>, 
 			the <i>International Union for the Conservation of Nature</i> (IUCN), the <i>Grupo Latinoamericano de Liquenólogos</i> (GLAL), 
 			the <i>Grupo Ecuatoriano de Liquenología</i> (GEL), <i>iDigBio</i>, the <i>National Science Foundation</i> (NSF), and the <i>GLOBAL Bryophytes and Lichens Network</i>.
 			</p>
