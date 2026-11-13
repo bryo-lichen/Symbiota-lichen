@@ -1,21 +1,21 @@
 /* Variables
-   ========================================================================== */
+========================================================================== */
 :root {
-  --header-bg-image: url("../../images/layout/jonathan-borba-Ui73wdp0wok-unsplash.jpg");
-  --header-bg-color: #2f6e5378; /** Transparent color if adding header bg-image **/
+  --header-bg-image: url("../../images/layout/lichen_background_2024.jpg");
+  --header-bg-color: #00000026; /** Transparent color if adding header bg-image **/
   --header-font-color: #fff;
-  --brand-font-size: 1.5rem;
+  --brand-font-size: 1.6rem;
   --logo-width: 120px;
-  --menu-top-bg-color: #1b3d2f;
-  --menu-font-size: 1rem;
-  --body-bg-color: #fafafa;
+  --menu-top-bg-color: #000000;
+  --menu-font-size: 1.2rem;
+  --body-bg-color: #f2f2f2;
   --body-text-color: #000000;
-  --body-font-size: 1rem;
-  --body-font-family: "Open Sans", sans-serif;
-  --footer-bg-color: #f2f0e9;
-  --heading-font-family: "Open Sans", sans-serif;
-  --link-color: #126c00;
-  --darkest-color: #1b3d2f;
+  --body-font-size: 1.2rem;
+  --body-font-family: "Arial", sans-serif;
+  --footer-bg-color: #ffffff;
+  --heading-font-family: "Roboto", sans-serif;
+  --link-color: #3b3b3b;
+  --darkest-color: #191919;
   --medium-color: #5a5a53;
   --light-color: #f2f0e9;
   --bright-color: #b9d432;
