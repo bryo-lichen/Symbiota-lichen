@@ -29,30 +29,25 @@ header('Content-Type: text/html; charset=' . $CHARSET);
 	<link href="<?= $CSS_BASE_PATH ?>/quicksearch.css" type="text/css" rel="Stylesheet" />
 	<script src="<?= $CLIENT_ROOT ?>/js/jquery-3.7.1.min.js" type="text/javascript"></script>
 	<script src="<?= $CLIENT_ROOT ?>/js/jquery-ui.min.js" type="text/javascript"></script>
+	<script src="<?= $CLIENT_ROOT ?>/js/jquery.slides.js"></script>
+	<script src="<?= $CLIENT_ROOT ?>/js/symb/taxa.suggest.js?v=1" type="text/javascript"></script>
 	<script type="text/javascript">
-		var clientRoot = "<?= $CLIENT_ROOT ?>";
 		$(document).ready(function() {
-			$("#qstaxa").autocomplete({
-				source: function( request, response ) {
-					$.getJSON( "checklists/rpc/speciessuggest.php", { term: request.term }, response );
-				},
-				minLength: 3,
-				autoFocus: true,
-				select: function( event, ui ) {
-					if(ui.item){
-						$( "#qstaxa" ).val(ui.item.value);
-						$( "#qstid" ).val(ui.item.id);
-					}
-				},
-				change: function( event, ui ) {
-					if(ui.item === null) {
-						$( "#qstid" ).val("");
-					}
-				}
-			});
+			const taxaInput = document.querySelector("#qstaxa");
+			if(taxaInput){
+				taxaInput.addEventListener("focus", (event) => {
+					taxaSuggest.config.clientRoot = "<?= $CLIENT_ROOT ?>";
+					taxaSuggest.config.includeAuthor = <?= (empty($TAXON_AUTOCOMPLETE_INCLUDE_AUTHOR) ? 'false' : 'true') ?>;
+					taxaSuggest.config.includeKingdom = <?= (empty($TAXON_AUTOCOMPLETE_INCLUDE_KINGDOM) ? 'false' : 'true') ?>;
+					taxaSuggest.initiate("qstaxa", function(result){
+						if(result.valid) {
+							document.getElementById("qstid").value = result.item.id
+						}
+					});
+				});
+			}
 		});
 	</script>
-	<script src="<?= $CLIENT_ROOT ?>/js/jquery.slides.js"></script>
 	<meta name='keywords' content='lichens,natural history collections,flora,checklists,species lists' />
 </head>
 <body>
@@ -132,17 +127,17 @@ header('Content-Type: text/html; charset=' . $CHARSET);
 			<h1>Bienvenue au Consortium des Herbiers de Lichens!</h1>
 
 			<p>
-			Le <i>Consortium</i> sert de passerelle vers les données sur la biodiversité des champignons lichénisés. 
-			Il rassemble des données provenant non seulement d'herbiers de lichens d'Amérique du Nord, mais aussi d'herbiers d'Amérique latine, 
+			Le <i>Consortium</i> sert de passerelle vers les données sur la biodiversité des champignons lichénisés.
+			Il rassemble des données provenant non seulement d'herbiers de lichens d'Amérique du Nord, mais aussi d'herbiers d'Amérique latine,
 			d'Europe, d'Asie, d'Afrique et d'Océanie, ainsi que des collections personnelles et des observations de recherche.
 			</p>
 			<p>
-			Notre initiative est soutenue par le <i>Biodiversity Knowledge Integration Center</i> (BioKIC) de l'<i>Arizona State University, 
-			l'ASU Lichen Herbarium</i>, l'<i>Union Internationale pour la Conservation de la Nature</i> (UICN), le <i>Grupo Latinoamericano de Liquenólogos</i> (GLAL), 
+			Notre initiative est soutenue par le <i>Biodiversity Knowledge Integration Center</i> (BioKIC) de l'<i>Arizona State University,
+			l'ASU Lichen Herbarium</i>, l'<i>Union Internationale pour la Conservation de la Nature</i> (UICN), le <i>Grupo Latinoamericano de Liquenólogos</i> (GLAL),
 			le <i>Grupo Ecuatoriano de Liquenología</i> (GEL), <i>iDigBio</i>, la <i>National Science Foundation</i> (NSF) et le <i>GLOBAL Bryophytes and Lichens Network</i>.
 			</p>
 			<p>
-			Si vous êtes nouveau sur le site, veuillez créer un compte. Contactez-nous si vous souhaitez contribuer, que ce soit en tant qu'utilisateur 
+			Si vous êtes nouveau sur le site, veuillez créer un compte. Contactez-nous si vous souhaitez contribuer, que ce soit en tant qu'utilisateur
 			individuel ou en tant que gestionnaire de collection d'une institution souhaitant nous rejoindre: <a href="mailto:LichenConsortium@gmail.com">LichenConsortium@gmail.com</a>.
 			</p>
 		</div>
@@ -154,12 +149,12 @@ header('Content-Type: text/html; charset=' . $CHARSET);
 			<h1>Welcome to The Consortium of Lichen Herbaria!</h1>
 
 			<p>
-			The <i>Consortium</i> serves as gateway to biodiversity data of lichenized fungi. It unites records not only from lichen herbaria in North America, 
+			The <i>Consortium</i> serves as gateway to biodiversity data of lichenized fungi. It unites records not only from lichen herbaria in North America,
 			but also from herbaria in Latin America, Europe, Asia, Africa, Oceania, as well as personal collections and research observations.
 			</p>
 			<p>
-			Our initiative is supported by the <i>Biodiversity Knowledge Integration Center</i> (BioKIC) of <i>Arizona State University</i>, the <i>ASU Lichen Herbarium</i>, 
-			the <i>International Union for the Conservation of Nature</i> (IUCN), the <i>Grupo Latinoamericano de Liquenólogos</i> (GLAL), 
+			Our initiative is supported by the <i>Biodiversity Knowledge Integration Center</i> (BioKIC) of <i>Arizona State University</i>, the <i>ASU Lichen Herbarium</i>,
+			the <i>International Union for the Conservation of Nature</i> (IUCN), the <i>Grupo Latinoamericano de Liquenólogos</i> (GLAL),
 			the <i>Grupo Ecuatoriano de Liquenología</i> (GEL), <i>iDigBio</i>, the <i>National Science Foundation</i> (NSF), and the <i>GLOBAL Bryophytes and Lichens Network</i>.
 			</p>
 			<p>

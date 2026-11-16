@@ -109,6 +109,7 @@ class RpcTaxonomy extends RpcBase{
 					}
 				}
 			}
+			$sql .= 'LIMIT 30 ';
 			if($stmt = $this->conn->prepare($sql)){
 				$stmt->bind_param($typeStr, ...$paramArr);
 				$stmt->execute();
