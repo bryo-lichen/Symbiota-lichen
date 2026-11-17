@@ -591,7 +591,7 @@ else{
         }
 	</script>
 	<script src="<?= $CLIENT_ROOT ?>/js/symb/taxa.suggest.js?v=2" type="text/javascript"></script>
-	<script src="<?= $CLIENT_ROOT ?>/js/symb/collections.editor.autocomplete.js?v=2" type="text/javascript"></script>
+	<script src="<?= $CLIENT_ROOT ?>/js/symb/collections.editor.autocomplete.js?v=3" type="text/javascript"></script>
 	<script src="<?= $CLIENT_ROOT ?>/js/symb/collections.coordinateValidation.js?ver=1" type="text/javascript"></script>
 	<script src="<?= $CLIENT_ROOT ?>/js/symb/wktpolygontools.js?ver=2c" type="text/javascript"></script>
 	<script src="<?= $CLIENT_ROOT ?>/js/symb/collections.georef.js?ver=2" type="text/javascript"></script>
@@ -1362,11 +1362,6 @@ else{
 											<a href="#" onclick="return dwcDoc('associated-taxa')" tabindex="-1"><img class="docimg" src="../../images/qmark.png" /></a>
 											<br/>
 											<textarea name="associatedtaxa" onchange="fieldChanged('associatedtaxa');"><?php echo array_key_exists('associatedtaxa',$occArr)?$occArr['associatedtaxa']:''; ?></textarea>
-											<?php
-											if(!isset($ACTIVATEASSOCTAXAAID) || $ACTIVATEASSOCTAXAAID){
-												echo '<a href="#" onclick="openAssocSppAid();return false;" aria-label="'.(isset($LANG['ASSOC_SPP_AID']) ? $LANG['ASSOC_SPP_AID'] . $LANG['OPENS_NEW_TAB'] : 'Associated Species Entry Aid (opens in new tab)').'"><img class="editimg" src="../../images/list.png"></a>';
-											}
-											?>
 										</div>
 										<div id="verbatimAttributesDiv" class="field-div">
 											<?php echo $LANG['VERBATIM_ATTRIBUTES']; ?>
